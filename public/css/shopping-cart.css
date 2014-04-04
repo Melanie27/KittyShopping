@@ -1,0 +1,69 @@
+/**
+* User: rnugraha
+* Date: 12/26/12
+* Time: 4:17 AM
+*/
+
+/* General
+----------------------------------*/
+body {
+margin:50px 0px; padding:0px;
+text-align:center;
+font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
+background-color: #f8f8ff;
+font-size: .8em;
+color: #666;
+}
+h2{color: #2779AA;font-size: 2em;}
+a{text-decoration: none}
+.panel{
+width:623px;
+margin:0px auto;
+text-align:left;
+padding:15px;
+border:1px solid #ccc;
+background-color:#eee;
+text-align:center;
+
+}
+.footer{
+padding: 10px;
+font-size: .7em;
+color: #ccc;
+}
+.hidden {display: none;}
+.showed {display: block;}
+
+#productCategories {float:left;width:150px;}
+#productList{float:left;max-width: 100%; min-height: 100px;}
+#productDesc{clear: both;}
+
+/* Elements
+----------------------------------*/
+#categories .ui-selecting { background: #d7ebf9; }
+#categories .ui-selected { background: #3baae3; color: white; }
+#categories { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+#categories li { margin: 3px; padding: 0.4em; font-size: 1.2em; height: 18px; }
+.explanationTxt {
+font-size: 1.4em;
+color: #ccc;
+}
+#explanationTxtFrame {
+padding: 10px;
+border: 2px dashed #ccc;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+.draggable { width: 100px; height: 100px; padding: 0.4em; float: left; margin: 3px;}
+.basketHighlight {background: #fafad2}
+.removeItem{margin: 0px;font-size: .8em}
+
+#orderedProducts, #totalPrice {list-style-type: none;}
+#orderedProducts li {margin-left:-40px; text-align: left; border-bottom: #ccc 1px dotted; font-size: 1.2em;}
+#orderedProducts .orderedProdTxt {float: left; margin-top: 8px;}
+#orderedProducts .orderedProdTxt .albumTxt {font-weight: bold;}
+#orderedProducts .orderedProdPrice {float: right;}
+#orderedProducts .orderedProdPrice .priceTxt {vertical-align: middle; margin-right: 15px;}
+#orderedProducts p {margin: 3px;}
+#totalPriceAmount {font-size: 1.9em;}
+#totalPrice li {text-align: right; color: #2779aa; margin-right: 52px;}

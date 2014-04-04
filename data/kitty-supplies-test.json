@@ -1,0 +1,129 @@
+[
+    
+        
+            {
+                "product_id": 1,
+                "category": "supplies",
+                "title": "Lotus Fountain",
+                "id": "lotus-fountain",
+                "url" : "lotus-fountain",
+                "name": "Lotus Fountain",
+                "keyword" : "Hydration Health",
+                "description" : "Tranquil pools of water",
+                "price" : "1000",
+                "quantity" : "0",
+                "imagepathsm" : "lotus-fountain.jpg"
+            },
+            {
+                "product_id": 2,
+                "category": "supplies",
+                "title": "Raised Fountain",
+                "id": "raised-fountain",
+                "url" : "raised-fountain",
+                "name": "Raised Fountain",
+                "keyword" : "Hydration",
+                "description" : "Raised pools of water",
+                "price" : "200",
+                "quantity" : "0",
+                "imagepathsm" : "raised-fountain.jpg" 
+            },
+            {
+                "product_id": 3,
+                "category": "supplies",
+                "title": "Big Max Fountain",
+                "id": "big-max-fountain",
+                "url" : "big-max-fountain",
+                "name": "Big Max Fountain",
+                "keyword" : "Hydration",
+                "description" : "Large capacity drinking foutain",
+                "price" : "200",
+                "quantity" : "0",
+                "imagepathsm" : "big-max-fountain.jpg" 
+            },
+        
+    
+            {
+                "product_id": 4,
+                "category": "supplies",
+                "title": "Litter Robot",
+                "id": "litter-robot",
+                "url" : "litter-robot",
+                "name": "Litter Robot",
+                "keyword" : "Toillette",
+                "description" : "From the future",
+                "price" : "300",
+                "quantity" : "0",
+                "imagepathsm" : "litter-robot.jpg"
+            },
+            {
+                "product_id": 5,
+                "category": "supplies",
+                "title": "Washroom Bench",
+                "id": "washroom-bench",
+                "url" : "washroom-bench",
+                "name": "Washroom Bench",
+                "keyword" : "Toillette",
+                "description" : "Boxes are passe. Modern cats want entire rooms.",
+                "price" : "300",
+                "quantity" : "0",
+                "imagepathsm" : "washroom-bench.jpg"
+            },
+        
+   
+            {
+                "product_id": 6,
+                "category": "supplies",
+                "title": "Zen Perch",
+                "id": "zen-perch",
+                "url" : "zen-perch",
+                "name": "Zen Perch",
+                "keyword" : "Recline",
+                "description" : "Crazy Ass Perch",
+                "price" : "300",
+                "quantity" : "0",
+                "imagepathsm" : "zen-perch.jpg" 
+            },
+            {
+                "product_id": 7,
+                "category": "supplies",
+                "title": "Cat Shelf",
+                "id": "cat-shelf",
+                "url" : "cat-shelf",
+                "name": "Cat Shelf",
+                "keyword" : "Recline",
+                "description" : "Frees up floor space while giving cats a place to climb and perch.",
+                "price" : "300",
+                "quantity" : "3",
+                "imagepathsm" : "cat-shelf.jpg"  
+            },
+        
+            {
+                "product_id": 8,
+                "category": "supplies",
+                "title": "Peek a Puzzle",
+                "id": "peek-a-puzzle",
+                "url" : "peek-a-puzzle",
+                "name": "Peek a Puzzle",
+                "keyword" : "Playtime",
+                "description" : "Time to romp",
+                "price" : "50",
+                "quantity" : "4",
+                "imagepathsm" : "peek-a-puzzle.jpg"
+            },
+            {
+                "product_id": 9,
+                "category": "supplies",
+                "title": "Cutie Collar",
+                "id": "cutie-collar",
+                "url" : "cutie-collar",
+                "name": "Cutie Collar",
+                "keyword" : "Identification",
+                "description" : "This is one adorable collar.",
+                "price" : "100",
+                "quantity" : "8",
+                "imagepathsm" : "cutie-collar.jpg"
+            }
+            
+
+    
+]
