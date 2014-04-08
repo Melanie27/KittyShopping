@@ -3,7 +3,8 @@ var AppRouter = Backbone.Router.extend({
 
 	routes: {
 		"": "survey",
-		"kitty-survey/q-:question": "questionDetails",
+		"kitty-survey/:question": "questionDetails",
+		"survey": "questionCollection",
 		"kitty-supplies": "supplyList",
 		//"kitty-supplies/:category/:supply": "supplyDetails",
 		"kitty-supplies/:supply": "categoryDetails",
@@ -27,7 +28,6 @@ var AppRouter = Backbone.Router.extend({
 		//collection data for shopping cart
 
 		this.supplyCategoriesCollection = new SupplyCategoriesCollection({});
-
 
 		this.shoppingCartFullPageView = new ShoppingCartFullPageView ({ collection: this.supplyCategoriesCollection });
 
@@ -126,16 +126,37 @@ var AppRouter = Backbone.Router.extend({
 		);
 
 
+
+		//survey question model
+		this.surveyQuestionModel = new SurveyQuestion();
+
 		//survey questions collection:
 		//create the collection
 		this.surveyQuestions = new SurveyQuestions();
 		this.surveyQuestions.fetch();
 
-		this.surveyQuestionModel = new SurveyQuestion();
+		//model view
 		this.surveyQuestionDetails = new SurveyQuestionDetails(
-			{ model: this.surveyQuestionModel }
+			{model: this.surveyQuestionModel}
+
+			/*{
+				name: 'Favorite Band',
+				question: 'Your kitty',
+				answers: {
+						"Bub" : "Country",
+						"Grumpy" : "Mozart. Popular music is for the plebs.",
+						"Pudge" : "z100",
+						"Meow" : "Very heavy metal",
+						"Hipster" : "something long winded"
+					}
+			}*/
 		);
 
+		this.surveyQuestionListView = new SurveyQuestionListView({
+				collection: this.surveyQuestions
+		});
+
+		//collection view
 		this.surveyView = new SurveyView ( 
 			{ collection: this.surveyQuestions }
 
@@ -187,11 +208,16 @@ var AppRouter = Backbone.Router.extend({
 		$('#app2').html(this.surveyView.render().el);
 	},
 
+	questionCollection: function () {
+		$('#app2').html(this.surveyQuestionListView.render().el);
+		//$('#app2').html('survey question coll');
+	},
+
 	questionDetails: function (question) {
-		
-		//this.surveyQuestionModel.set('id', question);
+		this.surveyQuestionModel.set('id', question);
 		this.surveyQuestionModel.fetch();
 		//this.surveyQuestionDetails.model = this.surveyQuestions.get(question);
+		//this.surveyQuestionModel.set('name', question) 
 		$('#app2').html(this.surveyQuestionDetails.render().el);
 
 	},
@@ -224,6 +250,7 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	supplyList: function (category) {
+		
 		
 		$('#app2').html(this.suppliesView.render().el);
 	},

@@ -1,5 +1,7 @@
 var SurveyView = Backbone.View.extend({
 
+	//el: 'body',
+
 	template: Handlebars.compile (
 		
 		'<ul>' +
@@ -33,10 +35,8 @@ var SurveyView = Backbone.View.extend({
 		//this.listenTo(this.collection, "submit", this.render);
 		
 
-
 	},
 
-	
 	helperOne: function() {
 		var context = this.collection.toJSON();
 		//console.log(context);
@@ -58,7 +58,7 @@ var SurveyView = Backbone.View.extend({
 			output += '<li>' +
 			'answersContext' + 
 				'</li>';
-			//console.log(output);	
+			console.log(output);	
 
 			}
 
@@ -69,13 +69,48 @@ var SurveyView = Backbone.View.extend({
 
 	render: function () {
 		
-		this.helperOne();
+		var output = "";
 		
-		this.$el.html(this.template(this.collection));
-		this.delegateEvents({
-			'click .btn-danger': 'submit'
+
+		var html = '';
+		
+		_.each(this.collection.models, function(model, index, list) {
 			
+			var item_html = '<h2>' + 'Title: ' + model.get('name') + '</h2>' + '<br>';
+			var question_html = '<h4>' + 'Question: ' + model.get('question') + '</h4>' + '<br>';
+			var answer_html = model.get('answers');
+			var n = 5
+			var lists = _.groupBy (answer_html, function(element, index){
+				return Math.floor(index/n);
+					
+					//have to access each list indiv
+			});
+			
+			_.map(lists, function(keyobj, key, list) {
+				console.log(lists);
+				var output = "";
+				var group = "";
+				var answer_list = keyobj;
+				var answer_group =  '<fieldset><ul>' + answer_list + '</ul><fieldset>' ;
+
+
+				for (key in answer_list) {
+					var innerAnswer = answer_list[key];
+					output += '<input class="quiz" type="radio" name="answer" value=""/><li>' + innerAnswer + '</li>';
+					group = '<fieldset><ul class="answers">' + output + '</ul></fieldset>';
+				}
+
+				html = html + group
+
+			});
+
+			html = html + item_html + question_html;
 		});
+
+		html = '<form class="form-horizontal" id="form">'+ '<ul>' + html + '<ul></form>';
+		$(this.el).html(html);
+
+		
 		return this;
 	},
 

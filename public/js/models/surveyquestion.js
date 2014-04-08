@@ -1,10 +1,11 @@
 var SurveyQuestion = Backbone.NestedModel.extend({
 	comparator: 'id',
 	urlRoot: '/questions',
-	defaults: [
+	defaults: 
 			{
-			id: "default",
-			name: '',
+			
+			id: "favorite-band",
+			name: 'Favorite Band',
 			question: 'Your kitty claws at you desperatly when it wants to listen to:',
 			answers: {
 						"Bub" : "Country",
@@ -13,8 +14,10 @@ var SurveyQuestion = Backbone.NestedModel.extend({
 						"Meow" : "Very heavy metal",
 						"Hipster" : "something long winded"
 					}
-				}
-			]
+			},
 
+	schema: {
+		answers: { type: 'Radio',  }
+	}
 	
 });

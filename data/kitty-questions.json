@@ -14,7 +14,8 @@
 			"Pudge" : "Anything and everything my owner is eating",
 			"Bub" : "Mice",
 			"Meow" : "Roaches"
-		}
+		},
+		"sel": "true"
 	},
 	{
 		"id": "favorite-band",
@@ -77,6 +78,22 @@
 			"Pudge" : "John Candy",
 			"Meow" : "Does General McArthur count?",
 			"Hipster" : "Zooey Deschanel"
+
+		}
+	},
+	{
+		"id": "favorite-workout",
+		"number": "6",
+		"url": "favorite-workout",
+		"name": "Favorite Workout",
+		"question": "Exercise Time:",
+		"responded" : [ "default response" ],
+		"answers": {
+			"Bub" : "Short steady intervals of napping",
+			"Pudge" : "This question is a joke, right?",
+			"Grumpy" : "De-upholstering furniture",
+			"Meow" : "Separating small birds from their necks",
+			"Hipster" : "Watching old Radiohead videos"
 
 		}
 	}
