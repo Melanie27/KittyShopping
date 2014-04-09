@@ -6,6 +6,7 @@ var AppRouter = Backbone.Router.extend({
 		"kitty-survey/:question": "questionDetails",
 		"survey": "questionCollection",
 		"kitty-supplies": "supplyList",
+		"survey/:kitty" : "surveyResults",
 		//"kitty-supplies/:category/:supply": "supplyDetails",
 		"kitty-supplies/:supply": "categoryDetails",
 		"kitty-page/p:page" : 'getPages',
@@ -137,19 +138,7 @@ var AppRouter = Backbone.Router.extend({
 
 		//model view
 		this.surveyQuestionDetails = new SurveyQuestionDetails(
-			{model: this.surveyQuestionModel}
-
-			/*{
-				name: 'Favorite Band',
-				question: 'Your kitty',
-				answers: {
-						"Bub" : "Country",
-						"Grumpy" : "Mozart. Popular music is for the plebs.",
-						"Pudge" : "z100",
-						"Meow" : "Very heavy metal",
-						"Hipster" : "something long winded"
-					}
-			}*/
+			{ model: this.surveyQuestionModel }
 		);
 
 		this.surveyQuestionListView = new SurveyQuestionListView({
@@ -161,6 +150,17 @@ var AppRouter = Backbone.Router.extend({
 			{ collection: this.surveyQuestions }
 
 		);
+
+		//Survey Results
+		//results model
+		this.resultsModel = new ResultsModel();
+		
+
+		//model view
+		this.resultsView = new ResultsView({
+			model: this.resultsModel
+		});
+
 	},
 
 	renderView: function() {
@@ -207,6 +207,14 @@ var AppRouter = Backbone.Router.extend({
 		//this.surveyView.model = this.surveyQuestions.get(question);
 		$('#app2').html(this.surveyView.render().el);
 	},
+
+	surveyResults: function(kitty) {
+		console.log('triggered');
+		this.resultsModel.set('id', kitty);
+		this.resultsModel.fetch();
+		$('#app2').html(this.resultsView.render().el);
+	},
+
 
 	questionCollection: function () {
 		$('#app2').html(this.surveyQuestionListView.render().el);

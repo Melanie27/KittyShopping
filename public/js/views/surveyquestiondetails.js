@@ -4,7 +4,7 @@ var SurveyQuestionDetails = Backbone.View.extend({
 		'<div class="{{number}}">' +
 		'<h1>{{name}}</h1>' +
 		'<p><span class="label">{{question}}</span></p>' +
-		'<form class="form-horizontal3" id="form">'+
+		'<form class="form-horizontal3" id="form" name="myform">'+
 		'<fieldset>' +
 		'{{#each questions}}' + '<p>{{question}}</p>' + '{{/each}}' +
 		'{{#each answers}}'+
@@ -72,6 +72,7 @@ var SurveyQuestionDetails = Backbone.View.extend({
 		var value6 = $('.6 input.quiz').filter(':checked').val();
 		console.log(value6);
 	},
+
 
 
 

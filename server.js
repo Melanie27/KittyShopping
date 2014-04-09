@@ -2,6 +2,7 @@ var express = require('express'),
   http = require('http'),
   items = require('./data/menu-items');
   questions = require('./data/kitty-questions');
+  profiles = require('./data/kitty-profiles');
   supplies = require('./data/kitty-supplies-test');
 
 
@@ -16,6 +17,10 @@ app.get('/items', function  (req, res) {
 
 app.get('/questions', function  (req, res) {
   res.json(questions);
+});
+
+app.get('/profiles', function  (req, res) {
+  res.json(profiles);
 });
 
 
@@ -129,6 +134,19 @@ app.get('/questions/:question_name', function  (req, res) {
     res.json(matches[0]);
   } else {
     res.json(404, {status: 'invalid survey question'});
+  }
+
+});
+
+app.get('/profiles/:profile_name', function  (req, res) {
+  var matches = profiles.filter(function  (profile) {
+    return profile.url === req.params.profile_name;
+  });
+
+  if (matches.length > 0) {
+    res.json(matches[0]);
+  } else {
+    res.json(404, {status: 'invalid profile'});
   }
 
 });

@@ -41,11 +41,12 @@
 		"question": "You are most likely to find your beast perched here:",
 		"responded" : [ "default response" ],
 		"answers": {
+			"Hipster" : "Outside, smoking.",
 			"Bub" : "On your shoulder",
 			"Grumpy" : "Alone. Anywhere, just alone.",
 			"Pudge" : "In the fridge",
-			"Meow" : "Herding other cats",
-			"Hipster" : "Outside, smoking."
+			"Meow" : "Herding other cats"
+			
 
 		}
 	},
@@ -58,10 +59,10 @@
 		"responded" : [ "default response" ],
 		"answers": {
 			"Bub" : "Other cats",
-			"Grumpy" : "No one.",
 			"Pudge" : "Humans, animals, whoever.",
 			"Meow" : "Obedient animals",
-			"Hipster" : "dogs"
+			"Hipster" : "dogs",
+			"Grumpy" : "No one."
 
 		}
 	},
@@ -73,27 +74,11 @@
 		"question": "Your feline cannot get enough of this red carpet walker:",
 		"responded" : [ "default response" ],
 		"answers": {
-			"Bub" : "Meg Ryan",
-			"Grumpy" : "Jack Nicholson",
-			"Pudge" : "John Candy",
 			"Meow" : "Does General McArthur count?",
-			"Hipster" : "Zooey Deschanel"
-
-		}
-	},
-	{
-		"id": "favorite-workout",
-		"number": "6",
-		"url": "favorite-workout",
-		"name": "Favorite Workout",
-		"question": "Exercise Time:",
-		"responded" : [ "default response" ],
-		"answers": {
-			"Bub" : "Short steady intervals of napping",
-			"Pudge" : "This question is a joke, right?",
-			"Grumpy" : "De-upholstering furniture",
-			"Meow" : "Separating small birds from their necks",
-			"Hipster" : "Watching old Radiohead videos"
+			"Bub" : "Meg Ryan",
+			"Hipster" : "Zooey Deschanel",
+			"Grumpy" : "Jack Nicholson",
+			"Pudge" : "John Candy"
 
 		}
 	}
