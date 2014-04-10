@@ -16,8 +16,10 @@ var SurveyQuestion = Backbone.NestedModel.extend({
 					}
 			},
 
-	schema: {
-		answers: { type: 'Radio',  }
+	getChecked: function () {
+		
+		var values = $('input.quiz').filter(':checked').val();
+		console.log(values);
 	}
 	
 });

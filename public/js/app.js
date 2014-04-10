@@ -6,7 +6,7 @@ var AppRouter = Backbone.Router.extend({
 		"kitty-survey/:question": "questionDetails",
 		"survey": "questionCollection",
 		"kitty-supplies": "supplyList",
-		"survey/:kitty" : "surveyResults",
+		"results/:kitty" : "surveyResults",
 		//"kitty-supplies/:category/:supply": "supplyDetails",
 		"kitty-supplies/:supply": "categoryDetails",
 		"kitty-page/p:page" : 'getPages',
@@ -126,8 +126,6 @@ var AppRouter = Backbone.Router.extend({
 			}
 		);
 
-
-
 		//survey question model
 		this.surveyQuestionModel = new SurveyQuestion();
 
@@ -155,6 +153,9 @@ var AppRouter = Backbone.Router.extend({
 		//results model
 		this.resultsModel = new ResultsModel();
 		
+
+		//survey collection
+
 
 		//model view
 		this.resultsView = new ResultsView({
@@ -210,6 +211,8 @@ var AppRouter = Backbone.Router.extend({
 
 	surveyResults: function(kitty) {
 		console.log('triggered');
+		//this.resultsModel.set('name', kitty);
+
 		this.resultsModel.set('id', kitty);
 		this.resultsModel.fetch();
 		$('#app2').html(this.resultsView.render().el);

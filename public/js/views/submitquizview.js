@@ -19,20 +19,25 @@ events: {
 
 
 initialize: function() {
-	_.bindAll(this, "submitQuiz");
-	SurveyQuestionDetails.bind("submit1", this.submitQuiz)
+	//_.bindAll(this, "submitQuiz");
+	//SurveyQuestionDetails.bind("submit1", this.submitQuiz)
+},
+
+display: function() {
+	app.navigate('survey/:kitty', true);
 },
 
 
 submitQuiz: function(data) {
 
-	var formsCollection = document.getElementsByTagName("form");
-		for(var i=0;i<formsCollection.length;i++)
-	{
-   		//alert(formsCollection[i].name);
+	
+	/*var formsCollection = $("form");
+	for(var i=0;i<formsCollection.length;i++) {
+   		alert(formsCollection[i].name);
    		var values = $('input.quiz').filter(':checked').val();
+   		console.log(values);
    		//alert(formsCollection[i].checked);
-	}
+	}*/
 
 	/*for (var i =0; i<6; i ++) {
 		console.log($('input.quiz').filter(':checked').val());
@@ -44,7 +49,7 @@ submitQuiz: function(data) {
 		console.log( index + ": " + $('input.quiz').filter(':checked').val() );
 	});*/
 	var values = $('input.quiz').filter(':checked').val();
-	//console.log(values);
+	console.log(values);
 
 	//console.log(this.options.parent.collection.toJSON());
 	var value1 = $('.1 input.quiz').filter(':checked').val();
@@ -192,120 +197,43 @@ submitQuiz: function(data) {
 
 	console.log('Total Meows:' + MeowCount);
 
-	if (GrumpyCount >= 3) {
+	if (GrumpyCount >= 3 || (GrumpyCount == 2 && ( HipsterCount != 2 && PudgeCount != 2 && BubCount != 2 && MeowCount != 2  )) || (GrumpyCount == 2 && HipsterCount == 2) || (GrumpyCount == 2 && BubCount == 2)) {
 		console.log('grumpy!')
-		app.navigate("survey/grumpy", {trigger: true});
+		app.navigate("results/Grumpy", true);
 	}
 
-	if (HipsterCount >= 3) {
+	if (HipsterCount >= 3 || (HipsterCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && BubCount != 2 && MeowCount != 2  )) || (HipsterCount == 2 && PudgeCount == 2) || (HipsterCount == 2 && MeowCount == 2)) {
 		console.log('hipster!');
-		app.navigate("survey/hipster", {trigger: true});
+		app.navigate("results/Hipster", {trigger: true});
 	}
 
-	if (PudgeCount >= 3) {
+	if (PudgeCount >= 3 || (PudgeCount == 2 && ( GrumpyCount != 2 && HipsterCount != 2 && BubCount != 2 && MeowCount != 2  )) || (GrumpyCount == 2 && PudgeCount == 2) || (PudgeCount == 2 && BubCount == 2)) {
 		console.log('pudge!');
-		app.navigate("survey/pudge", {trigger: true});
+		app.navigate("results/Pudge", {trigger: true});
 	}
 
-	if (BubCount >= 3) {
+	if (BubCount >= 3 || (BubCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && HipsterCount != 2 && MeowCount != 2  )) || (BubCount == 2 && MeowCount == 2)) {
 		console.log('bub!');
-		app.navigate("survey/bub", {trigger: true});
+		app.navigate("results/Bub", {trigger: true});
 	}
 
-	if (MeowCount >= 3) {
+	if (MeowCount >= 3 || (MeowCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && BubCount != 2 && HipsterCount != 2  )) || (GrumpyCount == 2 && MeowCount == 2) || (PudgeCount == 2 && MeowCount == 2)) {
 		console.log('meow!');
-		app.navigate("survey/meow", {trigger: true});
+		app.navigate("results/Meow", {trigger: true});
 
 	}
-
-	//test if one cat only gets 2 votes only run this test if the previous come back false
-
-	if (GrumpyCount == 2 && ( HipsterCount != 2 && PudgeCount != 2 && BubCount != 2 && MeowCount != 2  )) {
-		console.log('grumpy wins!');
-		app.navigate("survey/results/grumpy", {trigger: true});
-	}
-
-	if (HipsterCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && BubCount != 2 && MeowCount != 2  )) {
-		console.log('hipster wins!');
-		app.navigate("survey/results/hipster", {trigger: true});
-	}
-
-	if (PudgeCount == 2 && ( GrumpyCount != 2 && HipsterCount != 2 && BubCount != 2 && MeowCount != 2  )) {
-		console.log('Pudge wins!');app.navigate("survey/results/pudge", {trigger: true});
-		
-	}
-
-	if (BubCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && HipsterCount != 2 && MeowCount != 2  )) {
-		console.log('bub wins!');
-		app.navigate("survey/results/bub", {trigger: true});
-	}
-
-	if (MeowCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && BubCount != 2 && HipsterCount != 2  )) {
-		console.log('meow wins!');
-		app.navigate("survey/results/meow", {trigger: true});
-	}
-
-	//test for 2-2 ties
-
-	if (GrumpyCount == 2 && HipsterCount == 2)  {
-		console.log('tie - goes to grumpy');
-		app.navigate("survey/results/grumpy", {trigger: true});
-	}
-
-	if (GrumpyCount == 2 && PudgeCount == 2)  {
-		console.log('tie - goes to pudge');
-		app.navigate("survey/results/pudge", {trigger: true});
-	}
-
-	if (GrumpyCount == 2 && BubCount == 2)  {
-		console.log('tie - goes to grumpy');
-		app.navigate("survey/results/grumpy", {trigger: true});
-	}
-
-	if (GrumpyCount == 2 && MeowCount == 2)  {
-		console.log('tie - goes to meow');
-		app.navigate("survey/results/meow", {trigger: true});
-	}
-
-	if (HipsterCount == 2 && PudgeCount == 2)  {
-		console.log('tie - goes to hipster');
-		app.navigate("survey/results/hipster", {trigger: true});
-	}
-
-	if (HipsterCount == 2 && BubCount == 2)  {
-		console.log('tie - goes to bub');
-		app.navigate("survey/results/bub", {trigger: true});
-	}
-
-	if (HipsterCount == 2 && MeowCount == 2)  {
-		console.log('tie - goes to hipster');
-		app.navigate("survey/results/hipster", {trigger: true});
-	}
-
-	if (PudgeCount == 2 && BubCount == 2)  {
-		console.log('tie - goes to pudge');
-		app.navigate("survey/results/pudge", {trigger: true});
-	}
-
-	if (PudgeCount == 2 && MeowCount == 2)  {
-		console.log('tie - goes to meow');
-		app.navigate("survey/results/meow", {trigger: true});
-	}
-
-	if (BubCount == 2 && MeowCount == 2)  {
-		console.log('tie - goes to Bub');
-		app.navigate("survey/results/bub", {trigger: true});
-	}
-
+	
 	if (GrumpyCount == 1 &&  HipsterCount == 1 && PudgeCount == 1 && BubCount == 1 && MeowCount == 1) {
 		console.log('5 way tie');
-		app.navigate("survey/results/bub", {trigger: true});
+		app.navigate("results/Bub", {trigger: true});
 	}
 
 	//prompt('Enter the name of your furry Beast');
 	//app.navigate("survey/results", {trigger: true});
 
 }
+
+
 
 
 });

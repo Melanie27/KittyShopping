@@ -9,7 +9,8 @@ var ResultsView = Backbone.View.extend({
 	),
 
 	initialize: function() {
-		this.model.on('reset',this.render,this)
+		//this.model.on('reset',this.render,this)
+		this.listenTo(this.model, "change", this.render);
 	},
 
 	render: function() {
