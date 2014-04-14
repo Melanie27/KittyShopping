@@ -30,3 +30,4 @@ var SupplyCategory = Backbone.Model.extend({
 		}
 
 });
+

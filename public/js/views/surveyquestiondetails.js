@@ -33,8 +33,18 @@ var SurveyQuestionDetails = Backbone.View.extend({
 
 	submit1: function() {
 		//get the value for the checked button on submit
-		var value1 = $('input.quiz').filter(':checked').val();
-		console.log(value1);
+		
+		/*var formsCollection = $("form");
+		var checked = $('input.quiz').filter(':checked');
+		//var value = $('input.quiz').filter(':checked').val();
+		for(var i=0;i<checked.length;i++) {
+   			console.log(formsCollection[i].name);
+   			console.log(formsCollection[i].input);
+   			var formNumber = formsCollection[i].name;
+   			var checker = $(formNumber).each(checked);
+   			console.log(checker);
+			//console.log(value);
+		}*/
 	},
 
 	render: function () {

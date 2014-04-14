@@ -30,4 +30,6 @@ defaults: {
 			return '$' + this.get('price') * this.get('quantity') + '.00';
 		}
 
+		
+
 });
