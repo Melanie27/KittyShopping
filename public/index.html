@@ -3,7 +3,7 @@
 	<title>Kitty Dev 3</title>
 
 	
-	 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&sensor=true"></script>
+	 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false"></script>
 
 	<script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
@@ -16,7 +16,10 @@
 	<script type="text/javascript" src="js/lib/backbone.googlemaps.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-forms/distribution/backbone-forms.js"></script>
 	<script src="js/lib/jquery.tmpl.js" type="text/javascript"></script>
-	<script src="js/lib/jquery-ui-1.10.4.js" type="text/javascript"></script>	
+	<script src="js/lib/jquery-ui-1.10.4.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="js/lib/store-locator.min.js"></script>
+
 
 	<script type="text/javascript" src="js/models/surveyquestion.js"></script>
 	<script type="text/javascript" src="js/models/resultsmodel.js"></script>
@@ -24,11 +27,14 @@
 	<script type="text/javascript" src="js/models/invoiceitemmodel.js"></script>
 	<script type="text/javascript" src="js/models/ordersupplymodel.js"></script>
 
+	<script type="text/javascript" src="js/models/locationmodel.js"></script>
+
 	
 
 	<script type="text/javascript" src="js/collections/surveyquestions.js"></script>
 	<script type="text/javascript" src="js/collections/supplycategoriescollection.js"></script>
 	<script type="text/javascript" src="js/collections/orderedsuppliescollection.js"></script>
+	<script type="text/javascript" src="js/collections/locationcollection.js"></script>
 
 
 	<script type="text/javascript" src="js/views/survey.js"></script>
@@ -51,33 +57,40 @@
 	<script type="text/javascript" src="js/views/totalpriceview.js"></script>
 	<script type="text/javascript" src="js/views/orderedsupplyview.js"></script>
 	<script type="text/javascript" src="js/views/orderedsupplylistview.js"></script>
+	<script type="text/javascript" src="js/views/maplistview.js"></script>
+	<script type="text/javascript" src="js/views/mapitemview.js"></script>
+	<script type="text/javascript" src="js/views/mapmarkerview.js"></script>
+	<script type="text/javascript" src="js/views/studiomarkerview.js"></script>
+	<script type="text/javascript" src="js/views/spamarkerview.js"></script>
+	<script type="text/javascript" src="js/views/mapmarkercollectionview.js"></script>
+	<script type="text/javascript" src="js/views/mapinfowindow.js"></script>
 
 
 
 	<script type="text/javascript" src="js/app.js"></script>
 	<script>
 	$(document).ready(function() {
-  AppRouter.init();
+ 		
 
-  $('#spas').click(function() {
-    AppRouter.places.reset(spas);
-  });
+		  /*$('#spas').click(function() {
+		    this.places.reset(spas);
+		  });
 
-  $('#studios').click(function() {
-    AppRouter.places.reset(studios);
-  });
+		  $('#studios').click(function() {
+		    this.places.reset(studios);
+		  });
 
-  $('#addBtn').click(function() {
-    AppRouter.places.add({
-      title: 'State Capitol Building',
-      lat: 44.9543075,
-      lng: -93.102222
-    });
-  });
+		  $('#addBtn').click(function() {
+		    places.add({
+		      title: 'State Capitol Building',
+		      lat: 44.9543075,
+		      lng: -93.102222
+		    });
+		  });
 
-  $('#removeBtn').click(function() {
-    AppRouter.places.remove(AppRouter.places.at(0));
-  });
+		  $('#removeBtn').click(function() {
+		    places.remove(places.at(0));
+		  });*/
 });
 </script>
 
@@ -164,12 +177,7 @@
 	<div class="container" id="app2">
 		<!-- TEMPLATE: InfoWindow
  ============================== -->
-		<script id="infoWindow-template" type="text/html">
-	 	 <h2><%=title %></h2>
-	  	 <h3><%=hours %></h3>
-	 	 <p>Latitude: <%=lat %></p>
-	  	 <p>Longitude: <%=lng %></p>
-		</script>
+		
 
 		<div id="search-area" class="overlay">
 		  <button id="studios">find studios</button>
@@ -178,7 +186,7 @@
 		  <button id="removeBtn">remove</button>
 		</div>
 
-	<div id="map_canvas" style="width:50%; height:50%"></div>
+	<div id="map_canvas" style="width:70%; height:70%"></div>
 	</div>
 
 

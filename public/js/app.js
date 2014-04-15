@@ -7,202 +7,19 @@ var AppRouter = Backbone.Router.extend({
 		"survey": "questionCollection",
 		"kitty-supplies": "supplyList",
 		"results/:kitty" : "surveyResults",
-		//"kitty-supplies/:category/:supply": "supplyDetails",
-		"kitty-supplies/:supply": "categoryDetails",
-		"kitty-page/p:page" : 'getPages',
 		"shopping-cart/:supply" : "shoppingCart",
 		"updated-cart" : "updatedCart",
 		"cart-list"		: "cartList",
 		"ordered-item/:supply" : "orderedItem",
 		"ordered-list" : "orderedList",
-		"ordered-page" : "orderedPage",
-		"supplies-list" : "suppliesList",
-		"render-view" : "renderView",
 		"locations" : "locateCenter"
 
 	},
 
 	initialize: function() {
-		
-		
-		AppRouter.Location = Backbone.GoogleMaps.Location.extend({
-  idAttribute: 'title',
-  defaults: {
-    lat: 34.01945,
-    lng: -118.49119,
-    hours: ''
-  }
-});
-
-AppRouter.LocationCollection = Backbone.GoogleMaps.LocationCollection.extend({
-  model: AppRouter.Location
-});
-
-AppRouter.InfoWindow = Backbone.GoogleMaps.InfoWindow.extend({
-  template: '#infoWindow-template',
-
-  events: {
-    'mouseenter h2': 'logTest'
-  },
-
-  logTest: function() {
-    console.log('test in InfoWindow');
-  }
-});
-
-AppRouter.MarkerView = Backbone.GoogleMaps.MarkerView.extend({
-  infoWindow: AppRouter.InfoWindow,
-
-  initialize: function() {
-    _.bindAll(this, 'handleDragEnd');
-  },
-
-  mapEvents: {
-    'dragend': 'handleDragEnd',
-    dblclick: 'tellTheWorldAboutIt'
-  },
-
-  handleDragEnd: function(e) {
-    alert('Dropped at: \n Lat: ' + e.latLng.lat() + '\n lng: ' + e.latLng.lng());
-  },
-
-  tellTheWorldAboutIt: function() {
-    console.assert(this instanceof App.MarkerView);
-    alert('You done gone and double-clicked me!');
-    this.logIt('I hope you know that this will go down on your permanent record.')
-  },
-
-  logIt: function(message) {
-    console.assert(this instanceof App.MarkerView);
-    console.log(message);
-  }
-});
-
-AppRouter.studioMarker = AppRouter.MarkerView.extend({
-  overlayOptions: {
-    draggable: false,
-    icon: 'assets/kittenYoga.png'
-  }
-});
-
-AppRouter.spaMarker = AppRouter.MarkerView.extend({
-  overlayOptions: {
-    draggable: true,
-    icon: 'assets/kittenYoga.png'
-  }
-});
-
-AppRouter.MarkerCollectionView = Backbone.GoogleMaps.MarkerCollectionView.extend({
-  markerView: AppRouter.MarkerView,
-
-  addChild: function(model) {
-    this.markerView = model.get('type') === 'studio' ?
-            AppRouter.studioMarker :
-            AppRouter.spaMarker;
-
-    Backbone.GoogleMaps.MarkerCollectionView.prototype.addChild.apply(this, arguments);
-  }
-});
-
-AppRouter.init = function() {
-  this.createMap();
-
-  this.places = new this.LocationCollection(studios);
-
-  // Render Markers
-  var markerCollectionView = new this.MarkerCollectionView({
-    collection: this.places,
-    map: this.map
-  });
-  markerCollectionView.render();
-
-  // Render ListView
-  var listView = new AppRouter.ListView({
-    collection: this.places
-  });
-  listView.render();
-}
-
-AppRouter.createMap = function() {
-  var mapOptions = {
-    center: new google.maps.LatLng(34.01945, -118.49119),
-    zoom: 10,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-
-  // Instantiate map
-  this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
-}
 
 
-/**
- * List view
- */
-AppRouter.ItemView = Backbone.View.extend({
-  template: '<%=title %>',
-  tagName: 'li',
-
-  events: {
-    'mouseenter': 'selectItem',
-    'mouseleave': 'deselectItem'
-  },
-
-  initialize: function() {
-    _.bindAll(this, 'render', 'selectItem', 'deselectItem')
-
-    this.model.on("remove", this.close, this);
-  },
-
-  render: function() {
-    var html = _.template(this.template, this.model.toJSON());
-    this.$el.html(html);
-
-    return this;
-  },
-
-  close: function() {
-    this.$el.remove();
-  },
-
-  selectItem: function() {
-    this.model.select();
-  },
-
-  deselectItem: function() {
-    this.model.deselect();
-  }
-});
-
-AppRouter.ListView = Backbone.View.extend({
-  tagName: 'ul',
-  className: 'overlay',
-  id: 'listing',
-
-  initialize: function() {
-    _.bindAll(this, "refresh", "addChild");
-
-    this.collection.on("reset", this.refresh, this);
-    this.collection.on("add", this.addChild, this);
-
-    this.$el.appendTo('body');
-  },
-
-  render: function() {
-    this.collection.each(this.addChild);
-  },
-
-  addChild: function(childModel) {
-    var childView = new AppRouter.ItemView({ model: childModel });
-    childView.render().$el.appendTo(this.$el);
-  },
-
-  refresh: function() {
-    this.$el.empty();
-    this.render();
-  }
-});
-
-
+	//Shopping Cart declarations
 		//collection of ordered items 
 		this.orderedSuppliesCollection = new OrderedSuppliesCollection({});
 		
@@ -220,10 +37,6 @@ AppRouter.ListView = Backbone.View.extend({
 			orderedSuppliesCollection: this.orderedSuppliesCollection
 	
 		}
-
-		/*this.totalPriceView = new  TotalPriceView ({
-			collection : this.orderedSuppliesCollection
-		})*/
 
 		 //shopping cart supply list view
 
@@ -327,17 +140,58 @@ AppRouter.ListView = Backbone.View.extend({
 
 	},
 
-	locateCenter: function() {
-		//$('#app2').html('locations here');
+
+	init : function() {
+  
+  			this.createMap();
+  			this.places = new LocationCollection(studios);
+
+ 			 // Render Markers
+  			var markerCollectionView = new MarkerCollectionView({
+    			collection: this.places,
+    			map: this.map
+  			});
+  			markerCollectionView.render();
+
+  			// Render ListView
+ 			var listView = new ListView({ collection: this.places });
+  				//listView.render();
 	},
 
-	renderView: function() {
-		$('#app2').html('this is Shopping Cart Render View');
-		$('#app2').html(this.shoppingCartRenderView.render().el);
+
+	locateCenter: function() {
+		
+		var mapOptions = {
+    			center: new google.maps.LatLng(34.01945, -118.49119),
+    			zoom: 10,
+    			mapTypeId: google.maps.MapTypeId.TERRAIN
+ 			 }
+		
+			this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+
+		this.places = new LocationCollection(studios);
+
+ 			 // Render Markers
+  			var markerCollectionView = new MarkerCollectionView({
+    			collection: this.places,
+    			map: this.map
+  			});
+  			markerCollectionView.render();
+
+  			// Render ListView
+ 			var listView = new ListView({ collection: this.places });
+  				listView.render();
+
+
+
+		//init();
+		//$('#app2').html('locations');
+		//$('#app2').html(this.listView.render().el);
 	},
+
 
 	suppliesList: function() {
-		//$('#app2').html('this is the supplies list');
+		
 		this.supplyCategoryModel.fetch();
 		$('#app2').html(this.shoppingCartListView.render().el);
 	},
@@ -357,16 +211,8 @@ AppRouter.ListView = Backbone.View.extend({
 
 	shoppingCart: function(supply) {
 		this.supplyCategoryModel.set('id', supply);
-		//$('#app2').html('Shopping cart View here');
 		this.supplyCategoryModel.fetch();
 		$('#app2').html(this.shoppingCartView.render().el);
-	},
-
-
-	getPages: function(page) {
-		$('#app2').html('hi');
-		//var page_number = page || 1;
-		//console.log(page_number);
 	},
 
 
@@ -385,49 +231,16 @@ AppRouter.ListView = Backbone.View.extend({
 	questionDetails: function (question) {
 		this.surveyQuestionModel.set('id', question);
 		this.surveyQuestionModel.fetch();
-		//this.surveyQuestionDetails.model = this.surveyQuestions.get(question);
-		//this.surveyQuestionModel.set('name', question) 
 		$('#app2').html(this.surveyQuestionDetails.render().el);
 
 	},
 
-	supplyDetails: function (category, supply) {
-		
-		//var	encodedHtml = encodedHtml.replace(/\//g,"%2F");
-		//console.log(encodedHtml);
-		var str = "%2F";
-		var result = str.replace("%2F", "/");
-		console.log(category);
-		console.log(supply);
-		cat = category + result
-		newRoute = cat + supply;
-		this.supplyCategoryModel.set({id : newRoute });
-		//this.supplyCategoryModel.set('id', category);
-		this.supplyCategoryModel.fetch();
-		$('#app2').html(this.supplyIndivDetails.render().el);
-	},
-
-	categoryDetails: function (supply) {
-		//this.supplyCategoryView.model = this.supplyCategoriesCollection.get(supply);
-
-		this.supplyCategoryModel.set('id', supply);
-		//id is appended to the url root and then that data is loaded
-		this.supplyCategoryModel.fetch();
-		//this.supplyCategoryView.options.title = category;
-		$('#app2').html(this.supplyCategoryView.render().el);
-		
-	},
-
 	supplyList: function (category) {
-		
-		
 		$('#app2').html(this.suppliesView.render().el);
 	},
 
 	updatedCart: function(supply) {
-		
 		this.supplyCategoryModel.set('id', supply);
-		//$('#app2').html('Shopping cart View here');
 		this.supplyCategoryModel.fetch();
 		$('#app2').html(this.shoppingCartRenderView.render().el);
 	},
