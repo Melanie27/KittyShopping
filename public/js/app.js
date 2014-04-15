@@ -12,12 +12,12 @@ var AppRouter = Backbone.Router.extend({
 		"cart-list"		: "cartList",
 		"ordered-item/:supply" : "orderedItem",
 		"ordered-list" : "orderedList",
-		"locations" : "locateCenter"
+		"locations" : "locateCenter",
+		"store-locator" : "storeLocator"
 
 	},
 
 	initialize: function() {
-
 
 	//Shopping Cart declarations
 		//collection of ordered items 
@@ -138,6 +138,11 @@ var AppRouter = Backbone.Router.extend({
 			model: this.resultsModel
 		});
 
+	},
+
+
+	storeLocator: function() {
+		
 	},
 
 

@@ -1,0 +1,8 @@
+[
+{"id":"1","name":"Yoga Kitten - Santa Monica","lat":"34.01945","lng":"-118.49119","address":"927 5th Street","address2":"Apt 3","city":"Santa Monica","state":"CA","postal":"90403","phone":"213-703-1346","web":"http:\/\/www.melaniemcganney.com","hours1":"Mon-Sun 11am-10pm","hours2":"","hours3":""},
+{"id":"2","name":"Yoga Kitten - Beverly Hills","lat":"34.07362","lng":"-118.40036","address":"Rodeo Drive","address2":"","city":"Beverly Hills","state":"CA","postal":"90210","phone":"310-717-9842","web":"http:\/\/www.yogakitten.com","hours1":"Mon-Sun 9am-10pm","hours2":"","hours3":""},
+{"id":"3","name":"Yoga Kitten - Venice","lat":"33.99621","lng":"-118.46888","address":"1020 Abbot Kinney","address2":"","city":"Los Angeles","state":"CA","postal":"90291","phone":"310-717-9844","web":"http:\/\/www.yogakitten.com","hours1":"Mon-Sun 11am-9pm","hours2":"","hours3":""},
+{"id":"4","name":"Yoga Kitten - Silverlake","lat":"34.0880507","lng":"-118.29651209999997","address":"3922 W Sunset Blvd","address2":"","city":"Los Angeles","state":"CA","postal":"90029","phone":"213-703-1346","web":"http:\/\/www.yogakitten.com","hours1":"Mon-Sun 11am-10pm","hours2":"","hours3":""},
+{"id":"5","name":"Yoga Kitten - Brentwood","lat":"34.0963058","lng":"-118.49807440000001","address":"11711 Gorham Ave","address2":"","city":"Los Angeles","state":"CA","postal":"90049","phone":"213-703-1346","web":"http:\/\/www.yogakitten.com","hours1":"Mon-Sun 11am-10pm","hours2":"","hours3":""},
+{"id":"6","name":"Yoga Kitten - San Diego","lat":"32.7090984","lng":"-117.24115599999999","address":"2400 Historic Decatur Rd","address2":"","city":"San Diego","state":"CA","postal":"92106","phone":"213-703-1346","web":"http:\/\/www.yogakitten.com","hours1":"Mon-Sun 11am-10pm","hours2":"","hours3":""}
+]
