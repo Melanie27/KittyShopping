@@ -739,18 +739,21 @@ $.fn.storeLocator = function(options) {
               //Custom marker function - alphabetical
               function createMarker(point, name, address, letter){
                 //Set up pin icon with the Google Charts API for all of our markers
-                //var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + letter + "|" + settings.pinColor + "|" + settings.pinTextColor,
-                  var pinImage = new google.maps.MarkerImage("../public/images/kittenYoga.png", null, null, new google.maps.Point(14, 13));
+               var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + letter + "|" + settings.pinColor + "|" + settings.pinTextColor,
+                  new google.maps.Size(21, 34),
+                  new google.maps.Point(0,0),
+                  new google.maps.Point(10, 34));
+                  //var pinImage = new google.maps.MarkerImage("../public/images/kittenYoga.png", null, null, new google.maps.Point(14, 13));
 
         
 
-              var SHADOW = new google.maps.MarkerImage('../jQuery-Store-Locator-Plugin/images/kittenYoga-shadow.png', null, null, new google.maps.Point(14,13));
+              //var SHADOW = new google.maps.MarkerImage('../jQuery-Store-Locator-Plugin/images/kittenYoga-shadow.png', null, null, new google.maps.Point(14,13));
                 
                 //Create the markers
                 if(settings.storeLimit === -1 || settings.storeLimit > 26){
                   var marker = new google.maps.Marker({
                     position: point, 
-                    shadow: SHADOW,
+        
                     map: map,
                     draggable: false
                   });
@@ -760,7 +763,7 @@ $.fn.storeLocator = function(options) {
                     position: point, 
                     map: map,
                     icon: pinImage,
-                    shadow: SHADOW,
+                   
                     draggable: false
                   });
                 }
