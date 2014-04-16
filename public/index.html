@@ -31,7 +31,6 @@
 	<script type="text/javascript" src="js/models/locationmodel.js"></script>
 
 	
-
 	<script type="text/javascript" src="js/collections/surveyquestions.js"></script>
 	<script type="text/javascript" src="js/collections/supplycategoriescollection.js"></script>
 	<script type="text/javascript" src="js/collections/orderedsuppliescollection.js"></script>
@@ -58,42 +57,14 @@
 	<script type="text/javascript" src="js/views/totalpriceview.js"></script>
 	<script type="text/javascript" src="js/views/orderedsupplyview.js"></script>
 	<script type="text/javascript" src="js/views/orderedsupplylistview.js"></script>
-	<script type="text/javascript" src="js/views/maplistview.js"></script>
-	<script type="text/javascript" src="js/views/mapitemview.js"></script>
-	<script type="text/javascript" src="js/views/mapmarkerview.js"></script>
-	<script type="text/javascript" src="js/views/studiomarkerview.js"></script>
-	<script type="text/javascript" src="js/views/spamarkerview.js"></script>
-	<script type="text/javascript" src="js/views/mapmarkercollectionview.js"></script>
-	<script type="text/javascript" src="js/views/mapinfowindow.js"></script>
+	
+
+	<script type="text/javascript" src="js/views/storelocateview.js"></script>
 
 
 
 	<script type="text/javascript" src="js/app.js"></script>
-	<script>
-	$(document).ready(function() {
- 		
-
-		  /*$('#spas').click(function() {
-		    this.places.reset(spas);
-		  });
-
-		  $('#studios').click(function() {
-		    this.places.reset(studios);
-		  });
-
-		  $('#addBtn').click(function() {
-		    places.add({
-		      title: 'State Capitol Building',
-		      lat: 44.9543075,
-		      lng: -93.102222
-		    });
-		  });
-
-		  $('#removeBtn').click(function() {
-		    places.remove(places.at(0));
-		  });*/
-});
-</script>
+	
 
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -150,8 +121,7 @@
 			<li><a href="#">Survey List Collection</a></li>
 			<li><a href="#/kitty-survey/favorite-food">Kitty Question Model</a></li>
 			<li><a href="#/cart-list">Shopping Cart List</a></li>
-			<li><a href="#/locations">Locations & Maps </a></li>
-			<li><a href="#/store-locator">Store Locator </a></li>
+			<li><a href="#/store-locator">Store Locator 2</a></li>
 			
 		</ul>
 	</div>	
@@ -161,55 +131,12 @@
  ============================== -->
 		
 
-		<div id="search-area" class="overlay">
-		  <button id="studios">find studios</button>
-		  <button id="spas">find spas</button>
-		  <button id="addBtn">add</button>
-		  <button id="removeBtn">remove</button>
-		</div>
-
-	<!--<div id="map_canvas" style="width:70%; height:70%"></div>
-	</div>-->
-
-
-
-	<!--<div class="container" id="orderedProducts">
-	</div>-->
-
 	<div class="container" id="app3">
-		 <div id="store-locator-container">
-      <div id="page-header">
-        <h1>Yoga Kitten Locations</h1>
-      
-      </div>
-      
-      <div id="form-container">
-        <form id="user-location" method="post" action="#">
-            <div id="form-input">
-              <label for="address">Enter Address or Zip Code:</label>
-              <input type="text" id="address" name="address" />
-             </div>
-            
-            <button id="submit" type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div id="map-container">
-        <div id="loc-list">
-            <ul id="list"></ul>
-        </div>
-        <div id="map"></div>
-      </div>
-    </div>
+		 
 
 	</div>
 
- <script>
-        $(function() {
-
-      $('#map-container').storeLocator({'slideMap' : false, 'defaultLoc': true, 'defaultLat': '34.01945', 'defaultLng' : '-118.49119', 'dataType': 'json', 'dataLocation': 'locations.json' });
-        });
-      </script>
+ 
 
 </body>
 </html>

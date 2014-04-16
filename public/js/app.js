@@ -12,8 +12,8 @@ var AppRouter = Backbone.Router.extend({
 		"cart-list"		: "cartList",
 		"ordered-item/:supply" : "orderedItem",
 		"ordered-list" : "orderedList",
-		"locations" : "locateCenter",
-		"store-locator" : "storeLocator"
+		"store-locator" : "storeLocator",
+		
 
 	},
 
@@ -138,65 +138,21 @@ var AppRouter = Backbone.Router.extend({
 			model: this.resultsModel
 		});
 
+
+		//init store location view
+		this.storeLocateView = new StoreLocateView();
+
 	},
 
 
 	storeLocator: function() {
-		
-	},
-
-
-	init : function() {
-  
-  			this.createMap();
-  			this.places = new LocationCollection(studios);
-
- 			 // Render Markers
-  			var markerCollectionView = new MarkerCollectionView({
-    			collection: this.places,
-    			map: this.map
-  			});
-  			markerCollectionView.render();
-
-  			// Render ListView
- 			var listView = new ListView({ collection: this.places });
-  				//listView.render();
-	},
-
-
-	locateCenter: function() {
-		
-		var mapOptions = {
-    			center: new google.maps.LatLng(34.01945, -118.49119),
-    			zoom: 10,
-    			mapTypeId: google.maps.MapTypeId.TERRAIN
- 			 }
-		
-			this.map = new google.maps.Map($('#map_canvas')[0], mapOptions);
-
-		this.places = new LocationCollection(studios);
-
- 			 // Render Markers
-  			var markerCollectionView = new MarkerCollectionView({
-    			collection: this.places,
-    			map: this.map
-  			});
-  			markerCollectionView.render();
-
-  			// Render ListView
- 			var listView = new ListView({ collection: this.places });
-  				listView.render();
-
-
-
-		//init();
-		//$('#app2').html('locations');
-		//$('#app2').html(this.listView.render().el);
+		$('#app2').html(this.storeLocateView.render().el);
+		$('#map-container').storeLocator({'slideMap' : false, 'defaultLoc': true, 'defaultLat': '34.01945', 'defaultLng' : '-118.49119', 'dataType': 'json', 'dataLocation': 'locations.json' });
+       
 	},
 
 
 	suppliesList: function() {
-		
 		this.supplyCategoryModel.fetch();
 		$('#app2').html(this.shoppingCartListView.render().el);
 	},
@@ -252,53 +208,7 @@ var AppRouter = Backbone.Router.extend({
 	
 });
 
-// Sample Data
-var studios = [
-  {
-    title: "Kitten Yoga - Santa Monica",
-    lat: 34.01945,
-    lng: -118.49119,
-    type: 'studio',
-    hours: 'Monday - Friday: 8am-7pm, Saturday: noon-6pm'
-  },
-  {
-    title: "Kitten Yoga - Beverly Hills",
-    lat: 34.07362,
-    lng: -118.40036,
-    type: 'studio',
-    hours: 'Monday - Friday 8am-7pm'
-  },
-  {
-    title: "Kitten Yoga - Venice",
-    lat: 33.99621,
-    lng: -118.46888,
-    type: 'studio',
-    hours: 'Monday - Friday 8am-7pm'
-  },
-   {
-    title: "Kitten Yoga - Silverlake",
-    lat: 34.06785,
-    lng: -118.27095,
-    type: 'studio',
-    hours: 'Monday - Friday 10am-9pm'
-  }
-];
-var spas = [
-  {
-    title: "Kitten Yoga - Santa Monica",
-    lat: 34.01945,
-    lng: -118.49119,
-    type: 'spa',
-    hours: 'Monday - Friday 8am-7pm, Saturday: noon-6pm'
-  },
-   {
-    title: "Kitten Yoga - Silverlake",
-    lat: 34.06785,
-    lng: -118.27095,
-    type: 'spa',
-    hours: 'Monday - Friday 10am-9pm'
-  }
-];
+
 
 var app = new AppRouter();
 
