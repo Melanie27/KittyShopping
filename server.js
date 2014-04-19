@@ -4,12 +4,83 @@ var express = require('express'),
   questions = require('./data/kitty-questions');
   profiles = require('./data/kitty-profiles');
   supplies = require('./data/kitty-supplies-test');
+  courses = require('./data/kitty-courses');
+  days = require('./data/kitty-days');
 
 
 
 var app = express()
   .use(express.bodyParser())
   .use(express.static('public'));
+
+
+/*var days = {
+
+  1: { text: "Monday", id: 1 }
+  
+},
+
+courses = {
+      1: {
+          1: { text: "Nap time", id: 1},
+          2: {text: "Litter time", id: 2}
+      }
+  },
+
+  d = 2,
+  c = 2;
+
+
+app.get('/days', function(req, res) {
+  var results = [];
+  for (var day in days) {
+    if(days.hasOwnProperty(day)) {
+      results.push(days[day]);
+    }
+  }
+  res.json(results);
+
+});
+
+app.post('/days', function (req, res) {
+  var day = req.body;
+  day.id = d++;
+  days[day.id] = day;
+  res.json(day);
+
+});
+
+app.put('/days/:id', function (req, res) {
+  days[req.params.id] = req.body;
+  res.json(req.body);
+});
+
+
+app.get('/days/:did/courses', function (req, res) {
+    var results = [], c = courses[req.param.did];
+    for (var course in c) {
+      if (c.hasOwnProperty(course)) {
+        results.push(c[course]);
+      }
+    }
+    res.json(results);
+});
+
+
+app.post('/days/:did/courses', function(req, res) {
+  var course = req.body, id = req.params.did;
+  course.id = c++;
+  if(!courses[id]) { courses[id] = {}; }
+  courses[id][course.id] = course;
+  res.json(course);
+});
+
+app.put('/days/:did/courses/:cid', function (req, res) {
+    courses[req.params.id] = req.body;
+  res.json(req.body);
+});*/
+
+
 
 app.get('/items', function  (req, res) {
   res.json(items);
@@ -26,6 +97,14 @@ app.get('/profiles', function  (req, res) {
 
 app.get('/supplies', function  (req, res) {
   res.json(supplies);
+});
+
+app.get('/courses', function  (req, res) {
+  res.json(courses);
+});
+
+app.get('/days', function  (req, res) {
+  res.json(days);
 });
 
 app.post('/items', function  (req, res) {

@@ -7,7 +7,6 @@ var SurveyQuestionListView = Backbone.View.extend ({
 	initialize: function() {
 		this.listenTo(this.collection, "reset", this.render);
 
-
 	},
 
 	render: function() {
@@ -19,7 +18,7 @@ var SurveyQuestionListView = Backbone.View.extend ({
 
 				return new SurveyQuestionDetails({ model: model }).render().el
 				var values = $('input.quiz').filter(':checked').val();
-				console.log(values);
+				//console.log(values);
 			})
 		);
 

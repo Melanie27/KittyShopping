@@ -13,11 +13,41 @@ var AppRouter = Backbone.Router.extend({
 		"ordered-item/:supply" : "orderedItem",
 		"ordered-list" : "orderedList",
 		"store-locator" : "storeLocator",
+		"class-schedule" : "classSchedule",
+		"yoga-collection": "yogaCollection",
+		"yoga-model" : "yogaModel"
+		
 		
 
 	},
 
 	initialize: function() {
+
+		
+		//instantiate course model 
+
+		this.yogaCourseModel = new YogaCourseModel();
+
+		//instant collection
+
+		this.yogaCoursesCollection = new YogaCoursesCollection();
+		this.yogaCoursesCollection.fetch();
+		//console.log(this.yogaCoursesCollection);
+		//console.log(this.yogaCoursesCollection.pluck(this.model));
+		//view
+		
+
+		this.yogaCourseView = new YogaCourseView ({
+			model: this.yogaCourseModel
+		});
+
+		this.yogaCoursesListView = new YogaCoursesListView ({
+			
+			collection: this.yogaCoursesCollection
+
+		
+		});
+
 
 	//Shopping Cart declarations
 		//collection of ordered items 
@@ -42,12 +72,7 @@ var AppRouter = Backbone.Router.extend({
 
 		 this.suppliesView = new SuppliesView (
 		 	{
-		 		title: [
-		 			"Hydration",
-		 			"Toillette",
-		 			"Perches",
-		 			"Toys"
-		 		]
+		 		title: [ "Hydration", "Toillette", "Perches", "Toys" ]
 		 	}
 		 );
 
@@ -142,6 +167,36 @@ var AppRouter = Backbone.Router.extend({
 		//init store location view
 		this.storeLocateView = new StoreLocateView();
 
+		
+
+		//instant Topic Model
+		this.topicModel = new TopicModel();
+		this.topicView = new TopicView ({ model: this.topicModel });
+
+		//instant Topics Collection
+		this.topicsCollection = new TopicsCollection();
+		//this.topicsCollection.fetch();
+
+		//instant lesson plans collection
+		this.lessonPlansCollection = new LessonPlansCollection();
+		//LessonPlansCollection.fetch();
+
+	},
+
+	yogaCollection: function() {
+		$('#app3').html(this.yogaCoursesListView.render().el);
+
+	},
+
+	yogaModel: function() {
+
+		$('#app3').html(this.yogaCourseView.render().el);
+	},
+
+	classSchedule: function() {
+		//$('#app3').html(this.appView.render().el);
+		console.log('schedule');
+
 	},
 
 
@@ -215,7 +270,11 @@ var app = new AppRouter();
 $(function() {
 	Backbone.history.start();
 
+var movieList = new Movies(movieData);
 
- 
+   var movieView = new MovieTable({ collection: movieList });
+
+   $('.wrapper').html( movieView.render().$el.attr('id', 'movies') );
+
 
 });

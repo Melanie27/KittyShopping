@@ -1,3 +1,7 @@
+.gmnoprint img {
+    max-width: none;
+}
+
 #page-header {
     float: left;
 }

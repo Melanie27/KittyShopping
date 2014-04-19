@@ -6,20 +6,30 @@
 	 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false"></script>
 
 	<script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+	
 	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-min.js"></script>
 	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/lib/handlebars.js"></script>	
+
+	<script type="text/javascript" src="js/lib/laconic.js"></script>
+	<script type="text/javascript" src="js/lib/moment.min.js"></script>
+	<script type="text/javascript" src="js/lib/backbone-ui.js"></script>	
+
 	<script type="text/javascript" src="js/lib/backbone-nested.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-stickit.js"></script>
+	<script type="text/javascript" src="js/lib/backbone-relational.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.collectionView.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.googlemaps.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-forms/distribution/backbone-forms.js"></script>
+
 	<script src="js/lib/jquery.tmpl.js" type="text/javascript"></script>
 	<script src="js/lib/jquery-ui-1.10.4.js" type="text/javascript"></script>
 
 	<script type="text/javascript" src="js/lib/store-locator.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.storelocator.js"></script>
+
+	<script type="text/javascript" src="js/moviedata.js"></script>
 
 
 	<script type="text/javascript" src="js/models/surveyquestion.js"></script>
@@ -30,11 +40,31 @@
 
 	<script type="text/javascript" src="js/models/locationmodel.js"></script>
 
+
+	<script type="text/javascript" src="js/models/topicmodel.js"></script>
+	<script type="text/javascript" src="js/models/lessonplanmodel.js"></script>
+
+	<script type="text/javascript" src="js/models/classmodel.js"></script>
+	<script type="text/javascript" src="js/models/daymodel.js"></script>
+
+	<script type="text/javascript" src="js/models/yogacoursemodel.js"></script>
+
+	<script type="text/javascript" src="js/models/movie.js"></script>
+
 	
 	<script type="text/javascript" src="js/collections/surveyquestions.js"></script>
 	<script type="text/javascript" src="js/collections/supplycategoriescollection.js"></script>
 	<script type="text/javascript" src="js/collections/orderedsuppliescollection.js"></script>
 	<script type="text/javascript" src="js/collections/locationcollection.js"></script>
+
+	<script type="text/javascript" src="js/collections/topicscollection.js"></script>
+	<script type="text/javascript" src="js/collections/lessonplanscollection.js"></script>
+
+	<script type="text/javascript" src="js/collections/classescollection.js"></script>
+	<script type="text/javascript" src="js/collections/dayscollection.js"></script>
+
+	<script type="text/javascript" src="js/collections/yogacoursescollection.js"></script>
+	<script type="text/javascript" src="js/collections/movies.js"></script>
 
 
 	<script type="text/javascript" src="js/views/survey.js"></script>
@@ -61,7 +91,14 @@
 
 	<script type="text/javascript" src="js/views/storelocateview.js"></script>
 
+	<script type="text/javascript" src="js/views/topicview.js"></script>
 
+	<!--<script type="text/javascript" src="js/views/checkbox.js"></script>-->
+	<script type="text/javascript" src="js/views/yogacourseview.js"></script>
+	<script type="text/javascript" src="js/views/yogacourseslistview.js"></script>
+
+	<script type="text/javascript" src="js/views/movierow.js"></script>
+	<script type="text/javascript" src="js/views/movietable.js"></script>
 
 	<script type="text/javascript" src="js/app.js"></script>
 	
@@ -71,6 +108,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 	<link rel="stylesheet" type="text/css" href="css/shopping-cart.css" />
+	<link rel="stylesheet" type="text/css" href="css/backbone-ui.css" />
 
 	<link rel="stylesheet" type="text/css" href="js/lib/backbone-forms/distribution/templates/bootstrap3.css"></script>
 	<link rel="stylesheet" type="text/css" href="css/map.css" />
@@ -93,6 +131,59 @@
 
 	}
 
+	td.last {
+		color: blue;
+		text-decoration: underline;
+	}
+
+	.table_view .content td {
+		font-size:12px;
+	}
+
+	table {
+   border: 1px solid #dfdfdf;
+   background-color: #f9f9f9;
+   width: 100%;
+   table-layout: fixed;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   border-radius: 3px;
+   color: #333;
+}
+
+table td, table th {
+   border-top-color: white;
+   border-bottom: 1px solid #dfdfdf;
+   color: #555;
+}
+
+table th {
+   font-weight: bold;
+   padding: 7px 5px 8px;
+   text-align: left;
+   line-height: 1.3em;
+   font-size: 14px;
+}
+
+table td {
+   font-size: 12px;
+   padding: 4px 5px 2px;
+   vertical-align: top;
+   white-space: nowrap;
+   overflow: hidden;
+}
+
+#movies th { white-space: nowrap; cursor: pointer; }
+#movies th span { display: inline-block; margin-left: 5px; }
+
+#movies [column="name"] { width: 150px; }
+#movies [column="description"] { width: 28%; }
+#movies [column="recommeded"] { width: 250px; }
+#movies [column="time"] { width: 90px; }
+#movies [column="studio"] { width: 120px; }
+#movies [column="day"] { width: 90px; }
+#movies [column="signup"] { width: 60px; }
+
 	</style>
 
 			<!--Order Item template-->
@@ -114,6 +205,8 @@
 
 	</div>
 
+
+
 	<div class="container">
 		<h1>Yoga Kitten<sup>TM</sup></h1>
 		<ul class="nav nav-pills">
@@ -122,6 +215,9 @@
 			<li><a href="#/kitty-survey/favorite-food">Kitty Question Model</a></li>
 			<li><a href="#/cart-list">Shopping Cart List</a></li>
 			<li><a href="#/store-locator">Store Locator 2</a></li>
+			<li><a href="#/yoga-model">yoga model</a></li>
+			<li><a href="#/yoga-collection">yoga collection</a></li>
+			<li><a href="#/class-schedule">Class Schedule</a></li>
 			
 		</ul>
 	</div>	
@@ -132,11 +228,38 @@
 		
 
 	<div class="container" id="app3">
-		 
+		
+		<script id="movie-table" type="text/template">
 
-	</div>
+		 <thead>
+		  <tr>
+		   <th column="name"><div>Course</div></th>
+		   <th column="description"><div>Description</div></th>
+		   <th column="recommeded"><div>Kitten Type</div></th>
+		   <th column="time"><div>Time</div></th>
+		   <th column="studio"><div>Studio</div></th>
+		   <th column="courseDay"><div>Day</div></th>
+		   <th column="signup"><div>Sign Up</div></th>
+		  </tr>
+		 </thead>
+		 <tbody>
 
- 
+		 </tbody>
+
+	</script>
+
+	<script id="movie-row" type="text/template">
+   		<td><div><%= name %></div></td>
+   		<td><div><%= description %></div></td>
+   		<td><div><%= recommeded %></div></td>
+   		<td><div><%= time %></div></td>
+  		<td><div><%= studio %></div></td>
+  		<td><div><%= courseDay %></div></td>
+  		<td><div><%= signup %></div></td>
+	</script>
+	<div class="wrapper"></div>
+
+	</div> 
 
 </body>
 </html>
