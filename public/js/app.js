@@ -27,7 +27,7 @@ var AppRouter = Backbone.Router.extend({
 		
 		//shopping cart form:
 		this.userModel = new UserModel();
-		console.log(this.userModel.toJSON());
+		//console.log(this.userModel.toJSON());
 
 		var form = new Backbone.Form({
 			//model: this.userModel
@@ -192,19 +192,6 @@ var AppRouter = Backbone.Router.extend({
 		//init store location view
 		this.storeLocateView = new StoreLocateView();
 
-		
-
-		//instant Topic Model
-		this.topicModel = new TopicModel();
-		this.topicView = new TopicView ({ model: this.topicModel });
-
-		//instant Topics Collection
-		this.topicsCollection = new TopicsCollection();
-		//this.topicsCollection.fetch();
-
-		//instant lesson plans collection
-		this.lessonPlansCollection = new LessonPlansCollection();
-		//LessonPlansCollection.fetch();
 
 	},
 
@@ -225,7 +212,7 @@ var AppRouter = Backbone.Router.extend({
 
 	classSchedule: function() {
 		//$('#app2').html( this.scheduleTableView.render().$el.attr('id', 'schedules') );
-		console.log('schedule');
+		$('#app3').html('turn on the schedule here');
 
 	},
 
@@ -300,13 +287,13 @@ var app = new AppRouter();
 $(function() {
 	Backbone.history.start();
 
-	var scheduleCollection = new SchedulesCollection(kittySchedules);
+	//var scheduleCollection = new SchedulesCollection(kittySchedules);
 
-   var scheduleTableView = new ScheduleTableView({ collection: scheduleCollection });
+   //var scheduleTableView = new ScheduleTableView({ collection: scheduleCollection });
 
-   $('.wrapper').html( scheduleTableView.render().$el.attr('id', 'schedules') );
+   //$('.wrapper').html( scheduleTableView.render().$el.attr('id', 'schedules') );
 
-  var form = new Backbone.Form({
+  /*var form = new Backbone.Form({
     //Schema
     schema: {
         title: { type: 'Select', options: ['Mr.', 'Mrs.', 'Ms.']},
@@ -339,7 +326,7 @@ form.on('name:blur email:blur, address1:blur', function(form, editor) {
     form.fields[editor.key].validate();
 });
 
-$('body').append(form.el);
+$('body').append(form.el);*/
   
 
 });
