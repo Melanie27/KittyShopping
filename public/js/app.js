@@ -15,7 +15,8 @@ var AppRouter = Backbone.Router.extend({
 		"store-locator" : "storeLocator",
 		"class-schedule" : "classSchedule",
 		"yoga-collection": "yogaCollection",
-		"yoga-model" : "yogaModel"
+		"yoga-model" : "yogaModel",
+		"shop-form" : "shopForm"
 		
 		
 
@@ -24,6 +25,30 @@ var AppRouter = Backbone.Router.extend({
 	initialize: function() {
 
 		
+		//shopping cart form:
+		this.userModel = new UserModel();
+		console.log(this.userModel.toJSON());
+
+		var form = new Backbone.Form({
+			//model: this.userModel
+		});
+
+		$('body').append(form.el);
+
+		/*this.userFormView = new UserFormView ({
+
+			model: this.userModel
+		})*/
+
+
+		//Class Schedule benknowscode - need to get this view working with handlebars
+		/*this.scheduleCollection = new SchedulesCollection(kittySchedules);
+		console.log(this.scheduleCollection)
+   		this.scheduleTableView = new ScheduleRowView({ 
+   			//collection: this.scheduleCollection 
+   		});*/
+
+
 		//instantiate course model 
 
 		this.yogaCourseModel = new YogaCourseModel();
@@ -183,6 +208,11 @@ var AppRouter = Backbone.Router.extend({
 
 	},
 
+	shopForm: function() {
+		//$('#app3').html(this.userFormView.render().el);
+
+	},
+
 	yogaCollection: function() {
 		$('#app3').html(this.yogaCoursesListView.render().el);
 
@@ -194,7 +224,7 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	classSchedule: function() {
-		//$('#app3').html(this.appView.render().el);
+		//$('#app2').html( this.scheduleTableView.render().$el.attr('id', 'schedules') );
 		console.log('schedule');
 
 	},
@@ -270,11 +300,46 @@ var app = new AppRouter();
 $(function() {
 	Backbone.history.start();
 
-var movieList = new Movies(movieData);
+	var scheduleCollection = new SchedulesCollection(kittySchedules);
 
-   var movieView = new MovieTable({ collection: movieList });
+   var scheduleTableView = new ScheduleTableView({ collection: scheduleCollection });
 
-   $('.wrapper').html( movieView.render().$el.attr('id', 'movies') );
+   $('.wrapper').html( scheduleTableView.render().$el.attr('id', 'schedules') );
 
+  var form = new Backbone.Form({
+    //Schema
+    schema: {
+        title: { type: 'Select', options: ['Mr.', 'Mrs.', 'Ms.']},
+        name:        { type: 'Text', validators: ['required']},
+        email:   { validators: ['required', 'email'] },
+        address1:  { type: 'Text', validators: ['required']},
+        address2: 'Text',
+        zipcode: { type: 'Number', validators: ['required']},
+        name:       'Text',
+        password1:   { type: 'Password', validators: ['required']},
+        password2:   { type: 'Password', validators: ['required']},
+        petname: 'Text'
+    },
+
+    //Data to populate the form with
+    data: {
+      title: '',
+      name: 'Melanie McGanney',
+      email: 'melaniemcganney@gmail.com',
+      address: 'address1',
+      address: 'address2',
+      zipcode: '12345',
+      password1: 'juniper',
+      password2: '',
+      petname: 'Titty Bar Bob'
+    }
+}).render();
+
+form.on('name:blur email:blur, address1:blur', function(form, editor) {
+    form.fields[editor.key].validate();
+});
+
+$('body').append(form.el);
+  
 
 });

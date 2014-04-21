@@ -1,6 +1,6 @@
-var MovieTable = Backbone.View.extend({
+var ScheduleTableView = Backbone.View.extend({
 
-   movieRowViews: [],
+   scheduleRowViews: [],
 
    tagName: 'table',
    template: null,
@@ -11,7 +11,7 @@ var MovieTable = Backbone.View.extend({
 
    initialize: function() {
 
-      this.template = _.template( $('#movie-table').html() );
+      this.template = _.template( $('#schedule-table').html() );
       this.listenTo(this.collection, "sort", this.updateTable);
    },
 
@@ -37,13 +37,13 @@ var MovieTable = Backbone.View.extend({
           $table;
 
       // remove the old sort from the table so we only see the most recent sort
-      _.invoke(this.movieRowViews, 'remove');
+      _.invoke(this.scheduleRowViews, 'remove');
 
       $table = this.$('tbody');
 
-      this.movieRowViews = that.map(
+      this.scheduleRowViews = that.map(
             function ( obj ) {
-                  var v = new MovieRow({  model: that.get(obj) });
+                  var v = new ScheduleRowView({  model: that.get(obj) });
 
                   $table.append(v.render().$el);
 

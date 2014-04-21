@@ -33,26 +33,16 @@ var ShoppingCartListView = Backbone.View.extend({
 		);
 
 
-
-
-		/*_.each(this.collection.models, function(model, key) {
-			this.append(model);
-		}, this);*/
-
 		//list of all available supplies from supplycategoriescollection
-		console.log(this.collection.toJSON());
+		//console.log(this.collection.toJSON());
 
 		//$(this.el).html('checkout');
 
-		//this.stickit();
+		
 		return this;
 
 
 	},
 
-	//add invoice item row to table
-	/*append: function(model) {
-		$(this.el).append(new ShoppingCartRenderView ({model: model}).render().el);
-	}*/
 
 });

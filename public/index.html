@@ -29,7 +29,7 @@
 	<script type="text/javascript" src="js/lib/store-locator.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.storelocator.js"></script>
 
-	<script type="text/javascript" src="js/moviedata.js"></script>
+	<script type="text/javascript" src="js/kittyschedules.js"></script>
 
 
 	<script type="text/javascript" src="js/models/surveyquestion.js"></script>
@@ -49,7 +49,10 @@
 
 	<script type="text/javascript" src="js/models/yogacoursemodel.js"></script>
 
-	<script type="text/javascript" src="js/models/movie.js"></script>
+	<script type="text/javascript" src="js/models/schedulemodel.js"></script>
+
+	<script type="text/javascript" src="js/models/usermodel.js"></script>
+	<script type="text/javascript" src="js/models/formmodel.js"></script>
 
 	
 	<script type="text/javascript" src="js/collections/surveyquestions.js"></script>
@@ -64,7 +67,7 @@
 	<script type="text/javascript" src="js/collections/dayscollection.js"></script>
 
 	<script type="text/javascript" src="js/collections/yogacoursescollection.js"></script>
-	<script type="text/javascript" src="js/collections/movies.js"></script>
+	<script type="text/javascript" src="js/collections/schedulescollection.js"></script>
 
 
 	<script type="text/javascript" src="js/views/survey.js"></script>
@@ -97,8 +100,10 @@
 	<script type="text/javascript" src="js/views/yogacourseview.js"></script>
 	<script type="text/javascript" src="js/views/yogacourseslistview.js"></script>
 
-	<script type="text/javascript" src="js/views/movierow.js"></script>
-	<script type="text/javascript" src="js/views/movietable.js"></script>
+	<script type="text/javascript" src="js/views/schedulerowview.js"></script>
+	<script type="text/javascript" src="js/views/scheduletableview.js"></script>
+
+	<!--<script type="text/javascript" src="js/views/userformview.js"></script>-->
 
 	<script type="text/javascript" src="js/app.js"></script>
 	
@@ -173,16 +178,20 @@ table td {
    overflow: hidden;
 }
 
-#movies th { white-space: nowrap; cursor: pointer; }
-#movies th span { display: inline-block; margin-left: 5px; }
 
-#movies [column="name"] { width: 150px; }
-#movies [column="description"] { width: 28%; }
-#movies [column="recommeded"] { width: 250px; }
-#movies [column="time"] { width: 90px; }
-#movies [column="studio"] { width: 120px; }
-#movies [column="day"] { width: 90px; }
-#movies [column="signup"] { width: 60px; }
+
+
+
+#schedules th { white-space: nowrap; cursor: pointer; }
+#schedules th span { display: inline-block; margin-left: 5px; }
+
+#schedules [column="name"] { width: 150px; }
+#schedules [column="description"] { width: 28%; }
+#schedules [column="recommeded"] { width: 250px; }
+#schedules [column="time"] { width: 90px; }
+#schedules [column="studio"] { width: 120px; }
+#schedules [column="day"] { width: 90px; }
+#schedules [column="signup"] { width: 60px; }
 
 	</style>
 
@@ -214,6 +223,7 @@ table td {
 			<li><a href="#">Survey List Collection</a></li>
 			<li><a href="#/kitty-survey/favorite-food">Kitty Question Model</a></li>
 			<li><a href="#/cart-list">Shopping Cart List</a></li>
+			<li><a href="#/shop-form">Shopping Cart Form</a></li>
 			<li><a href="#/store-locator">Store Locator 2</a></li>
 			<li><a href="#/yoga-model">yoga model</a></li>
 			<li><a href="#/yoga-collection">yoga collection</a></li>
@@ -229,7 +239,7 @@ table td {
 
 	<div class="container" id="app3">
 		
-		<script id="movie-table" type="text/template">
+		<script id="schedule-table" type="text/template">
 
 		 <thead>
 		  <tr>
@@ -248,7 +258,7 @@ table td {
 
 	</script>
 
-	<script id="movie-row" type="text/template">
+	<script id="schedule-row" type="text/template">
    		<td><div><%= name %></div></td>
    		<td><div><%= description %></div></td>
    		<td><div><%= recommeded %></div></td>
@@ -258,6 +268,24 @@ table td {
   		<td><div><%= signup %></div></td>
 	</script>
 	<div class="wrapper"></div>
+
+	<script id="formTemplate" type="text/html">
+    <form>
+        <h1>New User</h1>
+
+        <h2>Main Info</h2>
+        <div data-fields="title,name,birthday"></div>
+
+        <h2>Account Info</h2>
+        <h3>Email</h3>
+        <div data-fields="email"></div>
+
+        <h3>Password</h3>
+        <p>Must be at least 8 characters long</p>
+        <div data-editors="password"></div>
+    </form>
+</script>
+
 
 	</div> 
 

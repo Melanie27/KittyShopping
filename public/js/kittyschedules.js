@@ -1,4 +1,4 @@
-var movieData =
+var kittySchedules =
      [
          {
       "name": "Nap Time",
@@ -140,7 +140,7 @@ var movieData =
          "studio": "Beverly Hills",
          "signup": "Sign up",
          "rsvp" : "false",
-       "courseDay": "Saturday" 
+         "courseDay": "Saturday" 
          },
          {
          "name": "Power Napping",

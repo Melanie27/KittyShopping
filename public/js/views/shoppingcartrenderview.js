@@ -60,10 +60,7 @@ var ShoppingCartRenderView = Backbone.View.extend({
 		}));
 
 		//console.log(this.model.toJSON());
-
-		//$(this.el).html(html);
-
-		this.stickit();
+		
 
 		return this;
 	}

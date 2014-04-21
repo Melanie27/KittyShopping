@@ -1,4 +1,4 @@
-var Movie = Backbone.Model.extend({
+var ScheduleModel = Backbone.Model.extend({
 
    defaults: {
       		name: "Nap Time",

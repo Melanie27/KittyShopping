@@ -44,7 +44,7 @@ render: function() {
 		sortable: true,
 		model: this.collection,
 		columns: [
-				{title: "Course", content: "name", comparator: "a, b", width: "120" },
+				{title: "Course", content: "name", comparator: "item1, item2", width: "120" },
 				{title: "Description", content: "description", comparator: "id", width: "270" },
 				{title: "Kitten Type", content: "recommeded", comparator: "name", width: "300" },
 				{title: "Time", content: "time", comparator: "time", width: "160" },
@@ -56,15 +56,10 @@ render: function() {
 
 
 		 	
-		onSort: function(a, b) {
-			var ref = this.model;
-			var names = this.model.content
-				/*if(a.ref < b.ref) {
-					return 1;
-				} else if(b.ref < a.ref) {
-				return -1;
-			}*/
-			console.log(names);
+		onSort: function(item1, item2) {
+		
+			
+			
 		},
 
 		onItemClick : function() {

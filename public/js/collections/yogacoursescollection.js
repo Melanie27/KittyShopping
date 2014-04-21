@@ -1,8 +1,5 @@
 var YogaCoursesCollection = Backbone.Collection.extend({
 	
- 
-	
-
 
 	/*comparator: function(a, b) {
 		if(a.get('location') < b.get('location')) {
@@ -16,7 +13,7 @@ var YogaCoursesCollection = Backbone.Collection.extend({
 	url: '/courses',
 
 	initialize: function () {
-		console.log(this.pluck('name'));
+		//console.log(this.pluck('name'));
 	}
 
 });
