@@ -5,6 +5,16 @@ var ScheduleTableView = Backbone.View.extend({
    tagName: 'table',
    template: null,
 
+   /*template: Handlebars.compile(
+       '<th><div>Name</div></th>' +
+      '<th><div>Description</div></th>' +
+      '<th><div>Kitten Type</div></th>' +
+      '<th><div>Time</div></th>' +
+      '<th><div>Studio</div></th>' +
+      '<th><div>Day</div></th>' +
+      '<th><div>Sign Up</div></th>'
+  ),*/
+
    events: {
       "click th": "headerClick"
    },
@@ -19,6 +29,7 @@ var ScheduleTableView = Backbone.View.extend({
       
       this.template = _.template( $('#schedule-table').html() );
       this.$el.html(this.template());
+      //this.$el.html(this.template(this.options));
       this.updateTable();
 
       return this;

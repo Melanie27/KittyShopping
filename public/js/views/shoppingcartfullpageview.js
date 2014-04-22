@@ -5,15 +5,11 @@ var ShoppingCartFullPageView = Backbone.View.extend ({
 		
 		this.listenTo(this.collection, "reset", this.render);
 
-		//this.listenTo({collection: this.collections.supplyCategoriesCollection });
-
-
 	},
 
 	render: function() {
 		$(this.el).html(new ShoppingCartListView ({
 			collection: this.collections.supplyCategoriesCollection
-			//collection: this.collection
 		}).render().el);
 
 		$(this.el).append(new ShoppingCartListControlsView ({
@@ -26,8 +22,6 @@ var ShoppingCartFullPageView = Backbone.View.extend ({
 
 		$(this.el).append(new OrderedSupplyListView ({
 			collection: this.collections.orderedSuppliesCollection
-			//collection: this.collection
-			//collection: OrderedSuppliesCollection
 		}).render().el);
 
 	return this;

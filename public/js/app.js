@@ -12,9 +12,8 @@ var AppRouter = Backbone.Router.extend({
 		
 		"store-locator" : "storeLocator",
 		"class-schedule" : "classSchedule",
-		"sched-row" : "schedRow",
-		"yoga-collection": "yogaCollection",
-		"yoga-model" : "yogaModel",
+		
+	
 		"shop-form" : "shopForm",
 
 
@@ -41,38 +40,10 @@ var AppRouter = Backbone.Router.extend({
 
 		//Class Schedule benknowscode - need to get this view working with handlebars
 		this.scheduleCollection = new SchedulesCollection(kittySchedules);
-		console.log(this.scheduleCollection);
    		this.scheduleTableView = new ScheduleTableView({ 
    			collection: this.scheduleCollection 
    		});
-   		this.scheduleCollection.fetch();
-
-
-   		this.scheduleModel = new ScheduleModel();
-   		this.scheduleRowView = new ScheduleRowView( {
-   			model: this.scheduleModel
-   		})
-
-
-		//instantiate course model 
-
-		this.yogaCourseModel = new YogaCourseModel();
-
-		//instant collection
-
-		this.yogaCoursesCollection = new YogaCoursesCollection();
-		console.log(this.yogaCoursesCollection);
-		this.yogaCoursesCollection.fetch();
-		//console.log(this.yogaCoursesCollection);
-		//console.log(this.yogaCoursesCollection.pluck(this.model));
-		//view
-		
-
-		this.yogaCourseView = new YogaCourseView ({
-			model: this.yogaCourseModel
-		});
-
-		this.yogaCoursesListView = new YogaCoursesListView ({ collection: this.yogaCoursesCollection});
+   	
 
 
 	//Shopping Cart declarations
@@ -186,15 +157,7 @@ var AppRouter = Backbone.Router.extend({
 
 	},
 
-	yogaCollection: function() {
-		$('#app3').html(this.yogaCoursesListView.render().el);
 
-	},
-
-	yogaModel: function() {
-
-		$('#app3').html(this.yogaCourseView.render().el);
-	},
 
 	classSchedule: function() {
 		$('#app2').html( this.scheduleTableView.render().$el.attr('id', 'schedules') );
@@ -256,10 +219,6 @@ var app = new AppRouter();
 
 $(function() {
 	Backbone.history.start();
-
-	//var scheduleCollection = new SchedulesCollection(kittySchedules);
-   	//var scheduleTableView = new ScheduleTableView({ collection: scheduleCollection });
-   	//$('.wrapper').html( scheduleTableView.render().$el.attr('id', 'schedules') );
 
   /*var form = new Backbone.Form({
     //Schema
