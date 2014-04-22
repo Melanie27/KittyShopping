@@ -14,13 +14,9 @@ var ScheduleRowView = Backbone.View.extend({
 
     ),
 
-   initialize: function() {
-      //this.template = _.template( $('#schedule-row').html() );
-   },
-
    render: function() {
 
-      //this.$el.html( this.template( this.model.toJSON()) );
+     
       this.$el.html(this.template(this.model.attributes));
 
       // a checkbox to mark / unmark the done status of this task 
@@ -28,7 +24,7 @@ var ScheduleRowView = Backbone.View.extend({
       		model: this.model,
       		content: 'signup',
       		onClick:  function() { 
-      			console.log('You have signed up for ' + this.model.get('name'));
+      			alert('You have signed up for ' + this.model.get('name'));
       			console.log('A modal box should open now');
       			this.model.clone();
       		}

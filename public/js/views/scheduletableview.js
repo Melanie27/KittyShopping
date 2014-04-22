@@ -3,36 +3,39 @@ var ScheduleTableView = Backbone.View.extend({
    scheduleRowViews: [],
 
    tagName: 'table',
-   template: null,
+   template: '#schedule-table',
 
-   /*template: Handlebars.compile(
-       '<th><div>Name</div></th>' +
-      '<th><div>Description</div></th>' +
-      '<th><div>Kitten Type</div></th>' +
-      '<th><div>Time</div></th>' +
-      '<th><div>Studio</div></th>' +
-      '<th><div>Day</div></th>' +
-      '<th><div>Sign Up</div></th>'
-  ),*/
+   
 
    events: {
       "click th": "headerClick"
    },
 
    initialize: function() {
-
-      //this.template = _.template( $('#schedule-table').html() );
+      this.listenTo(this.collection, "reset", this.render);
       this.listenTo(this.collection, "sort", this.updateTable);
    },
 
    render: function() {
-      
-      this.template = _.template( $('#schedule-table').html() );
-      this.$el.html(this.template());
-      //this.$el.html(this.template(this.options));
-      this.updateTable();
+     
+    var html = 
+    '<br>'+
+    '<thead><tr>' +
+    '<th column="name"><div>Course</div></th>'+
+    '<th column="description"><div>Description</div></th>' +
+    '<th column="recommeded"><div>Kitten Type</div></th>' +
+    '<th column="time"><div>Time</div></th>' +
+    '<th column="studio"><div>Studio</div></th>' +
+    '<th column="courseDay"><div>Day</div></th>' +
+    '<th column="signup"><div>Sign Up</div></th>' +
+    '</tr></thead>'+
+    '<tbody></tbody>'
 
-      return this;
+
+    $(this.el).html(html);
+     this.updateTable();
+    return this;
+     
    },
 
    headerClick: function( e ) {
