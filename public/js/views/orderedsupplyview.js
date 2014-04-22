@@ -45,8 +45,6 @@
 		var _this = this;
 	
 	$(this.el).html(_.map([
-			
-			
 			'<div style="padding-left:40px; float:left;">' + this.model.get('title') + ' <div>' +
 			'<div>' + ' Quantity: ' + 
 			'<span>' + this.model.get('quantity') + '</span></div>' +
@@ -56,20 +54,6 @@
 			return '<li style="padding:1px; clear:both; font-size:12px;">' + 'Total ' + val + '</li>';
 
 		}));	
-
-
-	
-
-	/*var html = '<div style="clear:both;">' +
-	'<p class="orderedProdTxt"><span class="albumTxt">'+ this.model.attributes.title + '</span>' + '-' +
-	'<span class="artistTxt">' + this.model.attributes.description + '</span></p>' +
-	'<p class="orderedProdPrice"><label id="price">' + '$' + '</label>' +
-	'<span class="orderedProdPrice"><label id="quantity"></label>' + '</span>' +
-	'<span class="orderedProdPrice"><label id="total"></label>' + '</span>' +
-	'<button class="removeItem">' + 'Remove' + '</button></p>' 
-	'</div>';
-
-	$(this.el).html(html);*/
 
 	// generate element id
 	// based on **category**, **product_id**, and model's **cid**

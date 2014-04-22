@@ -4,38 +4,31 @@
 
 	
 	 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false"></script>
-
 	<script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
-	
 	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-min.js"></script>
 	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/lib/handlebars.js"></script>	
-
+	<script type="text/javascript" src="js/lib/handlebars.js"></script>
 	<script type="text/javascript" src="js/lib/laconic.js"></script>
 	<script type="text/javascript" src="js/lib/moment.min.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-ui.js"></script>	
-
 	<script type="text/javascript" src="js/lib/backbone-nested.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-stickit.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-relational.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.collectionView.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.googlemaps.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-forms/distribution/backbone-forms.js"></script>
-
 	<script src="js/lib/jquery.tmpl.js" type="text/javascript"></script>
 	<script src="js/lib/jquery-ui-1.10.4.js" type="text/javascript"></script>
-
 	<script type="text/javascript" src="js/lib/store-locator.min.js"></script>
 	<script type="text/javascript" src="js/lib/jquery.storelocator.js"></script>
 
 	<script type="text/javascript" src="js/kittyschedules.js"></script>
 
-
 	<script type="text/javascript" src="js/models/surveyquestion.js"></script>
 	<script type="text/javascript" src="js/models/resultsmodel.js"></script>
 	<script type="text/javascript" src="js/models/supplycategory.js"></script>
-	<script type="text/javascript" src="js/models/invoiceitemmodel.js"></script>
+	
 	<script type="text/javascript" src="js/models/ordersupplymodel.js"></script>
 
 	<script type="text/javascript" src="js/models/locationmodel.js"></script>
@@ -57,6 +50,7 @@
 	<script type="text/javascript" src="js/collections/schedulescollection.js"></script>
 
 
+	<!--survey and results views-->
 	<script type="text/javascript" src="js/views/survey.js"></script>
 	<script type="text/javascript" src="js/views/surveyquestiondetails.js"></script>
 	<script type="text/javascript" src="js/views/surveyquestionlistview.js"></script>
@@ -64,21 +58,8 @@
 	<script type="text/javascript" src="js/views/resultsview.js"></script>
 
 
-	
-	<script type="text/javascript" src="js/views/supplycategorydetails.js"></script>
-	<script type="text/javascript" src="js/views/supplyindivdetails.js"></script>
-	<script type="text/javascript" src="js/views/supplies.js"></script>
-
-
-	<script type="text/javascript" src="js/views/previewinvoiceitemview.js"></script>
-
-
-
-	<script type="text/javascript" src="js/views/shoppingcartview.js"></script>
-	<script type="text/javascript" src="js/views/shoppingcartrenderview.js"></script>
-
-
 	<!--known used for shopping cart-->
+	<script type="text/javascript" src="js/views/shoppingcartrenderview.js"></script>
 	<script type="text/javascript" src="js/views/shoppingcartlistview.js"></script>
 	<script type="text/javascript" src="js/views/shoppingcartlistcontrolsview.js"></script>
 	<script type="text/javascript" src="js/views/shoppingcartfullpageview.js"></script>
@@ -89,12 +70,17 @@
 
 	<script type="text/javascript" src="js/views/storelocateview.js"></script>
 
-	
+
+
+	<script type="text/javascript" src="js/views/supplycategorydetails.js"></script>
+	<script type="text/javascript" src="js/views/supplyindivdetails.js"></script>
+	<script type="text/javascript" src="js/views/previewinvoiceitemview.js"></script>
 
 	
 	<script type="text/javascript" src="js/views/yogacourseview.js"></script>
 	<script type="text/javascript" src="js/views/yogacourseslistview.js"></script>
 
+	<!--use these two for sheduling-->
 	<script type="text/javascript" src="js/views/schedulerowview.js"></script>
 	<script type="text/javascript" src="js/views/scheduletableview.js"></script>
 
@@ -216,13 +202,13 @@ table td {
 		<ul class="nav nav-pills">
 			
 			<li><a href="#">Survey List Collection</a></li>
-			<li><a href="#/kitty-survey/favorite-food">Kitty Question Model</a></li>
 			<li><a href="#/cart-list">Shopping Cart List</a></li>
 			<li><a href="#/shop-form">Shopping Cart Form</a></li>
 			<li><a href="#/store-locator">Store Locator 2</a></li>
 			<li><a href="#/yoga-model">yoga model</a></li>
 			<li><a href="#/yoga-collection">yoga collection</a></li>
 			<li><a href="#/class-schedule">Class Schedule</a></li>
+			<li><a href="#/sched-row">Class Row</a></li>
 			
 		</ul>
 	</div>	

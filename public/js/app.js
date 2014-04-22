@@ -3,22 +3,20 @@ var AppRouter = Backbone.Router.extend({
 
 	routes: {
 		"": "questionCollection",
-		"kitty-survey/:question": "questionDetails",
 		"survey": "questionCollection",
-		"kitty-supplies": "supplyList",
 		"results/:kitty" : "surveyResults",
-		"shopping-cart/:supply" : "shoppingCart",
-		"updated-cart" : "updatedCart",
 		"cart-list"		: "cartList",
+		"updated-cart" : "updatedCart",
+		
 		"ordered-item/:supply" : "orderedItem",
-		"ordered-list" : "orderedList",
+		
 		"store-locator" : "storeLocator",
 		"class-schedule" : "classSchedule",
+		"sched-row" : "schedRow",
 		"yoga-collection": "yogaCollection",
 		"yoga-model" : "yogaModel",
-		"shop-form" : "shopForm"
-		
-		
+		"shop-form" : "shopForm",
+
 
 	},
 
@@ -42,11 +40,18 @@ var AppRouter = Backbone.Router.extend({
 
 
 		//Class Schedule benknowscode - need to get this view working with handlebars
-		/*this.scheduleCollection = new SchedulesCollection(kittySchedules);
-		console.log(this.scheduleCollection)
-   		this.scheduleTableView = new ScheduleRowView({ 
-   			//collection: this.scheduleCollection 
-   		});*/
+		this.scheduleCollection = new SchedulesCollection(kittySchedules);
+		console.log(this.scheduleCollection);
+   		this.scheduleTableView = new ScheduleTableView({ 
+   			collection: this.scheduleCollection 
+   		});
+   		this.scheduleCollection.fetch();
+
+
+   		this.scheduleModel = new ScheduleModel();
+   		this.scheduleRowView = new ScheduleRowView( {
+   			model: this.scheduleModel
+   		})
 
 
 		//instantiate course model 
@@ -56,6 +61,7 @@ var AppRouter = Backbone.Router.extend({
 		//instant collection
 
 		this.yogaCoursesCollection = new YogaCoursesCollection();
+		console.log(this.yogaCoursesCollection);
 		this.yogaCoursesCollection.fetch();
 		//console.log(this.yogaCoursesCollection);
 		//console.log(this.yogaCoursesCollection.pluck(this.model));
@@ -66,12 +72,7 @@ var AppRouter = Backbone.Router.extend({
 			model: this.yogaCourseModel
 		});
 
-		this.yogaCoursesListView = new YogaCoursesListView ({
-			
-			collection: this.yogaCoursesCollection
-
-		
-		});
+		this.yogaCoursesListView = new YogaCoursesListView ({ collection: this.yogaCoursesCollection});
 
 
 	//Shopping Cart declarations
@@ -93,14 +94,7 @@ var AppRouter = Backbone.Router.extend({
 	
 		}
 
-		 //shopping cart supply list view
-
-		 this.suppliesView = new SuppliesView (
-		 	{
-		 		title: [ "Hydration", "Toillette", "Perches", "Toys" ]
-		 	}
-		 );
-
+		
 		 //initialize ordered items model
 		this.supplyCategoryModel = new SupplyCategory();
 
@@ -143,14 +137,6 @@ var AppRouter = Backbone.Router.extend({
 			}
 		);
 
-		
-		//Shopping cart view and model
-
-		this.shoppingCartView = new ShoppingCartView (
-			{
-				model: this.supplyCategoryModel
-			}
-		);
 
 		//indiv supply view and model
 		this.supplyCategoryModel = new SupplyCategory();
@@ -211,9 +197,13 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	classSchedule: function() {
-		//$('#app2').html( this.scheduleTableView.render().$el.attr('id', 'schedules') );
-		$('#app3').html('turn on the schedule here');
+		$('#app2').html( this.scheduleTableView.render().$el.attr('id', 'schedules') );
+		//$('#app3').html('turn on the schedule here');
 
+	},
+
+	schedRow: function() {
+		$('#app2').html( this.scheduleRowView.render().el);
 	},
 
 
@@ -229,9 +219,6 @@ var AppRouter = Backbone.Router.extend({
 		$('#app2').html(this.shoppingCartListView.render().el);
 	},
 
-	orderedList: function() {
-		$('#app2').html(this.orderedSupplyListView.render().el);
-	},
 
 	orderedItem: function() {
 		$('#app2').html(this.orderedSupplyView.render().el);
@@ -240,12 +227,6 @@ var AppRouter = Backbone.Router.extend({
 	cartList: function() {
 		this.supplyCategoriesCollection.fetch();
 		$('#app2').html(this.shoppingCartFullPageView.render().el);
-	},
-
-	shoppingCart: function(supply) {
-		this.supplyCategoryModel.set('id', supply);
-		this.supplyCategoryModel.fetch();
-		$('#app2').html(this.shoppingCartView.render().el);
 	},
 
 
@@ -258,20 +239,9 @@ var AppRouter = Backbone.Router.extend({
 
 	questionCollection: function () {
 		$('#app2').html(this.surveyQuestionListView.render().el);
-		//$('#app2').html('survey question coll');
 	},
 
-	questionDetails: function (question) {
-		this.surveyQuestionModel.set('id', question);
-		this.surveyQuestionModel.fetch();
-		$('#app2').html(this.surveyQuestionDetails.render().el);
-
-	},
-
-	supplyList: function (category) {
-		$('#app2').html(this.suppliesView.render().el);
-	},
-
+	//update quantity on indiv items
 	updatedCart: function(supply) {
 		this.supplyCategoryModel.set('id', supply);
 		this.supplyCategoryModel.fetch();
@@ -288,10 +258,8 @@ $(function() {
 	Backbone.history.start();
 
 	//var scheduleCollection = new SchedulesCollection(kittySchedules);
-
-   //var scheduleTableView = new ScheduleTableView({ collection: scheduleCollection });
-
-   //$('.wrapper').html( scheduleTableView.render().$el.attr('id', 'schedules') );
+   	//var scheduleTableView = new ScheduleTableView({ collection: scheduleCollection });
+   	//$('.wrapper').html( scheduleTableView.render().$el.attr('id', 'schedules') );
 
   /*var form = new Backbone.Form({
     //Schema

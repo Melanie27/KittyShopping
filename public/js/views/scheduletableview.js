@@ -11,12 +11,13 @@ var ScheduleTableView = Backbone.View.extend({
 
    initialize: function() {
 
-      this.template = _.template( $('#schedule-table').html() );
+      //this.template = _.template( $('#schedule-table').html() );
       this.listenTo(this.collection, "sort", this.updateTable);
    },
 
    render: function() {
-
+      
+      this.template = _.template( $('#schedule-table').html() );
       this.$el.html(this.template());
       this.updateTable();
 

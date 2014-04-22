@@ -2,15 +2,26 @@ var ScheduleRowView = Backbone.View.extend({
 
    tagName: 'tr',
 
-   template: null,
+
+   template: Handlebars.compile(
+
+    '<td><div>{{name}}</div></td>' +
+    '<td><div>{{description}}</div></td>' +
+    '<td style="padding:8px;">{{recommeded}}</td>' +
+    '<td style="padding:8px;">{{time}}</td>' +
+    '<td style="padding:8px;">{{studio}}</td>' +
+    '<td style="padding:8px;">{{courseDay}}</td>'
+
+    ),
 
    initialize: function() {
-      this.template = _.template( $('#schedule-row').html() );
+      //this.template = _.template( $('#schedule-row').html() );
    },
 
    render: function() {
 
-      this.$el.html( this.template( this.model.toJSON()) );
+      //this.$el.html( this.template( this.model.toJSON()) );
+      this.$el.html(this.template(this.model.attributes));
 
       // a checkbox to mark / unmark the done status of this task 
     	this.$el.append(new Backbone.UI.Link({
