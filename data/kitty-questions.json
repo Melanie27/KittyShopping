@@ -26,11 +26,11 @@
 		"responded" : [ "default response" ],
 		"query": "Which of the following best describes your kitty's palatte?",
 		"answers": {
-			"Bub" : "Country",
+			"Bub" : "Taylor Swift",
 			"Grumpy" : "Mozart. Popular music is for the plebs.",
-			"Pudge" : "z100",
+			"Pudge" : "Rihanna",
 			"Meow" : "Very heavy metal",
-			"Hipster" : "something long winded"
+			"Hipster" : "M.I.A."
 		}
 	},
 	{
@@ -75,7 +75,7 @@
 		"responded" : [ "default response" ],
 		"answers": {
 			"Meow" : "Does General McArthur count?",
-			"Bub" : "Meg Ryan",
+			"Bub" : "Oprah",
 			"Hipster" : "Zooey Deschanel",
 			"Grumpy" : "Jack Nicholson",
 			"Pudge" : "John Candy"

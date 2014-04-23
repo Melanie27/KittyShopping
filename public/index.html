@@ -28,14 +28,8 @@
 	<script type="text/javascript" src="js/models/surveyquestion.js"></script>
 	<script type="text/javascript" src="js/models/resultsmodel.js"></script>
 	<script type="text/javascript" src="js/models/supplycategory.js"></script>
-	
 	<script type="text/javascript" src="js/models/ordersupplymodel.js"></script>
-
 	<script type="text/javascript" src="js/models/locationmodel.js"></script>
-
-
-
-
 	<script type="text/javascript" src="js/models/schedulemodel.js"></script>
 
 	<script type="text/javascript" src="js/models/usermodel.js"></script>
@@ -46,7 +40,6 @@
 	<script type="text/javascript" src="js/collections/supplycategoriescollection.js"></script>
 	<script type="text/javascript" src="js/collections/orderedsuppliescollection.js"></script>
 	<script type="text/javascript" src="js/collections/locationcollection.js"></script>
-	
 	<script type="text/javascript" src="js/collections/schedulescollection.js"></script>
 
 
@@ -67,26 +60,21 @@
 	<script type="text/javascript" src="js/views/orderedsupplyview.js"></script>
 	<script type="text/javascript" src="js/views/orderedsupplylistview.js"></script>
 	
-
 	<script type="text/javascript" src="js/views/storelocateview.js"></script>
-
-
 
 	<script type="text/javascript" src="js/views/supplycategorydetails.js"></script>
 	<script type="text/javascript" src="js/views/supplyindivdetails.js"></script>
 	<script type="text/javascript" src="js/views/previewinvoiceitemview.js"></script>
 
 	
-	
 	<!--use these two for sheduling-->
 	<script type="text/javascript" src="js/views/schedulerowview.js"></script>
 	<script type="text/javascript" src="js/views/scheduletableview.js"></script>
 
-	<!--<script type="text/javascript" src="js/views/userformview.js"></script>-->
+	<script type="text/javascript" src="js/views/userformview.js"></script>
 
 	<script type="text/javascript" src="js/app.js"></script>
 	
-
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
@@ -96,85 +84,19 @@
 
 	<link rel="stylesheet" type="text/css" href="js/lib/backbone-forms/distribution/templates/bootstrap3.css"></script>
 	<link rel="stylesheet" type="text/css" href="css/map.css" />
+	<link rel="stylesheet" type="text/css" href="css/build/main.css" />
 
 	<style>
-	.draggable {
-		width: 200px;
-		height: 280px;
-		padding: 0.1em;
-		
-		margin-bottom: 10px;
-		font-size:10px;
+
+	input {
+		height:30px !important;
 	}
 
-	.basketPanel {
-		height:auto;
-		/*background-color: #999;*/
-		opacity: .8;
-		border:solid 1px #999;
-
-	}
-
-	td.last {
-		color: blue;
-		text-decoration: underline;
-	}
-
-	.table_view .content td {
-		font-size:12px;
-	}
-
-	table {
-   border: 1px solid #dfdfdf;
-   background-color: #f9f9f9;
-   width: 100%;
-   table-layout: fixed;
-   -moz-border-radius: 3px;
-   -webkit-border-radius: 3px;
-   border-radius: 3px;
-   color: #333;
-}
-
-table td, table th {
-   border-top-color: white;
-   border-bottom: 1px solid #dfdfdf;
-   color: #555;
-}
-
-table th {
-   font-weight: bold;
-   padding: 7px 5px 8px;
-   text-align: left;
-   line-height: 1.3em;
-   font-size: 14px;
-}
-
-table td {
-   font-size: 12px;
-   padding: 4px 5px 2px;
-   vertical-align: top;
-   white-space: nowrap;
-   overflow: hidden;
-}
-
-
-
-
-
-#schedules th { white-space: nowrap; cursor: pointer; }
-#schedules th span { display: inline-block; margin-left: 5px; }
-
-#schedules [column="name"] { width: 150px; }
-#schedules [column="description"] { width: 28%; }
-#schedules [column="recommeded"] { width: 250px; }
-#schedules [column="time"] { width: 90px; }
-#schedules [column="studio"] { width: 120px; }
-#schedules [column="day"] { width: 90px; }
-#schedules [column="signup"] { width: 60px; }
 
 	</style>
 
-			<!--Order Item template-->
+
+	<!--Order Item template-->
 		<script type="text/template" id="order-item-tmpl">
 			{{if attributes.product_id != ""}}
 				<p class="orderedProdTxt"><label class="albumTxt">${attributes.title}</label> &minus; <label class="artistTxt">${attributes.description}</label></p>
@@ -184,62 +106,28 @@ table td {
 				</p>
 			<div style="clear: both;"></div>
 		{{/if}}
-</script>
+		</script>
 </head>
 <body>
 
 
-	<div class="container" id="app">
-
-	</div>
-
-
+	<div class="container" id="app"></div>
 
 	<div class="container">
 		<h1>Yoga Kitten<sup>TM</sup></h1>
 		<ul class="nav nav-pills">
-			
 			<li><a href="#">Survey List Collection</a></li>
 			<li><a href="#/cart-list">Shopping Cart List</a></li>
 			<li><a href="#/shop-form">Shopping Cart Form</a></li>
 			<li><a href="#/store-locator">Store Locator 2</a></li>
 			<li><a href="#/class-schedule">Class Schedule</a></li>
-
-			
 		</ul>
 	</div>	
 
 	<div class="container" id="app2">
-		<!-- TEMPLATE: InfoWindow
- ============================== -->
-		
-
-	<div class="container" id="app3">
-		
-		
-
+	</div>
 	
 	
-
-	<script id="formTemplate" type="text/html">
-    <form>
-        <h1>New User</h1>
-
-        <h2>Main Info</h2>
-        <div data-fields="title,name,birthday"></div>
-
-        <h2>Account Info</h2>
-        <h3>Email</h3>
-        <div data-fields="email"></div>
-
-        <h3>Password</h3>
-        <p>Must be at least 8 characters long</p>
-        <div data-editors="password"></div>
-    </form>
-</script>
-
-
-	</div> 
 
 </body>
 </html>

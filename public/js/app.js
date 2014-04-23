@@ -24,18 +24,7 @@ var AppRouter = Backbone.Router.extend({
 		
 		//shopping cart form:
 		this.userModel = new UserModel();
-		//console.log(this.userModel.toJSON());
-
-		var form = new Backbone.Form({
-			//model: this.userModel
-		});
-
-		$('body').append(form.el);
-
-		/*this.userFormView = new UserFormView ({
-
-			model: this.userModel
-		})*/
+		this.userFormView = new UserFormView ({model: this.userModel});
 
 
 		//Class Schedule benknowscode - need to get this view working with handlebars
@@ -153,16 +142,13 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	shopForm: function() {
-		//$('#app3').html(this.userFormView.render().el);
+		$('#app2').html(this.userFormView.render().el);
+		//$('#app2').html('the form shall be here');
 
 	},
 
-
-
 	classSchedule: function() {
 		$('#app2').html( this.scheduleTableView.render().$el.attr('id', 'schedules') );
-		//$('#app3').html('turn on the schedule here');
-
 	},
 
 	schedRow: function() {
@@ -176,12 +162,10 @@ var AppRouter = Backbone.Router.extend({
        
 	},
 
-
 	suppliesList: function() {
 		this.supplyCategoryModel.fetch();
 		$('#app2').html(this.shoppingCartListView.render().el);
 	},
-
 
 	orderedItem: function() {
 		$('#app2').html(this.orderedSupplyView.render().el);
@@ -192,13 +176,11 @@ var AppRouter = Backbone.Router.extend({
 		$('#app2').html(this.shoppingCartFullPageView.render().el);
 	},
 
-
 	surveyResults: function(kitty) {
 		this.resultsModel.set('id', kitty);
 		this.resultsModel.fetch();
 		$('#app2').html(this.resultsView.render().el);
 	},
-
 
 	questionCollection: function () {
 		$('#app2').html(this.surveyQuestionListView.render().el);
@@ -219,41 +201,5 @@ var app = new AppRouter();
 
 $(function() {
 	Backbone.history.start();
-
-  /*var form = new Backbone.Form({
-    //Schema
-    schema: {
-        title: { type: 'Select', options: ['Mr.', 'Mrs.', 'Ms.']},
-        name:        { type: 'Text', validators: ['required']},
-        email:   { validators: ['required', 'email'] },
-        address1:  { type: 'Text', validators: ['required']},
-        address2: 'Text',
-        zipcode: { type: 'Number', validators: ['required']},
-        name:       'Text',
-        password1:   { type: 'Password', validators: ['required']},
-        password2:   { type: 'Password', validators: ['required']},
-        petname: 'Text'
-    },
-
-    //Data to populate the form with
-    data: {
-      title: '',
-      name: 'Melanie McGanney',
-      email: 'melaniemcganney@gmail.com',
-      address: 'address1',
-      address: 'address2',
-      zipcode: '12345',
-      password1: 'juniper',
-      password2: '',
-      petname: 'Titty Bar Bob'
-    }
-}).render();
-
-form.on('name:blur email:blur, address1:blur', function(form, editor) {
-    form.fields[editor.key].validate();
-});
-
-$('body').append(form.el);*/
-  
 
 });

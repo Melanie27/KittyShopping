@@ -1,0 +1,80 @@
+table {
+   border: 1px solid green;
+   background-color: #f9f9f9;
+   width: 100%;
+   table-layout: fixed;
+   -moz-border-radius: 3px;
+   -webkit-border-radius: 3px;
+   border-radius: 3px;
+   color: #333;
+
+	   td, th {
+
+		   border-top-color: blue;
+		   border-bottom: 1px solid #dfdfdf;
+		   color: #555;
+
+	   }
+
+	   th {
+
+	   	font-weight: bold;
+		   padding: 7px 5px 8px;
+		   text-align: left;
+		   line-height: 1.3em;
+		   font-size: 14px;
+
+	   }
+
+	   td {
+
+	   	font-size: 12px;
+   		padding: 4px 5px 2px;
+   		vertical-align: top;
+   		white-space: nowrap;
+   		overflow: hidden;
+
+	   }
+
+
+}
+
+#schedules {
+
+	th {
+
+	 white-space: nowrap; cursor: pointer; 
+
+	}
+
+	th span { display: inline-block; margin-left: 5px; }
+
+	[column="name"] { width: 150px; }
+	[column="description"] { width: 28%; }
+	[column="recommeded"] { width: 250px; }
+	[column="time"] { width: 90px; }
+	[column="studio"] { width: 120px; }
+	[column="day"] { width: 90px; }
+	[column="signup"] { width: 60px; }
+
+}
+
+
+/*Shopping Cart*/
+
+.draggable {
+		width: 200px;
+		height: 280px;
+		padding: 0.1em;
+		margin-bottom: 10px;
+		font-size:10px;
+	}
+
+	.basketPanel {
+		height:auto;
+		/*background-color: #999;*/
+		opacity: .8;
+		border:solid 1px #999;
+
+	}
+
