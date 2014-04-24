@@ -26,6 +26,15 @@ var AppRouter = Backbone.Router.extend({
 		this.userModel = new UserModel();
 		this.userFormView = new UserFormView ({model: this.userModel});
 
+		 //list page for ordered items
+		
+
+		 //this.checkoutListView = new CheckoutListView (
+
+		 	//{ collection: this.orderedSuppliesCollection }
+
+		 //);
+
 
 		//Class Schedule benknowscode - need to get this view working with handlebars
 		this.scheduleCollection = new SchedulesCollection(kittySchedules);
@@ -36,7 +45,7 @@ var AppRouter = Backbone.Router.extend({
 
 
 	//Shopping Cart declarations
-		//collection of ordered items 
+		 //collection of ordered items 
 		this.orderedSuppliesCollection = new OrderedSuppliesCollection({});
 		
 		//collection data for shopping cart
@@ -130,10 +139,7 @@ var AppRouter = Backbone.Router.extend({
 
 
 		//model view
-		this.resultsView = new ResultsView({
-			model: this.resultsModel
-		});
-
+		this.resultsView = new ResultsView({model: this.resultsModel});
 
 		//init store location view
 		this.storeLocateView = new StoreLocateView();

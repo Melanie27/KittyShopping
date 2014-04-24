@@ -335,5 +335,5 @@ app.get('/*', function  (req, res) {
 });
 
 http.createServer(app).listen(3000, function () {
-  console.log("Server ready at http://localhost:3000");
+  console.log("Listending at http://localhost:3000, bitch");
 });

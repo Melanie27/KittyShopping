@@ -29,6 +29,8 @@ var UserFormView = Backbone.Form.extend({
 		this.$el.append(this.form.render().el);
 		this.$el.append('<button>Submit</button');
 
+		
+
 		return this;
 	},	
 
