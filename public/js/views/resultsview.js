@@ -15,7 +15,7 @@ var ResultsView = Backbone.View.extend({
 
 	render: function() {
 		this.$el.html(this.template(this.model.attributes));
-
+		//$(this.el).append(new AuthProfileView().render().el);
 		return this;
 	}
 	

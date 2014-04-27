@@ -6,6 +6,8 @@ var express = require('express'),
   supplies = require('./data/kitty-supplies-test');
   courses = require('./data/kitty-courses');
   days = require('./data/kitty-days');
+  // load up the user model
+users = require('./app/models/user');
 
 
 
@@ -13,77 +15,108 @@ var app = express()
   .use(express.bodyParser())
   .use(express.static('public'));
 
+var port     = process.env.PORT || 3000;
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
 
-/*var days = {
+var configDB = require('./config/database.js');
 
-  1: { text: "Monday", id: 1 }
-  
-},
+// configuration ===============================================================
+mongoose.connect(configDB.url); // connect to our database
 
-courses = {
-      1: {
-          1: { text: "Nap time", id: 1},
-          2: {text: "Litter time", id: 2}
-      }
-  },
+ require('./config/passport')(passport); // pass passport for configuration
 
-  d = 2,
-  c = 2;
+app.configure(function() {
+
+  // set up our express application
+  app.use(express.logger('dev')); // log every request to the console
+  app.use(express.cookieParser()); // read cookies (needed for auth)
+  app.use(express.bodyParser()); // get information from html forms
 
 
-app.get('/days', function(req, res) {
-  var results = [];
-  for (var day in days) {
-    if(days.hasOwnProperty(day)) {
-      results.push(days[day]);
-    }
-  }
-  res.json(results);
+
+  app.set('view engine', 'ejs'); // set up ejs for templating
+  app.engine('.js', require('ejs').renderFile); //allows js files to be rendered via ejs
+ 
+  app.set('views', __dirname + '/public/js/views'); //override default directory for the views
+
+  // required for passport
+  app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+  app.use(passport.initialize());
+  app.use(passport.session()); // persistent login sessions
+  app.use(flash()); // use connect-flash for flash messages stored in session
+
+
+  //adding in 404 from nettuts tutorial
+  //doesnt work with the backbone routes - do I set this up separately???? - yes
+ /*app.use(function (req,res) {
+    //res.send(404, "404, bitch");
+
+  });*/
 
 });
 
-app.post('/days', function (req, res) {
-  var day = req.body;
-  day.id = d++;
-  days[day.id] = day;
-  res.json(day);
 
-});
+// load routes for auth  ======================================================================
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-app.put('/days/:id', function (req, res) {
-  days[req.params.id] = req.body;
-  res.json(req.body);
-});
+//Making routes from the tuts video
 
-
-app.get('/days/:did/courses', function (req, res) {
-    var results = [], c = courses[req.param.did];
-    for (var course in c) {
-      if (c.hasOwnProperty(course)) {
-        results.push(c[course]);
-      }
-    }
-    res.json(results);
-});
-
-
-app.post('/days/:did/courses', function(req, res) {
-  var course = req.body, id = req.params.did;
-  course.id = c++;
-  if(!courses[id]) { courses[id] = {}; }
-  courses[id][course.id] = course;
-  res.json(course);
-});
-
-app.put('/days/:did/courses/:cid', function (req, res) {
-    courses[req.params.id] = req.body;
-  res.json(req.body);
+/*app.get("/test", function (req, res) {
+  res.send('nettuts');
 });*/
 
 
+var User = mongoose.model('User');
+// This function is responsible for returning all entries for the Message model
+function getUsers(req, res, next) {
+  // Resitify currently has a bug which doesn't allow you to set default headers
+  // This headers comply with CORS and allow us to server our response to any origin
+  res.header("Access-Control-Allow-Origin", "*"); 
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  // .find() without any arguments, will return all results
+  // the `-1` in .sort() means descending order
+  User.find(function (arr,data) {
+    //console.log(data);
+    res.send(data);
+  });
+}
+
+app.get('/users', function(req, res) {
+    User.find(function(err, data) {
+      res.send(data);
+
+    });
+});
+
+//app.get('/users', getUsers);
+
+app.get('/users/:user_id', function  (req, res) {
+  
+  User.findById(req.params.user_id, function (data, user) {
+     //return user._id === req.params.user_id;
+     res.send(data);
+  });
+
+  //res.send(req.params.user_id);
+
+  /*var matches = users.filter(function  (user) {
+    return user._id === req.params.user_id;
+  });*/
+
+  /*if (matches.length > 0) {
+    res.json(matches[0]);
+  } else {
+    res.json(404, {status: 'invalid profile'});
+  }*/
+
+});
+
 
 app.get('/items', function  (req, res) {
-  res.json(items);
+  //res.json(items);
+  res.render('_signup.ejs', {message: req.flash('signupMessage')});
 });
 
 app.get('/questions', function  (req, res) {
@@ -334,6 +367,6 @@ app.get('/*', function  (req, res) {
   res.json(404, {status: 'not found'});
 });
 
-http.createServer(app).listen(3000, function () {
-  console.log("Listending at http://localhost:3000, bitch");
+http.createServer(app).listen(port, function () {
+  console.log("Listening at port " + port + ", bitch");
 });

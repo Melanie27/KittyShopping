@@ -37,9 +37,8 @@ $(this.el).empty();
 	$(this.el).html(html);
 		//return '<h2>'+ '$' + val + '</h2>';
 
-	// render and append total price based on
-	// newly created model
-	//$.tmpl(this.template, {totalPrice: _totalPrice}).appendTo(this.el);
+	// render and append total price based on newly created model
+	
 	return this;
 }
 	

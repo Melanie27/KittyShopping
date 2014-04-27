@@ -4,8 +4,10 @@ var SubmitQuizView = Backbone.View.extend({
 render: function() {
 	 var html = 
 		'<br>'+
-		'<button id="tally" class="btn btn-primary submit" value="submit">Submit Quiz</button>'
-
+		'<button id="tally" class="btn btn-primary submit" value="submit">Submit Quiz</button>' +
+		'<form action="/login" method="post">' +
+		'<button type="submit" class="btn btn-warning btn-lg">Login</button>'+
+		'</form>'
 		$(this.el).html(html);
 		return this;
 },
@@ -28,6 +30,15 @@ display: function() {
 
 
 submitQuiz: function(data) {
+
+	//modal window to enter username and pass first
+	
+	$('.questions, #tally').hide();
+	//alert('please register an account to see quiz results');
+	//$(this.el).append(new AuthSignupView().render().el);
+	//$(this.el).append(new AuthProfileView().render().el);		
+
+	
 
 	var GrumpyCount = 0
 	var HipsterCount = 0
@@ -95,7 +106,7 @@ submitQuiz: function(data) {
 	}
 
 	//prompt('Enter the name of your furry Beast');
-	//app.navigate("survey/results", {trigger: true});
+	//app.navigate("survey/results", {trigger: true});*/
 
 }
 

@@ -1,9 +1,10 @@
-var AppRouter = Backbone.Router.extend({
+	var AppRouter = Backbone.Router.extend({
 	_currentsub:null,
 
 	routes: {
-		"": "questionCollection",
+		//"": "questionCollection",
 		"survey": "questionCollection",
+		"take-quiz" : "takeQuiz",
 		"results/:kitty" : "surveyResults",
 		"cart-list"		: "cartList",
 		"updated-cart" : "updatedCart",
@@ -16,6 +17,10 @@ var AppRouter = Backbone.Router.extend({
 	
 		"shop-form" : "shopForm",
 
+		"auth-index" : "authIndex",
+		":whatever": "notFound"
+		
+
 
 	},
 
@@ -25,15 +30,6 @@ var AppRouter = Backbone.Router.extend({
 		//shopping cart form:
 		this.userModel = new UserModel();
 		this.userFormView = new UserFormView ({model: this.userModel});
-
-		 //list page for ordered items
-		
-
-		 //this.checkoutListView = new CheckoutListView (
-
-		 	//{ collection: this.orderedSuppliesCollection }
-
-		 //);
 
 
 		//Class Schedule benknowscode - need to get this view working with handlebars
@@ -144,8 +140,45 @@ var AppRouter = Backbone.Router.extend({
 		//init store location view
 		this.storeLocateView = new StoreLocateView();
 
+		//user model 
+		this.userMongooseModel = new UserMongooseModel();
+		console.log(this.userMongooseModel.fetch());
+		
+
+		this.authProfileView = new AuthProfileView({
+
+			model: this.userMongooseModel
+			//collection: this.usersMongooseCollection
+		})
+
+		this.authIndexView = new AuthIndexView();
+
+		this.takeQuizView = new TakeQuizView();
+
+		//module.exports = mongoose.model('User', userSchema);
+		//var User = mongoose.model('User');
+		//user = new User(JSON.stringify(user));
+		//console.log(User.toJSON);
 
 	},
+
+	takeQuiz: function() {
+		$('#app2').html(this.takeQuizView.render().el);
+	},
+
+	notFound: function() {
+		$('#app2').html('404, bitch');
+	},
+
+	authIndex: function(user) {
+		//$('#app2').html('index here');
+		//this.userMongooseModel.set('name', user)
+		//this.userMongooseModel.set('id', user);
+		this.userMongooseModel.fetch();
+		console.log(this.userMongooseModel);
+		$('#app2').html(this.authProfileView.render().el);
+	},
+
 
 	shopForm: function() {
 		$('#app2').html(this.userFormView.render().el);
@@ -185,6 +218,7 @@ var AppRouter = Backbone.Router.extend({
 	surveyResults: function(kitty) {
 		this.resultsModel.set('id', kitty);
 		this.resultsModel.fetch();
+		console.log(this.resultsModel.fetch());
 		$('#app2').html(this.resultsView.render().el);
 	},
 
