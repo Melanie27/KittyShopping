@@ -94,22 +94,15 @@ app.get('/users', function(req, res) {
 
 app.get('/users/:user_id', function  (req, res) {
   
-  User.findById(req.params.user_id, function (data, user) {
-     //return user._id === req.params.user_id;
-     res.send(data);
+  mongoose.model('User').find({ '_id': req.params.user_id}, function(err, User) {
+    res.send(User);
   });
-
-  //res.send(req.params.user_id);
-
-  /*var matches = users.filter(function  (user) {
-    return user._id === req.params.user_id;
-  });*/
-
-  /*if (matches.length > 0) {
-    res.json(matches[0]);
-  } else {
-    res.json(404, {status: 'invalid profile'});
-  }*/
+  
+  /*mongoose.model('User').find({ '_id' : req.param.user_id}), function (err, User) {
+    mongoose.model('User').populate(User, {path: '_id'}, function (err, User) {
+      res.send[User]; 
+    });
+  };*/
 
 });
 
