@@ -33,9 +33,6 @@ app.configure(function() {
   app.use(express.logger('dev')); // log every request to the console
   app.use(express.cookieParser()); // read cookies (needed for auth)
   app.use(express.bodyParser()); // get information from html forms
-
-
-
   app.set('view engine', 'ejs'); // set up ejs for templating
   app.engine('.js', require('ejs').renderFile); //allows js files to be rendered via ejs
  
@@ -47,6 +44,10 @@ app.configure(function() {
   app.use(passport.session()); // persistent login sessions
   app.use(flash()); // use connect-flash for flash messages stored in session
 
+  app.use(function(req, res, next){
+   res.locals.user = req.user;
+   next();
+});
 
   //adding in 404 from nettuts tutorial
   //doesnt work with the backbone routes - do I set this up separately???? - yes
@@ -55,22 +56,17 @@ app.configure(function() {
 
   });*/
 
+  app.use(app.router);
+
 });
 
 
 // load routes for auth  ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-//Making routes from the tuts video
-
-/*app.get("/test", function (req, res) {
-  res.send('nettuts');
-});*/
-
-
 var User = mongoose.model('User');
 // This function is responsible for returning all entries for the Message model
-function getUsers(req, res, next) {
+/*function getUsers(req, res, next) {
   // Resitify currently has a bug which doesn't allow you to set default headers
   // This headers comply with CORS and allow us to server our response to any origin
   res.header("Access-Control-Allow-Origin", "*"); 
@@ -81,9 +77,16 @@ function getUsers(req, res, next) {
     //console.log(data);
     res.send(data);
   });
-}
+}*/
+
+
+//YEA --- TEST WORKS!!!!!!!-->
+app.get('/test', function(req,res) {
+    res.send(res.locals.user);
+});
 
 app.get('/users', function(req, res) {
+    //res.send(res.locals.user);
     User.find(function(err, data) {
       res.send(data);
 
@@ -98,11 +101,6 @@ app.get('/users/:user_id', function  (req, res) {
     res.send(User);
   });
   
-  /*mongoose.model('User').find({ '_id' : req.param.user_id}), function (err, User) {
-    mongoose.model('User').populate(User, {path: '_id'}, function (err, User) {
-      res.send[User]; 
-    });
-  };*/
 
 });
 

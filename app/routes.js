@@ -6,6 +6,7 @@ module.exports = function(app, passport) {
 
 	app.get('/in', function(req, res) {
 		res.render('_index.ejs'); //load index file
+
 	});
 
 
@@ -14,6 +15,7 @@ module.exports = function(app, passport) {
 
 		//render the page and pass flash data if it exists
 		res.render('_login.ejs', {message: req.flash('loginMessage')});
+
 
 	});
 
@@ -29,20 +31,22 @@ module.exports = function(app, passport) {
 
 	app.get('/signup', function(req, res) {
 
+		//send res.locals instead????? 4/29
+
 		//render the page and pass flash data if it exists
-		//res.render('_signup.ejs', {message: req.flash('signupMessage')});
-		res.render('authsignupview.js', {message: req.flash('signupMessage')});
+		res.render('_signup.ejs', {message: req.flash('signupMessage')});
+		//res.render('authsignupview.js', {message: req.flash('signupMessage')});
 		//res.sendfile('authsignupview.js', {message: req.flash('signupMessage')})
 
 	});
 
 	// process the signup form
 	app.post('/signup', passport.authenticate('local-signup', {
-		//successRedirect : '/profile', // redirect to the secure profile section
+		successRedirect : '/profile', // redirect to the secure profile section
 		//successRedirect : '/#/survey', // redirect to the secure results section
-		successRedirect : '/#/auth-index', // redirect to the secure results section
-		failureRedirect: '/#/take-quiz',
-		//failureRedirect : '/signup', // redirect back to the signup page if there is an error
+		//successRedirect : '/#/auth-index', // redirect to the secure results section
+		//failureRedirect: '/#/take-quiz',
+		failureRedirect : '/signup', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
 
@@ -50,7 +54,22 @@ module.exports = function(app, passport) {
 	// =====================================
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
+	/*app.get('/profile', isLoggedIn, function(req, res) {
+		res.render('_profile.ejs', {
+			user : req.user // get the user out of session and pass to template
+		});
+	});*/
+
 	app.get('/profile', isLoggedIn, function(req, res) {
+		
+		//return req.user
+		/*res.render('authprofileview.js', {
+		
+			user : req.user // get the user out of session and pass to template
+
+		});*/
+
+
 		res.render('_profile.ejs', {
 			user : req.user // get the user out of session and pass to template
 		});

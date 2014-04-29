@@ -143,11 +143,14 @@
 		//user model 
 		this.userMongooseModel = new UserMongooseModel();
 		console.log(this.userMongooseModel.fetch());
+		this.userMongooseModel.fetch();
 		
+		this.usersMongooseCollection = new UsersMongooseCollection();
+		console.log(this.usersMongooseCollection.fetch());
 
 		this.authProfileView = new AuthProfileView({
 
-			model: this.userMongooseModel
+			//model: this.userMongooseModel
 			//collection: this.usersMongooseCollection
 		})
 
@@ -170,11 +173,11 @@
 		$('#app2').html('404, bitch');
 	},
 
-	authIndex: function(user) {
-		//$('#app2').html('index here');
-		//this.userMongooseModel.set('name', user)
-		//this.userMongooseModel.set('id', user);
-		this.userMongooseModel.fetch();
+	authIndex: function() {
+		
+		//this.userMongooseModel.set('_id', user)
+		//this.userMongooseModel.set('_id', user);
+		//this.userMongooseModel.fetch();
 		console.log(this.userMongooseModel);
 		$('#app2').html(this.authProfileView.render().el);
 	},
@@ -241,5 +244,6 @@ var app = new AppRouter();
 
 $(function() {
 	Backbone.history.start();
+
 
 });

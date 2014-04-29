@@ -43,8 +43,11 @@
 	<script type="text/javascript" src="js/collections/orderedsuppliescollection.js"></script>
 	<script type="text/javascript" src="js/collections/locationcollection.js"></script>
 	<script type="text/javascript" src="js/collections/schedulescollection.js"></script>
+	<script type="text/javascript" src="js/collections/usersmongoosecollection.js"></script>
 	
 
+
+	<script type="text/javascript" src="js/views/templates.js"></script>
 
 	<!--survey and results views-->
 	<script type="text/javascript" src="js/views/survey.js"></script>
@@ -84,6 +87,8 @@
 
 	<script type="text/javascript" src="js/views/takequizview.js"></script>
 
+	
+
 	<script type="text/javascript" src="js/app.js"></script>
 
 	
@@ -122,15 +127,21 @@
 			<div style="clear: both;"></div>
 		{{/if}}
 		</script>
+
+		<script type="text/template" id="signup">
+
+		
+		</script>
 </head>
 <body>
 
-
+	{{user._id}}
 	<div class="container" id="app"></div>
 
 	<div class="container">
 		<h1>Yoga Kitten<sup>TM</sup></h1>
 		<ul class="nav nav-pills">
+			<li><a href="/in">Login</a></li>
 			<li><a href="#/take-quiz">Take the quiz</a></li>
 			<li><a href="#/survey">Survey List Collection</a></li>
 			<li><a href="#/cart-list">Shopping Cart List</a></li>
@@ -138,6 +149,7 @@
 			<li><a href="#/store-locator">Store Locator 2</a></li>
 			<li><a href="#/class-schedule">Class Schedule</a></li>
 			<li><a href="#/auth-index">Auth Index</a></li>
+			<li><a href="#/signup">Signup</a></li>
 		</ul>
 	</div>	
 
