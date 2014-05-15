@@ -7,8 +7,10 @@ var UserMongooseModel = Backbone.Model.extend({
 		__v: 0,
     	local: {
       		password: "$2a$08$aGl4FCFsWO9Nu97U3hgQtOf.YWBWmSTRbPYBWvriM9tELORwfpEWi",
-      		email: "melmcganney@gmail.com",
-      		petName: "Smeagol"
+      		email: "Default User Email",
+      		petname: "Smeagol",
+      		path: "",
+      		winner: "Grumpy"
       	}
 
 

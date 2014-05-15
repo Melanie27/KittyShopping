@@ -12,10 +12,16 @@ var userSchema = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
+
+    pet: String,
+
     local            : {
         email        : String,
         password     : String,
-        //petName      : String,
+        petname      : String,
+        path         : String,
+        winner       : String
+
     },
     facebook         : {
         id           : String,
@@ -51,6 +57,8 @@ userSchema.methods.validPassword = function(password) {
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);
+
+
 
 //this is defined in my server.js file
 //var User = mongoose.model('User');

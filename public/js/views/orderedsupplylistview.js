@@ -46,10 +46,6 @@ var OrderedSupplyListView = Backbone.View.extend({
 	addItem: function(item)
 	{
 		
-		//alert('adding');
-
-
-
 		$('#orderedProducts').append(_.map(this.collection.models, function(model, key) {
 				return new OrderedSupplyView({
 					model: model,
@@ -57,6 +53,15 @@ var OrderedSupplyListView = Backbone.View.extend({
 					
 				}).render().el;
 		}));
+
+		jQuery.post("/api/products", {
+			"title": "Test Product",  
+  			"description": "This is a test",  
+  			"style": "12345"
+		}, function (data, textStatus, jqXHR) { 
+    	console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
+
+		});
 
 		// create and render order item view based on associated model and
 		// attach this view as its parent
@@ -118,17 +123,14 @@ var OrderedSupplyListView = Backbone.View.extend({
 
 			// retrieved model from the dropped item view
 			var model = $(ui.draggable).data("item-view").model;
-			console.log(model);
+			//console.log(model);
 
-			
-			
-		
 						// then insert its clone to the order collection
 			_view.collection.add(model.clone());
 
 			// let's have a look how the order collection
 			// after another item is dropped
-			console.log(_view.collection.toJSON());
+			//console.log(_view.collection.toJSON());
 
 			// re-render the total price
 			//_view.totalView.render();
@@ -148,7 +150,7 @@ var OrderedSupplyListView = Backbone.View.extend({
 		'</div>'+
 		'<div id="buttonList" class="panel actionPanel">' + '</div>';
 
-		console.log(_view.collection.toJSON());
+		//console.log(_view.collection.toJSON());
 
 		$(this.el).html(html);
 

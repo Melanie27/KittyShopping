@@ -1,5 +1,6 @@
 var express = require('express'),
   http = require('http'),
+  //path = require("path"),
   items = require('./data/menu-items');
   questions = require('./data/kitty-questions');
   profiles = require('./data/kitty-profiles');
@@ -19,7 +20,6 @@ var port     = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
-
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
@@ -33,10 +33,18 @@ app.configure(function() {
   app.use(express.logger('dev')); // log every request to the console
   app.use(express.cookieParser()); // read cookies (needed for auth)
   app.use(express.bodyParser()); // get information from html forms
+
+  //got the following from pixel handler
+  //sets up public directory to use static files
+  //app.use(express.static(path.join(application_root, "public")));
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  
+
   app.set('view engine', 'ejs'); // set up ejs for templating
   app.engine('.js', require('ejs').renderFile); //allows js files to be rendered via ejs
  
   app.set('views', __dirname + '/public/js/views'); //override default directory for the views
+  //app.set('photos', __dirname + '/public/photos'); //override default directory for the views
 
   // required for passport
   app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
@@ -61,6 +69,126 @@ app.configure(function() {
 });
 
 
+//Pixelhandler Schema
+
+var Schema = mongoose.Schema;
+
+var Product = new Schema({
+    
+    category: { type: String },  
+    title: { type: String }, 
+    url: {type: String}, 
+    keyword: { type: String },  
+    description: { type: String }, 
+    price: {type: Number},
+    quantity: {type: Number},
+    imagepathsm: {type: String},  
+    modified: { type: Date, default: Date.now }
+
+});
+
+var ProductModel = mongoose.model('Product', Product);
+
+
+
+//PixelHandler
+app.get('/api', function(req, res) {
+  res.send('configDB is running');
+});
+
+
+//read a list of products
+app.get('/api/products', function(req, res) {
+  return ProductModel.find(function(err, products) {
+    if (!err) {
+      return res.send(products);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
+
+//create a single product
+app.post('/api/products', function (req, res) {
+  var product;
+  console.log("POST: ");
+  console.log(req.body);
+  product = new ProductModel ({
+    
+    category: req.body.category,
+    title: req.body.title,
+    url: req.body.url,
+    keyword: req.body.keyword,
+    description: req.body.description,
+    price: req.body.price,
+    quantity: req.body.quantity,
+    imagepathsm: req.body.imagepathsm,
+    modified: req.body.modified,
+    
+  });
+  product.save(function(err) {
+    if (!err) {
+      return console.log('added');
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(product);
+});
+
+//read a single product by ID
+
+app.get('/api/products/:id', function (req, res){
+  return ProductModel.findById(req.params.id, function (err, product) {
+    if (!err) {
+      return res.send(product);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
+
+//update a single product by ID
+app.put('/api/products/:id', function (req, res){
+  return ProductModel.findById(req.params.id, function (err, product) {
+    /*product.category: req.body.category,
+    product.title: req.body.title,
+    product.url: req.body.url,
+    product.keyword: req.body.keyword,
+    product.description: req.body.description,
+    product.price: req.body.price,
+    product.quantity: req.body.quantity,
+    product.imagepathsm: req.body.imagepathsm,
+    product.modified: req.body.modified;*/
+    return product.save(function (err) {
+      if (!err) {
+        console.log("updated");
+      } else {
+        console.log(err);
+      }
+      return res.send(product);
+    });
+  });
+});
+
+//delete a single product by ID
+app.delete('/api/products/:id', function (req, res){
+  return ProductModel.findById(req.params.id, function (err, product) {
+    return product.remove(function (err) {
+      if (!err) {
+        console.log("removed");
+        return res.send('');
+      } else {
+        console.log(err);
+      }
+    });
+  });
+});
+
+
+
 // load routes for auth  ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
@@ -78,6 +206,29 @@ var User = mongoose.model('User');
     res.send(data);
   });
 }*/
+
+app.get('/update', function(req, res) {
+  User.findOne(function (err, data) {
+     res.send(data);
+     //console.log(local.email);
+     //console.log(req.body._id);
+  })
+});
+
+app.post('/update', function(req, res) {
+  
+  if (req.session.user) {
+    next();
+    console.log('logged in');
+  } else {
+    console.log('you are not logged in');
+  }
+
+
+ 
+    console.log(req.body.petname);
+    //res.render('_index.ejs'); //load index file
+  });
 
 
 //YEA --- TEST WORKS!!!!!!!-->

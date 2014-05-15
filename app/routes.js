@@ -1,6 +1,13 @@
 // app/routs.js
+// load up the user model
+//var User = require('../app/models/user');
+
+
 
 module.exports = function(app, passport) {
+
+	
+	
 
 	//Home Page with login links
 
@@ -21,7 +28,9 @@ module.exports = function(app, passport) {
 
 	//process the login form
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/profile', // redirect to the secure profile section
+		//successRedirect : '/profile', // redirect to the secure profile section
+		
+		successRedirect: '/',
 		failureRedirect : '/login', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
@@ -42,8 +51,8 @@ module.exports = function(app, passport) {
 
 	// process the signup form
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/profile', // redirect to the secure profile section
-		//successRedirect : '/#/survey', // redirect to the secure results section
+		//successRedirect : '/profile', // redirect to the secure profile section
+		successRedirect : '/#/survey', // redirect to the survery section
 		//successRedirect : '/#/auth-index', // redirect to the secure results section
 		//failureRedirect: '/#/take-quiz',
 		failureRedirect : '/signup', // redirect back to the signup page if there is an error
@@ -60,8 +69,13 @@ module.exports = function(app, passport) {
 		});
 	});*/
 
-	app.get('/profile', isLoggedIn, function(req, res) {
+	
+	//not sure what this is doing for me when the view is being rendered by bb???
+	//the bb routes are over-riding this, so the auth-index section is not currently protected
+
+	/*app.get('/#/auth-index', isLoggedIn, function(req, res) {
 		
+		console.log('hi');
 		//return req.user
 		/*res.render('authprofileview.js', {
 		
@@ -70,10 +84,10 @@ module.exports = function(app, passport) {
 		});*/
 
 
-		res.render('_profile.ejs', {
+		/*res.render('_profile.ejs', {
 			user : req.user // get the user out of session and pass to template
-		});
-	});
+		});*/
+	//});
 
 
 	// =====================================

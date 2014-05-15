@@ -15,8 +15,27 @@ var AuthSignupView = Backbone.View.extend({
 						'<label>Password</label>' +
 						'<input type="password" class="form-control" name="password">' +
 					'</div>' +
+					'<div class="form-group">' +
+						'<label>Pet Name</label>' +
+						'<input type="text" class="form-control" name="petname">' +
+					'</div>' +
+					'<div class="form-group">' +
+						'<label>Pet Photo</label>' +
+						'<input type="file" class="form-control" name="photo[image]"/>' +
+					'</div>' +
+
 						'<button type="submit" id="signup" class="btn btn-warning btn-lg">Signup</button>' +
+
 				'</form>' +	
+
+				'<form action="/update" method="post">' +
+					'<div class="form-group">' +
+						'<label>Add Pet Name -existing user</label>' +
+						'<input type="text" class="form-control" name="petname">' +
+					'</div>' +
+					'<button type="submit" id="signup" class="btn btn-warning btn-lg">Update</button>' +
+				'</form>' +
+				
 				'<hr>'+
 				//'<p>Already have an account? <a href="/login">Login</a></p>' +
 			'</div>' +

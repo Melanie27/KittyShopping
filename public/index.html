@@ -86,6 +86,7 @@
 	<script type="text/javascript" src="js/views/authprofileview.js"></script>
 
 	<script type="text/javascript" src="js/views/takequizview.js"></script>
+	<script type="text/javascript" src="js/views/welcomeuserview.js"></script>
 
 	
 
@@ -135,7 +136,9 @@
 </head>
 <body>
 
-	{{user._id}}
+
+	
+	
 	<div class="container" id="app"></div>
 
 	<div class="container">
@@ -150,8 +153,21 @@
 			<li><a href="#/class-schedule">Class Schedule</a></li>
 			<li><a href="#/auth-index">Auth Index</a></li>
 			<li><a href="#/signup">Signup</a></li>
+			<li><a href="#/welcome-view">Welcome</a></li>
 		</ul>
 	</div>	
+
+	<div class="welcome-view">
+	</div>
+
+
+<!--need some logic that says - if logged in then show this view-->
+	<script>
+		this.welcomeUserView = new WelcomeUserView({
+
+		});
+		$('.welcome-view').html(this.welcomeUserView.render().el);
+	</script>
 
 	<div class="container" id="app2">
 		

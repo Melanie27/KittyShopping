@@ -14,7 +14,8 @@ var AuthProfileView = Backbone.View.extend({
 						'<strong>id</strong>: {{_id}}<br>' +
 						'<strong>email</strong>: {{local.email}}<br>' +
 						'<strong>password</strong>: {{local.password}}<br>' +
-						'<strong>password</strong>: {{local.petName}}<br>' +
+						'<strong>petname</strong>: {{local.petname}}<br>' +
+						'<strong>winner</strong>: {{local.winner}}<br>' +
 						
 					'</p>' +
 				'</div>' +
@@ -25,6 +26,8 @@ var AuthProfileView = Backbone.View.extend({
 	initialize: function() {
 		this.model = new UserMongooseModel();
 		this.model.fetch({reset: true});
+		
+		//these console.logs are fetching the defualt model??? WTF??
 		console.log(this.model);
 		console.log(this.model.get('_id'));
 		//this.listenTo(this.collection, "reset", this.render );

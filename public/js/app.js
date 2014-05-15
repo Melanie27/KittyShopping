@@ -18,7 +18,9 @@
 		"shop-form" : "shopForm",
 
 		"auth-index" : "authIndex",
-		":whatever": "notFound"
+		"welcome-view" : "welcomeView",
+		":whatever": "notFound",
+		
 		
 
 
@@ -142,27 +144,33 @@
 
 		//user model 
 		this.userMongooseModel = new UserMongooseModel();
-		console.log(this.userMongooseModel.fetch());
+		//console.log(this.userMongooseModel.fetch());
 		this.userMongooseModel.fetch();
 		
 		this.usersMongooseCollection = new UsersMongooseCollection();
-		console.log(this.usersMongooseCollection.fetch());
+		//console.log(this.usersMongooseCollection.fetch());
 
 		this.authProfileView = new AuthProfileView({
 
 			//model: this.userMongooseModel
 			//collection: this.usersMongooseCollection
-		})
+		});
+
+
+		//Append the Welcome User View to the page
+		this.welcomeUserView = new WelcomeUserView({
+
+		});
+		$('body').html(this.welcomeUserView.render().el);
 
 		this.authIndexView = new AuthIndexView();
 
 		this.takeQuizView = new TakeQuizView();
 
-		//module.exports = mongoose.model('User', userSchema);
-		//var User = mongoose.model('User');
-		//user = new User(JSON.stringify(user));
-		//console.log(User.toJSON);
+	},
 
+	welcomeView: function() {
+		$('#app2').html(this.welcomeUserView.render().el);
 	},
 
 	takeQuiz: function() {

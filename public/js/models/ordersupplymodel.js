@@ -27,7 +27,7 @@ defaults: {
 
 		calculateAmount: function () {
 			
-			return '$' + this.get('price') * this.get('quantity') + '.00';
+			//return '$' + this.get('price') * this.get('quantity') + '.00';
 		}
 
 		

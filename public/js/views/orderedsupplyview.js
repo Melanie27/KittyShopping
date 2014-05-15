@@ -14,7 +14,8 @@
 
 	// bind click event to customized method
 	events: {
-	"click .removeItem" : "removeItem"
+		
+		"click .removeItem" : "removeItem"
 	},
 
 	// parent view
@@ -30,12 +31,10 @@
 
 	// remove a selected product item
 	removeItem: function () {
-	// will destroy associated model from ordered product item collection
-	
-	
-	//server setup issues with destroy so just using remove for now;
-	this.model.destroy();
-	this.totalPriceView.render();
+		// will destroy associated model from ordered product item collection
+		//server setup issues with destroy so just using remove for now;
+		this.model.destroy();
+		this.totalPriceView.render();
 	
 	},
 

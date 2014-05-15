@@ -4,10 +4,12 @@ var SubmitQuizView = Backbone.View.extend({
 render: function() {
 	 var html = 
 		'<br>'+
-		'<button id="tally" class="btn btn-primary submit" value="submit">Submit Quiz</button>' +
-		'<form action="/login" method="post">' +
+		//'<form action="/quiz" method="post">' +
+		'<button id="tally" class="btn btn-primary submit" value="submit">Submit Quiz</button>'
+		//'</form>'
+		/*'<form action="/login" method="post">' +
 		'<button type="submit" class="btn btn-warning btn-lg">Login</button>'+
-		'</form>'
+		'</form>'*/
 		$(this.el).html(html);
 		return this;
 },
@@ -78,32 +80,42 @@ submitQuiz: function(data) {
 		//console.log('Total Meow:' + MeowCount);
 	}
 
+	var winner = "";
+
 	//Navigate to the winning cat
 
 	if (GrumpyCount >= 3 || (GrumpyCount == 2 && ( HipsterCount != 2 && PudgeCount != 2 && BubCount != 2 && MeowCount != 2  )) || (GrumpyCount == 2 && HipsterCount == 2) || (GrumpyCount == 2 && BubCount == 2)) {
 		app.navigate("results/Grumpy", true);
+		var winner = "Grumpy";
 	}
 
 	if (HipsterCount >= 3 || (HipsterCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && BubCount != 2 && MeowCount != 2  )) || (HipsterCount == 2 && PudgeCount == 2) || (HipsterCount == 2 && MeowCount == 2)) {
 		app.navigate("results/Hipster", {trigger: true});
+		var winner = "Hipster";
 	}
 
 	if (PudgeCount >= 3 || (PudgeCount == 2 && ( GrumpyCount != 2 && HipsterCount != 2 && BubCount != 2 && MeowCount != 2  )) || (GrumpyCount == 2 && PudgeCount == 2) || (PudgeCount == 2 && BubCount == 2)) {
 		app.navigate("results/Pudge", {trigger: true});
+		var winner = "Pudge";
 	}
 
 	if (BubCount >= 3 || (BubCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && HipsterCount != 2 && MeowCount != 2  )) || (BubCount == 2 && MeowCount == 2) || (BubCount == 2 && HipsterCount == 2)){
 		app.navigate("results/Bub", {trigger: true});
+		var winner = "Bub";
 	}
 
 	if (MeowCount >= 3 || (MeowCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && BubCount != 2 && HipsterCount != 2  )) || (GrumpyCount == 2 && MeowCount == 2) || (PudgeCount == 2 && MeowCount == 2)) {
 		app.navigate("results/Meow", {trigger: true});
+		var winner = "Meow";
 
 	}
 	
 	if (GrumpyCount == 1 &&  HipsterCount == 1 && PudgeCount == 1 && BubCount == 1 && MeowCount == 1) {
 		app.navigate("results/Hipster", {trigger: true});
+		var winner = "Hipster";
 	}
+
+	console.log(winner);
 
 	//prompt('Enter the name of your furry Beast');
 	//app.navigate("survey/results", {trigger: true});*/
