@@ -1,9 +1,11 @@
 var WelcomeUserView = Backbone.View.extend ({
 
 	template: Handlebars.compile(
-		'<h4>Welcome: {{local.email}}</h4>'+
-		'<h4>Welcome: {{local.petname}}</h4>'+
-		'<a href="/logout" class="btn btn-default btn-sm">Logout</a>'
+		'<h4><span class="welcome">Welcome:</span> {{local.email}}</h4>'+
+		'<h4><span class="welcome">Welcome:</span> {{local.petname}}</h4><br/>'+
+		'<div class="clearfix"></div>' +
+		'<a href="/logout" class="btn btn-default btn-sm logout">Logout</a>' +
+		'<div class="clearfix"></div>'
 	),
 
 

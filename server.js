@@ -7,6 +7,7 @@ var express = require('express'),
   supplies = require('./data/kitty-supplies-test');
   courses = require('./data/kitty-courses');
   days = require('./data/kitty-days');
+  home = require('./data/kitty-home');
   // load up the user model
 users = require('./app/models/user');
 
@@ -44,7 +45,7 @@ app.configure(function() {
   app.engine('.js', require('ejs').renderFile); //allows js files to be rendered via ejs
  
   app.set('views', __dirname + '/public/js/views'); //override default directory for the views
-  //app.set('photos', __dirname + '/public/photos'); //override default directory for the views
+  app.set('photos', __dirname + '/public/photos'); //override default directory for the photos
 
   // required for passport
   app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
@@ -280,6 +281,10 @@ app.get('/courses', function  (req, res) {
 
 app.get('/days', function  (req, res) {
   res.json(days);
+});
+
+app.get('/home', function  (req, res) {
+  res.json(home);
 });
 
 app.post('/items', function  (req, res) {

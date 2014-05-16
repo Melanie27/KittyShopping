@@ -3,6 +3,7 @@
 
 	routes: {
 		//"": "questionCollection",
+		"": "homePage",
 		"survey": "questionCollection",
 		"take-quiz" : "takeQuiz",
 		"results/:kitty" : "surveyResults",
@@ -167,6 +168,16 @@
 
 		this.takeQuizView = new TakeQuizView();
 
+		this.homePageModel = new HomePageModel()
+		this.homePageView = new HomePageView({
+			model: this.homePageModel
+		});
+
+	},
+
+	
+	homePage: function() {
+		$('#app2').html(this.homePageView.render().el);
 	},
 
 	welcomeView: function() {

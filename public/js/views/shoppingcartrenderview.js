@@ -9,7 +9,6 @@ var ShoppingCartRenderView = Backbone.View.extend({
 		'#price' : {observe: 'price'},
 		'#total' : {observe: 'total'},
 
-
 	},
 
 	events: {
@@ -48,20 +47,20 @@ var ShoppingCartRenderView = Backbone.View.extend({
 		
 		$(this.el).html(_.map([
 			
-			'<img src="photos/kitty-store/' + this.model.attributes.imagepathsm + '" class="img-polaroid" style="Width:150px;"/>' +
-			'<span>' + 'Quantity: ' + '</span>' + 
+			'<img src="photos/kitty-store/' + this.model.attributes.imagepathsm + '" class="img-polaroid" style="width:150px; max-height:100px; overflow:hidden;"/>' +
+			'<span class="label">' + 'Quantity: ' + '</span>' + 
 			'<input class="quantity" value="' + this.model.get('quantity') + '">' +
-			this.model.get('description') +
-			+ '<span class="total">' + this.model.get('price') + '</span>', this.model.calculateAmount(),
-			'<button class="save">Save Quantity</button>',
+			'<button class="save">Save Quantity</button><br/>' +
+			
+			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
+			'<span class="description">' + this.model.get('description') + '</span>', this.model.calculateAmount(),
+
 		], function(val, key) {
-			return '<li style="padding:1px; clear:both; display:block; list-style-type:none; float:none;">' + val + '</li>';	
+			return '<li class="shopping-item">' + val + '</li>';	
 
 		}));
 
-		//console.log(this.model.toJSON());
 		
-
 		return this;
 	}
 	

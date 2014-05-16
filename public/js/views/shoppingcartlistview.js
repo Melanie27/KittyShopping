@@ -6,23 +6,14 @@ var ShoppingCartListView = Backbone.View.extend({
 	className: 'single-supply-view',
 
 	initialize: function() {
+		
 		this.listenTo(this.collection, 'reset', this.render);
 	},
 
 	render: function() {
 		
 		$(this.el).empty();
-
-		//Append table with a table header
-		$(this.el).append($('<h4><div><tr></tr></div></h4>').html(
-			_.map(['Quantity', 'Description', 'Price', 'Total'],
-				function(val, key) {
-					return '<th style="padding:5px; clear:both;">' + val + '</th>'
-				} 
-			) 
-		));
-
-
+		
 		//append the table with rows
 		$(this.el).append(
 			_.map(this.collection.models, function(model, key) {
@@ -36,11 +27,7 @@ var ShoppingCartListView = Backbone.View.extend({
 		//list of all available supplies from supplycategoriescollection
 		//console.log(this.collection.toJSON());
 
-		//$(this.el).html('checkout');
-
-		
 		return this;
-
 
 	},
 

@@ -36,6 +36,7 @@
 
 	<script type="text/javascript" src="js/models/formmodel.js"></script>
 	<script type="text/javascript" src="js/models/usermongoosemodel.js"></script>
+	<script type="text/javascript" src="js/models/homepagemodel.js"></script>
 
 	
 	<script type="text/javascript" src="js/collections/surveyquestions.js"></script>
@@ -87,6 +88,7 @@
 
 	<script type="text/javascript" src="js/views/takequizview.js"></script>
 	<script type="text/javascript" src="js/views/welcomeuserview.js"></script>
+	<script type="text/javascript" src="js/views/homepageview.js"></script>
 
 	
 
@@ -96,6 +98,7 @@
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 	<link rel="stylesheet" type="text/css" href="css/shopping-cart.css" />
 	<link rel="stylesheet" type="text/css" href="css/backbone-ui.css" />
@@ -141,9 +144,15 @@
 	
 	<div class="container" id="app"></div>
 
+		<div class="welcome-view container">
+			<section class="row">
+			</section>
+		</div>
+
 	<div class="container">
 		<h1>Yoga Kitten<sup>TM</sup></h1>
-		<ul class="nav nav-pills">
+
+		<ul class="nav navbar navbar-default nav-pills">
 			<li><a href="/in">Login</a></li>
 			<li><a href="#/take-quiz">Take the quiz</a></li>
 			<li><a href="#/survey">Survey List Collection</a></li>
@@ -157,8 +166,11 @@
 		</ul>
 	</div>	
 
-	<div class="welcome-view">
-	</div>
+
+	<!--<div class="row hero">
+		<img src="/photos/landing.jpg"/>
+	</div>-->
+	
 
 
 <!--need some logic that says - if logged in then show this view-->
@@ -172,8 +184,11 @@
 	<div class="container" id="app2">
 		
 	</div>
+	<div class="clearfix"></div>
 	
-	
+	<div class="container footer">
+		<address><p>Copyright 2014. YogaKitten<sup>TM</sup> Santa Monica, CA</p></address>
+	</div>
 
 </body>
 </html>

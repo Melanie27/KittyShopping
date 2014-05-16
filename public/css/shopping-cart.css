@@ -17,13 +17,14 @@ color: #666;
 h2{color: #2779AA;font-size: 2em;}
 a{text-decoration: none}
 .panel{
-width:623px;
+width:550px;
 margin:0px auto;
 text-align:left;
 padding:15px;
 border:1px solid #ccc;
 background-color:#eee;
 text-align:center;
+
 
 }
 .footer{
