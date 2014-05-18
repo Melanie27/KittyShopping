@@ -8,6 +8,7 @@
 		"take-quiz" : "takeQuiz",
 		"results/:kitty" : "surveyResults",
 		"cart-list"		: "cartList",
+		"list" : "List",
 		"updated-cart" : "updatedCart",
 		
 		"ordered-item/:supply" : "orderedItem",
@@ -20,10 +21,11 @@
 
 		"auth-index" : "authIndex",
 		"welcome-view" : "welcomeView",
+		"shopping-cart/:products" : "productDetails",
+		"shopping-cart" : "shoppingCart",
 		":whatever": "notFound",
 		
-		
-
+	
 
 	},
 
@@ -50,6 +52,7 @@
 		//collection data for shopping cart
 
 		this.supplyCategoriesCollection = new SupplyCategoriesCollection({});
+		this.supplyCategoriesCollection.fetch();
 
 		this.shoppingCartFullPageView = new ShoppingCartFullPageView ({ collection: this.supplyCategoriesCollection });
 
@@ -173,9 +176,32 @@
 			model: this.homePageModel
 		});
 
+		this.productDetailsView = new ProductDetailsView ({
+			
+			model: this.supplyCategoryModel
+			
+		 });
+
+		this.productMenuModel = new ProductMenuModel();
+		this.productMenuView = new ProductMenuView({
+				//model: this.productMenuModel
+				collection: this.supplyCategoriesCollection
+			}
+
+		);
+
 	},
 
+	shoppingCart: function() {
+		$('#app2').html(this.productMenuView.render().el);	
+	},
 	
+	productDetails: function(product) {
+		
+		this.productDetailsView.model = this.supplyCategoriesCollection.get(product);
+		$('#app2').html(this.productDetailsView.render().el);
+	},
+
 	homePage: function() {
 		$('#app2').html(this.homePageView.render().el);
 	},
@@ -232,8 +258,13 @@
 		$('#app2').html(this.orderedSupplyView.render().el);
 	},
 
+	List: function() {
+		$('#app2').html(this.shoppingCartRenderView.render().el);
+	},
+
 	cartList: function() {
-		this.supplyCategoriesCollection.fetch();
+		//this.supplyCategoryModel.fetch();
+		//this.supplyCategoriesCollection.fetch();
 		$('#app2').html(this.shoppingCartFullPageView.render().el);
 	},
 

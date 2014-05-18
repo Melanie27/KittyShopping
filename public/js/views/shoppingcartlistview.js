@@ -6,8 +6,8 @@ var ShoppingCartListView = Backbone.View.extend({
 	className: 'single-supply-view',
 
 	initialize: function() {
-		
-		this.listenTo(this.collection, 'reset', this.render);
+		//this.collection.fetch();
+		//this.listenTo(this.collection, 'reset', this.render);
 	},
 
 	render: function() {

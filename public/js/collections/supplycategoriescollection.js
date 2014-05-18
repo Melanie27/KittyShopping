@@ -1,14 +1,23 @@
 var SupplyCategoriesCollection = Backbone.Collection.extend({
 	
-	model: SupplyCategory,
-	url: '/supplies',
+	comparator: 'title',
 
-	comparator: function (product) {
+	model: SupplyCategory,
+	url: '/api/products/',
+	idAttribute: "_id",
+	//url: '/supplies'
+
+	
+
+	/*comparator: function (product) {
 		return product.get("product_id");
 	},
 
 		// initialization
 	initialize: function () {
+	
+	
+
 	// bind customized method to this view
 	_.bindAll(this, "totalPrice");
 
@@ -27,7 +36,7 @@ var SupplyCategoriesCollection = Backbone.Collection.extend({
 		return +memo +  +(value.get("price") * +(value.get("quantity")));
 	}, 0);
 	
-	}
+	}*/
 
 
 

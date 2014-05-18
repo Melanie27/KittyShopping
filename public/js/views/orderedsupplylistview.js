@@ -54,7 +54,9 @@ var OrderedSupplyListView = Backbone.View.extend({
 				}).render().el;
 		}));
 
-		jQuery.post("/api/products", {
+
+		//Post to the ordered Supplies Collection
+		jQuery.post("/api/orders", {
 			"title": "Test Product",  
   			"description": "This is a test",  
   			"style": "12345"

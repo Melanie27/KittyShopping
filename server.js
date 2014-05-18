@@ -75,7 +75,7 @@ app.configure(function() {
 var Schema = mongoose.Schema;
 
 var Product = new Schema({
-    
+    id: { type: String }, 
     category: { type: String },  
     title: { type: String }, 
     url: {type: String}, 
@@ -91,22 +91,86 @@ var Product = new Schema({
 var ProductModel = mongoose.model('Product', Product);
 
 
+var Ordered = new Schema({
+    id: { type: String }, 
+    category: { type: String },  
+    title: { type: String }, 
+    url: {type: String}, 
+    keyword: { type: String },  
+    description: { type: String }, 
+    price: {type: Number},
+    quantity: {type: Number},
+    imagepathsm: {type: String},  
+    modified: { type: Date, default: Date.now }
+})
+
+var OrderedModel = mongoose.model('Ordered', Ordered);
+
 
 //PixelHandler
 app.get('/api', function(req, res) {
   res.send('configDB is running');
 });
 
-
 //read a list of products
-app.get('/api/products', function(req, res) {
-  return ProductModel.find(function(err, products) {
+app.get('/api/orders', function(req, res) {
+  
+
+  return OrderedModel.find(function(err, orders) {
     if (!err) {
-      return res.send(products);
+      return res.send(orders);
     } else {
       return console.log(err);
     }
   });
+});
+
+
+app.get('/supplies', function  (req, res) {
+  res.json(supplies);
+});
+
+
+//read a list of products
+app.get('/api/products', function(req, res) {
+  
+
+  return ProductModel.find(function(err, products) {
+    if (!err) {
+      return res.send(products);
+      //return res.json(products);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
+//create a single product
+app.post('/api/orders', function (req, res) {
+  var order;
+  console.log("POST: ");
+  console.log(req.body);
+  order = new OrderedModel ({
+    id: req.body.id,
+    category: req.body.category,
+    title: req.body.title,
+    url: req.body.url,
+    keyword: req.body.keyword,
+    description: req.body.description,
+    price: req.body.price,
+    quantity: req.body.quantity,
+    imagepathsm: req.body.imagepathsm,
+    modified: req.body.modified,
+    
+  });
+  order.save(function(err) {
+    if (!err) {
+      return console.log('added');
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(order);
 });
 
 
@@ -116,7 +180,7 @@ app.post('/api/products', function (req, res) {
   console.log("POST: ");
   console.log(req.body);
   product = new ProductModel ({
-    
+    id: req.body.id,
     category: req.body.category,
     title: req.body.title,
     url: req.body.url,
@@ -141,28 +205,51 @@ app.post('/api/products', function (req, res) {
 //read a single product by ID
 
 app.get('/api/products/:id', function (req, res){
+  
+   /*var matches = api.products.filter(function  (id) {
+    return id.url === req.params.id;
+  });*/
+
+  
+
   return ProductModel.findById(req.params.id, function (err, product) {
+  
+
+
     if (!err) {
       return res.send(product);
+      //return res.send(product.url);
     } else {
       return console.log(err);
     }
   });
 });
 
+app.get('/supplies/:category', function  (req, res) {
+  var matches = supplies.filter(function  (category) {
+    return category.url === req.params.category;
+  });
+
+  if (matches.length > 0) {
+    res.json(matches[0]);
+  } else {
+    res.json(404, {status: 'invalid category request'});
+  }
+
+});
+
 
 //update a single product by ID
 app.put('/api/products/:id', function (req, res){
   return ProductModel.findById(req.params.id, function (err, product) {
-    /*product.category: req.body.category,
-    product.title: req.body.title,
-    product.url: req.body.url,
-    product.keyword: req.body.keyword,
-    product.description: req.body.description,
-    product.price: req.body.price,
-    product.quantity: req.body.quantity,
-    product.imagepathsm: req.body.imagepathsm,
-    product.modified: req.body.modified;*/
+    product.title = req.body.title,
+    product.url = req.body.url,
+    product.keyword = req.body.keyword,
+    product.description = req.body.description,
+    product.price = req.body.price,
+    product.quantity = req.body.quantity,
+    product.imagepathsm = req.body.imagepathsm,
+    product.modified = req.body.modified;
     return product.save(function (err) {
       if (!err) {
         console.log("updated");
@@ -178,6 +265,20 @@ app.put('/api/products/:id', function (req, res){
 app.delete('/api/products/:id', function (req, res){
   return ProductModel.findById(req.params.id, function (err, product) {
     return product.remove(function (err) {
+      if (!err) {
+        console.log("removed");
+        return res.send('');
+      } else {
+        console.log(err);
+      }
+    });
+  });
+});
+
+//delete a single order by ID
+app.delete('/api/orders/:id', function (req, res){
+  return OrderedModel.findById(req.params.id, function (err, order) {
+    return order.remove(function (err) {
       if (!err) {
         console.log("removed");
         return res.send('');
@@ -318,8 +419,8 @@ app.post('/questions', function  (req, res) {
 });
 
 
-
-app.post('/supplies', function  (req, res) {
+/*Supplies has been moved to mongoose - delete when all is working*/
+/*app.post('/supplies', function  (req, res) {
   var matches = supplies.filter(function  (supply) {
     return supply.url === req.body.url;
   });
@@ -333,7 +434,7 @@ app.post('/supplies', function  (req, res) {
     res.json(req.body);
   }
 
-});
+});*/
 
 app.put('/questions/:question_name', function (req, res) {
     
@@ -425,7 +526,7 @@ app.get('/supplies/:category', function  (req, res) {
 
 });
 
-app.get('/supplies/:category/:supply', function  (req, res) {
+/*app.get('/supplies/:category/:supply', function  (req, res) {
    
   //filter through the main json to get categories
    var matches = supplies.filter(function  (category) {
@@ -449,7 +550,7 @@ app.get('/supplies/:category/:supply', function  (req, res) {
     
   }
 
-});
+});*/
 
 
 
@@ -491,7 +592,7 @@ app.delete('/questions/:question_name', function  (req, res) {
 
 });
 
-app.delete('/supplies/:supply_name', function  (req, res) {
+/*app.delete('/supplies/:supply_name', function  (req, res) {
 
   var found = false;
 
@@ -508,7 +609,7 @@ app.delete('/supplies/:supply_name', function  (req, res) {
     res.json(404, {status: 'invalid survey question deletion'});
   }
 
-});
+});*/
 
 app.get('/*', function  (req, res) {
   res.json(404, {status: 'not found'});

@@ -18,7 +18,9 @@ var ShoppingCartRenderView = Backbone.View.extend({
 
 
 	initialize: function() {
-		this.listenTo(this.model, "change", this.render);
+		//fetch is pulling in the entire collection??
+		this.model.fetch();
+		//this.listenTo(this.model, "change", this.render);
 
 		$(this.el).draggable({
 			helper:'clone',
@@ -35,6 +37,19 @@ var ShoppingCartRenderView = Backbone.View.extend({
 	},*/
 
 	save: function() {
+		this.setModelData();
+
+			this.model.save(this.model.attributes, {
+				success: function (model) {
+					app.orderedSuppliesCollection.add(model);
+					console.log('success');
+				}
+			}
+
+		);
+	},
+
+	setModelData: function() {
 		
 		this.model.set({
 			quantity: $(this.el).find('input.quantity').val()
@@ -46,13 +61,14 @@ var ShoppingCartRenderView = Backbone.View.extend({
 	render: function() {		
 		
 		$(this.el).html(_.map([
-			
+			'<form>' +
 			'<img src="photos/kitty-store/' + this.model.attributes.imagepathsm + '" class="img-polaroid" style="width:150px; max-height:100px; overflow:hidden;"/>' +
 			'<span class="label">' + 'Quantity: ' + '</span>' + 
 			'<input class="quantity" value="' + this.model.get('quantity') + '">' +
-			'<button class="save">Save Quantity</button><br/>' +
+			'<button class="save">Save Quantity to Cart</button><br/>' +
 			
 			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
+			'</form>' +
 			'<span class="description">' + this.model.get('description') + '</span>', this.model.calculateAmount(),
 
 		], function(val, key) {

@@ -1,5 +1,7 @@
 var SupplyCategory = Backbone.Model.extend({
-	urlRoot: '/supplies',
+	url: '/api/products',
+	idAttribute: "_id",
+	//urlRoot: '/supplies',
 	defaults: {
 		
 		        "product_id": 3,
@@ -10,7 +12,7 @@ var SupplyCategory = Backbone.Model.extend({
 		        "name": "Big Max Fountain",
 		        "keyword" : "Hydration",
 		        "description" : "Large capacity drinking fountain",
-		        "price" : "200",
+		        "price" : "400",
 		        "quantity" : "2",
 		        "imagepathsm" : "big-max-fountain.jpg" 
 		            

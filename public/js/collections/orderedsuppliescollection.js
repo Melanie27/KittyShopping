@@ -1,7 +1,7 @@
 var OrderedSuppliesCollection = Backbone.Collection.extend({
 	
 	model: OrderSupplyModel,
-	//url: '/supplies',
+	url: '/api/orders',
 
 	initialize: function() {
 		_.bindAll(this, "totalPrice");

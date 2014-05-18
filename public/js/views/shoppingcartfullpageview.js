@@ -2,7 +2,7 @@ var ShoppingCartFullPageView = Backbone.View.extend ({
 
 	
 	initialize: function () {
-		
+		//this.collection.fetch();
 		this.listenTo(this.collection, "reset", this.render);
 
 	},
