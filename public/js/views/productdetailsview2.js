@@ -1,8 +1,6 @@
-var ProductDetailsView = Backbone.View.extend({
-	
+var ProductDetailsView2 = Backbone.View.extend({
 	initialize: function(product) {
 		
-
 		this.listenTo(this.model, "change", this.render);
 	
 	},
@@ -29,5 +27,4 @@ var ProductDetailsView = Backbone.View.extend({
 
 		return this;
 	}
-	
 });

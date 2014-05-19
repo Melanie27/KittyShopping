@@ -1,5 +1,5 @@
 var SupplyCategory = Backbone.Model.extend({
-	url: '/api/products',
+	urlRoot: '/api/products',
 	idAttribute: "_id",
 	//urlRoot: '/supplies',
 	defaults: {
@@ -19,6 +19,14 @@ var SupplyCategory = Backbone.Model.extend({
         		
 			},
 
+
+	/*initialize: function() {
+		
+		this.fetch();
+		//this.model = this.collection.get(product);
+		console.log(this);
+	},*/	
+
 		validate: function (attrs) {
 			if (attrs.quantity < 0 ) {
 
@@ -29,6 +37,14 @@ var SupplyCategory = Backbone.Model.extend({
 
 		calculateAmount: function () {
 			return '<p class="total">' + 'Total: $' + this.get('price') * this.get('quantity') + '.00';
+		},
+
+		toJSON: function() {
+			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
+			// get the calculated value
+    		json.calculateAmount = this.calculateAmount();
+
+    		return json;
 		}
 
 });

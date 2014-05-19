@@ -21,8 +21,10 @@
 
 		"auth-index" : "authIndex",
 		"welcome-view" : "welcomeView",
-		"shopping-cart/:products" : "productDetails",
+		
+		"prod2/:product" : "productDetails2",
 		"shopping-cart" : "shoppingCart",
+		"orders/:products": "orderItem",
 		":whatever": "notFound",
 		
 	
@@ -176,7 +178,9 @@
 			model: this.homePageModel
 		});
 
-		this.productDetailsView = new ProductDetailsView ({
+		
+
+		this.productDetailsView2 = new ProductDetailsView2 ({
 			
 			model: this.supplyCategoryModel
 			
@@ -190,17 +194,36 @@
 
 		);
 
+		//new instance of supplies collection to house the orders
+		this.productsOrderedCollection = new SupplyCategoriesCollection();
+
+		//orders view
+		this.productsOrderedView = new ProductsOrderedView({
+			collection: this.productsOrderedCollection
+		}); 
+
+	},
+
+	orderItem: function(product) {
+			this.supplyCategoriesCollection.fetch();
+			var orderedItem = this.supplyCategoriesCollection.get(product);
+			this.productsOrderedCollection.add(orderedItem);
+			$('#app2').html(this.productsOrderedView.render().el);
+
 	},
 
 	shoppingCart: function() {
 		$('#app2').html(this.productMenuView.render().el);	
 	},
-	
-	productDetails: function(product) {
-		
-		this.productDetailsView.model = this.supplyCategoriesCollection.get(product);
-		$('#app2').html(this.productDetailsView.render().el);
+
+	productDetails2: function(product) {
+				this.supplyCategoryModel.set('_id', product);
+				this.supplyCategoryModel.fetch();
+				
+				//this.productDetailsView.model = this.supplyCategoriesCollection.get(product);
+				$('#app2').html(this.productDetailsView2.render().el);
 	},
+	
 
 	homePage: function() {
 		$('#app2').html(this.homePageView.render().el);

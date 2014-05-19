@@ -7,14 +7,74 @@ var SupplyCategoriesCollection = Backbone.Collection.extend({
 	idAttribute: "_id",
 	//url: '/supplies'
 
-	
+	defaults: {
+		
+		        "product_id": 3,
+                "category": "supplies",
+		        "title": "Big Max Fountain",
+		        "id": "big-max-fountain",
+		        "url" : "big-max-fountain",
+		        "name": "Big Max Fountain",
+		        "keyword" : "Hydration",
+		        "description" : "Large capacity drinking fountain",
+		        "price" : "400",
+		        "quantity" : "2",
+		        "imagepathsm" : "big-max-fountain.jpg" 
+		            
+        		
+			},
+
+	initialize: function() {
+		
+		this.listenTo(this, "add", this.addOne);
+		this.listenTo(this, "remove", this.addOne);
+	},
+
+
+	addOne: function(ProductModel) {
+		console.log('saving');
+		//this.set();
+		//this.save();
+
+		jQuery.post("/api/orders", {
+			"title": "Test Product", 
+			"quantity" : "3", 
+			"keyword" : "test",
+			"price" : "400",
+  			"description": "This is a test", 
+  			"imagepathsm" : "lotus-fountain.jpg"  
+  			
+		}, function (data, textStatus, jqXHR) { 
+    	console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
+
+		});
+
+
+		 /*var product = new ProductModel(data);
+		 console.log(product);
+		 product.save({
+                success: function(model, response) {
+                    console.log(model);
+                    console.log(response);
+                },
+                error: function(model, response) {
+                    console.log(model);
+                    console.log(response);
+                }
+             });*/
+		
+	},
 
 	/*comparator: function (product) {
 		return product.get("product_id");
-	},
+	},*/
+
+	
+
+
 
 		// initialization
-	initialize: function () {
+	/*initialize: function () {
 	
 	
 
