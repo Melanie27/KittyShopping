@@ -164,10 +164,10 @@
 
 
 		//Append the Welcome User View to the page
-		this.welcomeUserView = new WelcomeUserView({
+		/*this.welcomeUserView = new WelcomeUserView({
 
 		});
-		$('body').html(this.welcomeUserView.render().el);
+		$('body').html(this.welcomeUserView.render().el);*/
 
 		this.authIndexView = new AuthIndexView();
 
@@ -207,7 +207,9 @@
 	orderItem: function(product) {
 			this.supplyCategoriesCollection.fetch();
 			var orderedItem = this.supplyCategoriesCollection.get(product);
-			this.productsOrderedCollection.add(orderedItem);
+			
+			/*the below line appears to be posting*/
+			//this.productsOrderedCollection.add(orderedItem);
 			$('#app2').html(this.productsOrderedView.render().el);
 
 	},

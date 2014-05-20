@@ -28,40 +28,13 @@ var SupplyCategoriesCollection = Backbone.Collection.extend({
 		
 		this.listenTo(this, "add", this.addOne);
 		this.listenTo(this, "remove", this.addOne);
+		//console.log(OrderModel);
 	},
 
 
 	addOne: function(ProductModel) {
 		console.log('saving');
-		//this.set();
-		//this.save();
-
-		jQuery.post("/api/orders", {
-			"title": "Test Product", 
-			"quantity" : "3", 
-			"keyword" : "test",
-			"price" : "400",
-  			"description": "This is a test", 
-  			"imagepathsm" : "lotus-fountain.jpg"  
-  			
-		}, function (data, textStatus, jqXHR) { 
-    	console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
-
-		});
-
-
-		 /*var product = new ProductModel(data);
-		 console.log(product);
-		 product.save({
-                success: function(model, response) {
-                    console.log(model);
-                    console.log(response);
-                },
-                error: function(model, response) {
-                    console.log(model);
-                    console.log(response);
-                }
-             });*/
+		
 		
 	},
 

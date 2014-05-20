@@ -1,7 +1,7 @@
 var SupplyCategory = Backbone.Model.extend({
+	
 	urlRoot: '/api/products',
 	idAttribute: "_id",
-	//urlRoot: '/supplies',
 	defaults: {
 		
 		        "product_id": 3,
@@ -12,7 +12,7 @@ var SupplyCategory = Backbone.Model.extend({
 		        "name": "Big Max Fountain",
 		        "keyword" : "Hydration",
 		        "description" : "Large capacity drinking fountain",
-		        "price" : "400",
+		        "price" : "500",
 		        "quantity" : "2",
 		        "imagepathsm" : "big-max-fountain.jpg" 
 		            
@@ -20,32 +20,11 @@ var SupplyCategory = Backbone.Model.extend({
 			},
 
 
-	/*initialize: function() {
-		
-		this.fetch();
-		//this.model = this.collection.get(product);
-		console.log(this);
-	},*/	
-
-		validate: function (attrs) {
-			if (attrs.quantity < 0 ) {
-
-				return "Quantity cannot be negative"
-
-				}
-			},
-
+	
 		calculateAmount: function () {
 			return '<p class="total">' + 'Total: $' + this.get('price') * this.get('quantity') + '.00';
 		},
 
-		toJSON: function() {
-			var json = Backbone.Model.prototype.toJSON.apply(this, arguments);
-			// get the calculated value
-    		json.calculateAmount = this.calculateAmount();
-
-    		return json;
-		}
 
 });
 
