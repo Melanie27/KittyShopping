@@ -15,9 +15,7 @@ var ScheduleRowView = Backbone.View.extend({
 
     ),
 
-   render: function() {
-
-     
+   render: function() {  
       this.$el.html(this.template(this.model.attributes));
 
       // a checkbox to mark / unmark the done status of this task 

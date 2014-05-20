@@ -72,7 +72,16 @@ app.configure(function() {
 
 //Pixelhandler Schema
 
+
+
 var Schema = mongoose.Schema;
+
+var Kittens = new Schema({
+  kittenType: {type: String},
+  modified: { type: Date, default: Date.now }
+});
+
+var KittensModel = mongoose.model('Kittens', Kittens);
 
 var Courses = new Schema({
    name: { type: String }, 
@@ -141,6 +150,16 @@ app.get('/api', function(req, res) {
   res.send('configDB is running');
 });
 
+app.get('/api/kittens', function(req, res) {
+  return KittensModel.find(function(err, kittens) {
+    if (!err) {
+      return res.send(kittens);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
 app.get('/api/courses', function(req, res) {
   return CoursesModel.find(function(err, courses) {
     if (!err) {
@@ -193,6 +212,25 @@ app.get('/api/products', function(req, res) {
   });
 });
 
+//post a kitten type
+app.post('/api/kittens', function (req, res) {
+  var kitten;
+  console.log("POST: ");
+  console.log(req.body);
+  kitten = new KittensModel ({
+    kittenType: req.body.kittenType,
+    modified: req.body.modified,
+    
+  });
+  kitten.save(function(err) {
+    if (!err) {
+      return console.log('added course');
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(kitten);
+});
 
 //create a single course
 app.post('/api/courses', function (req, res) {
@@ -481,21 +519,23 @@ app.get('/users/:user_id', function  (req, res) {
 
 
 //update an individual user by ID
-app.put('/api/user/:user_id', function (req, res){
-  return User.findById(req.params.id, function (err, user) {
-    user.kittenType = req.body.title,
-    /*user.url = req.body.url,
-    user.keyword = req.body.keyword,
-    user.description = req.body.description,
-    user.profilePhoto = req.body.profilePhoto,*/
-    user.modified = req.body.modified;
-    return user.save(function (err) {
+app.put('/users/:user_id', function (req, res){
+  return User.findById(req.params.id, function (err, product) {
+    //product.title = req.body.title;
+    /*product.url = req.body.url,
+    product.keyword = req.body.keyword,
+    product.description = req.body.description,
+    product.price = req.body.price,
+    product.quantity = req.body.quantity,
+    product.imagepathsm = req.body.imagepathsm,*/
+    product.modified = req.body.modified;
+    return product.save(function (err) {
       if (!err) {
-        console.log("user updated");
+        console.log("updated");
       } else {
         console.log(err);
       }
-      return res.send(user);
+      return res.send(product);
     });
   });
 });
@@ -530,6 +570,8 @@ app.get('/supplies', function  (req, res) {
 app.get('/home', function  (req, res) {
   res.json(home);
 });
+
+
 
 app.post('/items', function  (req, res) {
   var matches = items.filter(function  (item) {
@@ -583,31 +625,19 @@ app.put('/questions/:question_name', function (req, res) {
     
   var matches = questions.filter(function  (question) {
     return question.url === req.params.question_name;
-    //return question.responded === req.params.question_name;
     
   });
 
 for (var i=0; i<6; i ++) {
-for (key in questions) {
-
+  for (key in questions) {
       var qs = questions[key].responded;
       var defaultResponse = questions[key].responded;
-       //console.log(qs); 
 
-      //defaultResponse = questions[i].responded;
- }
-}
-
-//console.log(defaultResponse);
+    }
+  }
  
-  //var defaultResponse = questions[1].responded;
-  
-   
    if (matches.length > 0 ) {
-    //questions.push(req.body);
-    defaultResponse.push(req.body.responded);
-    //defaultResponse.splice(0, 1, req.body.responded);
-    //why is only question 5 updating?
+      defaultResponse.push(req.body.responded);
    }
     
     res.json(req.body); 
@@ -642,6 +672,19 @@ app.get('/questions/:question_name', function  (req, res) {
 });
 
 app.get('/profiles/:profile_name', function  (req, res) {
+  var matches = profiles.filter(function  (profile) {
+    return profile.url === req.params.profile_name;
+  });
+
+  if (matches.length > 0) {
+    res.json(matches[0]);
+  } else {
+    res.json(404, {status: 'invalid profile'});
+  }
+
+});
+
+app.put('/profiles/:profile_name', function  (req, res) {
   var matches = profiles.filter(function  (profile) {
     return profile.url === req.params.profile_name;
   });

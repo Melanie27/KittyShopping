@@ -301,7 +301,6 @@
 	surveyResults: function(kitty) {
 		this.resultsModel.set('id', kitty);
 		this.resultsModel.fetch();
-		console.log(this.resultsModel.fetch());
 		$('#app2').html(this.resultsView.render().el);
 	},
 
