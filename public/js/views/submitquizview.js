@@ -116,6 +116,7 @@ submitQuiz: function(data) {
 	}
 
 	console.log(winner);
+	 
 
 	//prompt('Enter the name of your furry Beast');
 	//app.navigate("survey/results", {trigger: true});*/

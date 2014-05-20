@@ -3,6 +3,7 @@
 		"id" : "Pudge",
 		"url" : "Pudge",
 		"name" : "Pudge",
+		"kittenType"   : "Pudge",
 		"photo" : "pudge.jpg",
 		"profile" : "Your kitty is a delightful animal that may have a little extra around the middle. Any Pudge-cat will benefit from the fitness regime at Yoga Kitten and will in time, become a spiritual leader to some of the less enlightened fuzz-balls."
 	},
@@ -10,6 +11,7 @@
 		"id" : "Grumpy",
 		"url" : "Grumpy",
 		"name" : "Grumpy",
+		"kittenType"   : "Grumpy",
 		"photo" : "grumpy.jpg",
 		"profile" : "Your kitty is suffering on a fundamental spiritual level and needs an intense regimen at Yoga Kitten."
 	},
@@ -17,6 +19,7 @@
 		"id" : "Hipster",
 		"url" : "Hipster",
 		"name" : "Hipster",
+		"kittenType"   : "Hipster",
 		"photo" : "hipster.jpg",
 		"profile" : "Your kitty is obsessed with being cool."
 	},
@@ -24,6 +27,7 @@
 		"id" : "Bub",
 		"url" : "Bub",
 		"name" : "Bub",
+		"kittenType"   : "Bub",
 		"photo" : "bub.jpg",
 		"profile" : "Bub cats are all around odd-balls."
 	},
@@ -31,6 +35,7 @@
 		"id" : "Meow",
 		"url" : "Meow",
 		"name" : "Colonel Meow",
+		"kittenType"   : "Colonel Meow",
 		"photo" : "meow.jpg",
 		"profile" : "There is no place for a Colonel Meow attitude at Yoga Kitten."
 	}

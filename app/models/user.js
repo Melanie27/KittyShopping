@@ -13,14 +13,15 @@ var userSchema = mongoose.Schema({
         ref: 'User'
     },
 
-    pet: String,
-
+    kittenType   : String,
+    profilePhoto : String,
+    profilePage :  String,
     local            : {
         email        : String,
         password     : String,
         petname      : String,
         path         : String,
-        winner       : String
+       
 
     },
     facebook         : {

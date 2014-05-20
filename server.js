@@ -1,12 +1,12 @@
 var express = require('express'),
   http = require('http'),
   //path = require("path"),
-  items = require('./data/menu-items');
+  //items = require('./data/menu-items');
   questions = require('./data/kitty-questions');
   profiles = require('./data/kitty-profiles');
-  supplies = require('./data/kitty-supplies-test');
-  courses = require('./data/kitty-courses');
-  days = require('./data/kitty-days');
+  //supplies = require('./data/kitty-supplies-test');
+  //courses = require('./data/kitty-courses');
+  //days = require('./data/kitty-days');
   home = require('./data/kitty-home');
   // load up the user model
 users = require('./app/models/user');
@@ -74,6 +74,34 @@ app.configure(function() {
 
 var Schema = mongoose.Schema;
 
+var Courses = new Schema({
+   name: { type: String }, 
+   description: { type: String }, 
+   recommeded: { type: String }, 
+   time: { type: String }, 
+   location: { type: String }, 
+   signup: { type: String }, 
+   rsvp: { type: Boolean }, 
+   courseDay: { type: String }, 
+   id: { type: String }, 
+});
+
+var CoursesModel = mongoose.model('Courses', Courses);
+
+var Signup = new Schema({
+   name: { type: String }, 
+   description: { type: String }, 
+   recommeded: { type: String }, 
+   time: { type: String }, 
+   location: { type: String }, 
+   signup: { type: String }, 
+   rsvp: { type: Boolean }, 
+   courseDay: { type: String }, 
+   id: { type: String }, 
+});
+
+var SignupModel = mongoose.model('Signup', Signup);
+
 var Product = new Schema({
     id: { type: String }, 
     category: { type: String },  
@@ -89,7 +117,6 @@ var Product = new Schema({
 });
 
 var ProductModel = mongoose.model('Product', Product);
-
 
 var Ordered = new Schema({
     id: { type: String }, 
@@ -107,15 +134,37 @@ var Ordered = new Schema({
 var OrderedModel = mongoose.model('Ordered', Ordered);
 
 
+
+
 //PixelHandler
 app.get('/api', function(req, res) {
   res.send('configDB is running');
 });
 
-//read a list of products
-app.get('/api/orders', function(req, res) {
-  
+app.get('/api/courses', function(req, res) {
+  return CoursesModel.find(function(err, courses) {
+    if (!err) {
+      return res.send(courses);
+    } else {
+      return console.log(err);
+    }
+  });
+});
 
+
+//read the list of courses you've signed up for
+app.get('/api/signup', function(req, res) {
+  return SignupModel.find(function(err, signup) {
+    if (!err) {
+      return res.send(signup);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
+//read a list of ordered products
+app.get('/api/orders', function(req, res) {
   return OrderedModel.find(function(err, orders) {
     if (!err) {
       return res.send(orders);
@@ -134,7 +183,6 @@ app.get('/supplies', function  (req, res) {
 //read a list of products
 app.get('/api/products', function(req, res) {
   
-
   return ProductModel.find(function(err, products) {
     if (!err) {
       return res.send(products);
@@ -143,6 +191,35 @@ app.get('/api/products', function(req, res) {
       return console.log(err);
     }
   });
+});
+
+
+//create a single course
+app.post('/api/courses', function (req, res) {
+  var course;
+  console.log("POST: ");
+  console.log(req.body);
+  course = new CoursesModel ({
+    id: req.body.id,
+    name: req.body.name,
+    description: req.body.description,
+    recommeded: req.body.recommeded,
+    time: req.body.time,
+    location: req.body.location,
+    signup: req.body.signup,
+    rsvp: req.body.rsvp,
+    courseDay: req.body.courseDay,
+    modified: req.body.modified,
+    
+  });
+  course.save(function(err) {
+    if (!err) {
+      return console.log('added course');
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(course);
 });
 
 //create a single product
@@ -202,23 +279,55 @@ app.post('/api/products', function (req, res) {
   return res.send(product);
 });
 
+//create a single course reservation
+app.post('/api/signup', function (req, res) {
+  var signup;
+  console.log("POST: ");
+  console.log(req.body);
+  signup = new SignupModel ({
+    id: req.body.id,
+    name: req.body.name,
+    courseDay: req.body.courseDay,
+    time: req.body.time,
+    location: req.body.location,
+    rsvp: req.body.rsvp,
+    modified: req.body.modified,
+    
+  });
+  signup.save(function(err) {
+    if (!err) {
+      return console.log('added');
+    } else {
+      return console.log(err);
+    }
+  });
+  return res.send(signup);
+});
+
 //read a single product by ID
 
 app.get('/api/products/:id', function (req, res){
   
-   /*var matches = api.products.filter(function  (id) {
-    return id.url === req.params.id;
-  });*/
-
   
-
   return ProductModel.findById(req.params.id, function (err, product) {
   
-
-
     if (!err) {
       return res.send(product);
       //return res.send(product.url);
+    } else {
+      return console.log(err);
+    }
+  });
+});
+
+//read a single course by ID
+
+app.get('/api/courses/:id', function (req, res){
+  return CoursesModel.findById(req.params.id, function (err, course) {
+  
+    if (!err) {
+      return res.send(course);
+      
     } else {
       return console.log(err);
     }
@@ -289,6 +398,20 @@ app.delete('/api/orders/:id', function (req, res){
   });
 });
 
+//delete a single course by ID
+app.delete('/api/courses/:id', function (req, res){
+  return CoursesModel.findById(req.params.id, function (err, course) {
+    return course.remove(function (err) {
+      if (!err) {
+        console.log("removed course");
+        return res.send('');
+      } else {
+        console.log(err);
+      }
+    });
+  });
+});
+
 
 
 // load routes for auth  ======================================================================
@@ -326,8 +449,6 @@ app.post('/update', function(req, res) {
     console.log('you are not logged in');
   }
 
-
- 
     console.log(req.body.petname);
     //res.render('_index.ejs'); //load index file
   });
@@ -358,6 +479,28 @@ app.get('/users/:user_id', function  (req, res) {
 });
 
 
+
+//update an individual user by ID
+app.put('/api/user/:user_id', function (req, res){
+  return User.findById(req.params.id, function (err, user) {
+    user.kittenType = req.body.title,
+    /*user.url = req.body.url,
+    user.keyword = req.body.keyword,
+    user.description = req.body.description,
+    user.profilePhoto = req.body.profilePhoto,*/
+    user.modified = req.body.modified;
+    return user.save(function (err) {
+      if (!err) {
+        console.log("user updated");
+      } else {
+        console.log(err);
+      }
+      return res.send(user);
+    });
+  });
+});
+
+
 app.get('/items', function  (req, res) {
   //res.json(items);
   res.render('_signup.ejs', {message: req.flash('signupMessage')});
@@ -376,13 +519,13 @@ app.get('/supplies', function  (req, res) {
   res.json(supplies);
 });
 
-app.get('/courses', function  (req, res) {
+/*app.get('/courses', function  (req, res) {
   res.json(courses);
-});
+});*/
 
-app.get('/days', function  (req, res) {
+/*app.get('/days', function  (req, res) {
   res.json(days);
-});
+});*/
 
 app.get('/home', function  (req, res) {
   res.json(home);

@@ -22,7 +22,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
 			'</form>' +
 			'<span class="description">' + this.model.get('description') + '</span><br/>' +
-			'<a href="#/orders/' + this.model.attributes._id + '">Add to shopping-cart</a>', this.model.calculateAmount(),
+			'<a href="#/orders/' + this.model.attributes._id + '">View shopping-cart</a>', this.model.calculateAmount(),
 
 		], function(val, key) {
 			return '<li class="shopping-item">' + val + '</li>';	
@@ -47,6 +47,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 					
 					app.productsOrderedCollection.add(model);
 					
+					
 					//Post to the ordered Supplies Collection
 					jQuery.post("/api/orders", {
 						"title": title,  
@@ -62,6 +63,10 @@ var ProductDetailsView2 = Backbone.View.extend({
 
 		})
 
+			var description = this.model.get('description');
+			var title = this.model.get('title');
+			var quantity = this.model.get('quantity');
+			var price = this.model.get('price');
 	},
 
 	setModelData: function() {

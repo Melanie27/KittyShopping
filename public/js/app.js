@@ -39,8 +39,12 @@
 		this.userFormView = new UserFormView ({model: this.userModel});
 
 
+		//what is Kitty schedules that is being passed??
 		//Class Schedule benknowscode - need to get this view working with handlebars
-		this.scheduleCollection = new SchedulesCollection(kittySchedules);
+		//this.scheduleCollection = new SchedulesCollection(kittySchedules);
+
+		this.scheduleCollection = new SchedulesCollection();
+		this.scheduleCollection.fetch();
    		this.scheduleTableView = new ScheduleTableView({ 
    			collection: this.scheduleCollection 
    		});
@@ -202,14 +206,15 @@
 			collection: this.productsOrderedCollection
 		}); 
 
+		//new instance of schedules collection for the classes rsvp'd for
+		this.coursesReservedCollection = new SchedulesCollection();
+
 	},
 
 	orderItem: function(product) {
 			this.supplyCategoriesCollection.fetch();
 			var orderedItem = this.supplyCategoriesCollection.get(product);
-			
-			/*the below line appears to be posting*/
-			//this.productsOrderedCollection.add(orderedItem);
+			this.productsOrderedCollection.add(orderedItem);
 			$('#app2').html(this.productsOrderedView.render().el);
 
 	},

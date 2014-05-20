@@ -32,9 +32,9 @@ var SupplyCategoriesCollection = Backbone.Collection.extend({
 	},
 
 
-	addOne: function(ProductModel) {
-		console.log('saving');
-		
+	addOne: function(model) {
+		//console.log('saving');
+		//this.add(model);
 		
 	},
 

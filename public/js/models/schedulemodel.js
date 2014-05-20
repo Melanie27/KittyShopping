@@ -1,5 +1,5 @@
 var ScheduleModel = Backbone.Model.extend({
-
+	//urlRoot: '/courses',
    defaults: {
       		name: "Nap Time",
 			description: "time to rest",
