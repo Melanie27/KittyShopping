@@ -59,8 +59,8 @@ module.exports = function(passport) {
 
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-                //console.log('user already taken');
+                //return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                console.log('need to update now');
                 
             } else {
 
@@ -73,6 +73,7 @@ module.exports = function(passport) {
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
                 newUser.local.petname = req.body.petname;
+                newUser.kittenType = req.body.kittenType;
                 //console.log(req.body.winner);
                 //req.body.petname = petname;
                 

@@ -5,9 +5,6 @@ var ResultsView = Backbone.View.extend({
 		'<h2 class="name">You have a {{name}} cat </h2>' +
 		'<img src="photos/kittys/' + '{{photo}}' + '" class="img-polaroid" />' +
 		'<h4 class="profile">{{profile}}</h4>' +
-		'<input class="kittenType" name="kittenType" value="{{kittenType}}">' +
-		'<button type="button" class="btn btn-primary">Save Quiz Results to Profile</button><br/>' +
-
 		'<h5><a href="#">Please proceed to scheduling --></a></h5>'
 	),
 
@@ -23,18 +20,18 @@ var ResultsView = Backbone.View.extend({
 		var kittenType = this.model.get('kittenType');
 		console.log(kittenType);
 		
+		$(this.el).append(new SaveQuizResultsView ({
+			//model : this.model,
+			model: new ResultsModel(),
+			model2: new UserMongooseModel()
+		}).render().el);
 
-    	/*jQuery.post("/api/kittens", {
-			"kittenType": kittenType 
-
-			}, function (data, textStatus, jqXHR) { 
-    			console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
-			});*/
-
-
+    	
 		this.delegateEvents({
 			'click .btn-primary' : 'save'
 		})
+
+
 
 		return this;
 	},

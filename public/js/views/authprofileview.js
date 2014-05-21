@@ -28,7 +28,7 @@ var AuthProfileView = Backbone.View.extend({
 		this.model.fetch({reset: true});
 		
 		//these console.logs are fetching the defualt model??? WTF??
-		console.log(this.model);
+		//console.log(this.model);
 		console.log(this.model.get('_id'));
 		//this.listenTo(this.collection, "reset", this.render );
 		this.listenTo(this.model, "change", this.render );

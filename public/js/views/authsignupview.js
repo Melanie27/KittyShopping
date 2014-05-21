@@ -20,6 +20,10 @@ var AuthSignupView = Backbone.View.extend({
 						'<input type="text" class="form-control" name="petname">' +
 					'</div>' +
 					'<div class="form-group">' +
+						'<label>Kitten Type</label>' +
+						'<input type="text" class="form-control" name="kittenType">' +
+					'</div>' +
+					'<div class="form-group">' +
 						'<label>Pet Photo</label>' +
 						'<input type="file" class="form-control" name="photo[image]"/>' +
 					'</div>' +

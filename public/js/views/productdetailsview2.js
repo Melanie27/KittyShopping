@@ -4,8 +4,6 @@ var ProductDetailsView2 = Backbone.View.extend({
 		//this.model = new SupplyCategory();
 		//this.model.fetch({reset: true});
 		this.listenTo(this.model, "change", this.render);
-
-
 	
 	},
 

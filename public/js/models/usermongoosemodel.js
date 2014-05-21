@@ -1,6 +1,15 @@
 var UserMongooseModel = Backbone.Model.extend({
+	//urlRoot: '/users',
 	urlRoot: '/test',
 	//idAttribute: "_id",
+
+	/*relations:[{
+		type: Backbone.One,
+		key: 'result',
+		relatedModel: 'ResultsModel'
+		
+	}],*/
+
 	defaults: {
 		
 		_id : '535947a52400be56922359c7',

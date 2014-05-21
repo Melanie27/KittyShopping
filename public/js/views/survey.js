@@ -32,7 +32,7 @@ var SurveyView = Backbone.View.extend({
 		this.listenTo(this.collection, "reset", this.render);
 		//this.listenTo(this.collection, "change:responded", this.render);
 		//and then add a check mark or something to the right
-		//this.listenTo(this.collection, "submit", this.render);
+		
 		
 
 	},
@@ -58,7 +58,7 @@ var SurveyView = Backbone.View.extend({
 			output += '<li>' +
 			'answersContext' + 
 				'</li>';
-			console.log(output);	
+			//console.log(output);	
 
 			}
 

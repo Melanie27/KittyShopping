@@ -128,6 +128,10 @@ var Product = new Schema({
 var ProductModel = mongoose.model('Product', Product);
 
 var Ordered = new Schema({
+    /*user : {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+    },*/
     id: { type: String }, 
     category: { type: String },  
     title: { type: String }, 
@@ -266,6 +270,7 @@ app.post('/api/orders', function (req, res) {
   console.log("POST: ");
   console.log(req.body);
   order = new OrderedModel ({
+    user: req.body.user,
     id: req.body.id,
     category: req.body.category,
     title: req.body.title,
@@ -517,25 +522,19 @@ app.get('/users/:user_id', function  (req, res) {
 });
 
 
-
 //update an individual user by ID
 app.put('/users/:user_id', function (req, res){
-  return User.findById(req.params.id, function (err, product) {
-    //product.title = req.body.title;
-    /*product.url = req.body.url,
-    product.keyword = req.body.keyword,
-    product.description = req.body.description,
-    product.price = req.body.price,
-    product.quantity = req.body.quantity,
-    product.imagepathsm = req.body.imagepathsm,*/
-    product.modified = req.body.modified;
-    return product.save(function (err) {
+  return User.findById(req.params.user_id, function (err, user) {
+   
+    user.kittenType = req.body.kittenType,
+    user.modified = req.body.modified;
+    return user.save(function (err) {
       if (!err) {
         console.log("updated");
       } else {
         console.log(err);
       }
-      return res.send(product);
+      return res.send(user);
     });
   });
 });
@@ -552,6 +551,7 @@ app.get('/questions', function  (req, res) {
 
 app.get('/profiles', function  (req, res) {
   res.json(profiles);
+  //res.send(res.locals.user);
 });
 
 

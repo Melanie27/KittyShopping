@@ -149,6 +149,8 @@
 		//model view
 		this.resultsView = new ResultsView({model: this.resultsModel});
 
+		//this.saveQuizResultsView = new SaveQuizResultsView({model: this.resultsModel});
+
 		//init store location view
 		this.storeLocateView = new StoreLocateView();
 
