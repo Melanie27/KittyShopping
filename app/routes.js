@@ -73,9 +73,40 @@ app.get('/api/kittens', function(req, res) {
   res.send('kittens');
 });
 
+
+app.post('/api/signup', isLoggedIn, function (req, res){
+
+	User.findOne({'_id': req.user.id }, function(err, user) {
+		if (err)
+			return done(err);
+
+		if (user) {
+			user.signup.name = req.body.name;
+			user.signup.courseDay = req.body.courseDay;
+			user.signup.time = req.body.time;
+			user.signup.location = req.body.location;
+			
+
+			user.update({$push: { "signup" : 
+				{   name: user.signup.name,
+					courseDay: user.signup.courseDay,
+					time: user.signup.time,
+					location: user.signup.location }
+				}},{safe:true, upsert:true},function(err){
+        			if(err){
+                		console.log(err);
+        			} else {
+                		console.log("Successfully added" + user.signup);
+        			}
+			});
+
+			console.log('located a user');
+		}		
+	});
+
+});
+
 app.post('/api/orders', isLoggedIn, function (req, res){
-	
-	
 
 	User.findOne({'_id': req.user.id }, function(err, user) {
 		if (err)
@@ -87,7 +118,6 @@ app.post('/api/orders', isLoggedIn, function (req, res){
 			user.orders.title = req.body.title;
 			user.orders.price = req.body.price;
 			
-
 
 			user.update({$push: { "orders" : 
 				{ title: user.orders.title,

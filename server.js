@@ -329,7 +329,7 @@ app.post('/api/products', function (req, res) {
 });
 
 //create a single course reservation
-app.post('/api/signup', function (req, res) {
+/*app.post('/api/signup', function (req, res) {
   var signup;
   console.log("POST: ");
   console.log(req.body);
@@ -351,7 +351,7 @@ app.post('/api/signup', function (req, res) {
     }
   });
   return res.send(signup);
-});
+});*/
 
 //read a single product by ID
 

@@ -18,7 +18,12 @@ var userSchema = mongoose.Schema({
         quantity : String,
         price : Number
     }],
-    signup: [],
+    signup: [{
+        name: String,
+        courseDay: String,
+        time: String,
+        location: String
+    }],
 
     kittenType   : String,
     profilePhoto : String,
