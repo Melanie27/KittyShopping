@@ -74,18 +74,10 @@ app.get('/api/kittens', function(req, res) {
 });
 
 app.post('/api/orders', isLoggedIn, function (req, res){
-	console.log(req.user.id);
-	User.findOne({'_id': req.user.id}, function (err, user) {
-		if(err) 
-			return(err);
-
-		if(user) {
-			console.log('we have a user again');
-		}
-	});
+	
 	
 
-	/*User.findOne({'kittenType' :  req.user.kittenType }, function(err, user) {
+	User.findOne({'_id': req.user.id }, function(err, user) {
 		if (err)
 			return done(err);
 
@@ -94,8 +86,9 @@ app.post('/api/orders', isLoggedIn, function (req, res){
 			user.orders.description = req.body.description;
 			user.orders.title = req.body.title;
 			user.orders.price = req.body.price;
-			console.log(user.orders.price);
-			console.log(user.orders.description);
+			
+
+
 			user.update({$push: { "orders" : 
 				{ title: user.orders.title,
 					description: user.orders.description,
@@ -111,7 +104,7 @@ app.post('/api/orders', isLoggedIn, function (req, res){
 
 			console.log('located a user');
 		}		
-	});*/
+	});
 
 });
 	
