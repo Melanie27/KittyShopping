@@ -74,18 +74,44 @@ app.get('/api/kittens', function(req, res) {
 });
 
 app.post('/api/orders', isLoggedIn, function (req, res){
-	console.log(req.user.orders);
-	console.log(req.body.title);
-	console.log(req.user);
+	console.log(req.user.id);
+	User.findOne({'_id': req.user.id}, function (err, user) {
+		if(err) 
+			return(err);
 
-	User.findOne({'email' :  req.user.local.email }, function(err, user) {
+		if(user) {
+			console.log('we have a user again');
+		}
+	});
+	
+
+	/*User.findOne({'kittenType' :  req.user.kittenType }, function(err, user) {
 		if (err)
 			return done(err);
 
 		if (user) {
+			user.orders.quantity = req.body.quantity;
+			user.orders.description = req.body.description;
+			user.orders.title = req.body.title;
+			user.orders.price = req.body.price;
+			console.log(user.orders.price);
+			console.log(user.orders.description);
+			user.update({$push: { "orders" : 
+				{ title: user.orders.title,
+					description: user.orders.description,
+					quantity: user.orders.quantity,
+					price: user.orders.price }
+				}},{safe:true, upsert:true},function(err){
+        			if(err){
+                		console.log(err);
+        			} else{
+                		console.log("Successfully added" + user.orders);
+        			}
+			});
+
 			console.log('located a user');
 		}		
-	});
+	});*/
 
 });
 	
