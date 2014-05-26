@@ -29,13 +29,14 @@ var SaveQuizResultsView = Backbone.View.extend({
 		this.setModelData();
 		
 		var kittenType = this.model.get('kittenType');
-		var user = this.model.get('result');
+		//var user = this.model.get('result');
 		//console.log(user);
 		
 
 		jQuery.ajax({
-    		url: "/users/537ce279f26a0d0000db68f2", 
-    		type: "PUT",
+    		//url: "/users/537d082cf4092a00000d2fd2", 
+    		url: "/api/kittens",
+    		type: "POST",
     		data: {
       			"kittenType": kittenType 
      
@@ -54,7 +55,7 @@ var SaveQuizResultsView = Backbone.View.extend({
 
 	setModelData: function() {
 		this.model.set({
-			result: user, 
+			//result: user, 
 			kittenType: this.$el.find('input[name="kittenType"]').val(),
 
 

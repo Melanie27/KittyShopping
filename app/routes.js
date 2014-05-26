@@ -3,6 +3,7 @@
 //var User = require('../app/models/user');
 
 
+var User       		= require('../app/models/user');
 
 module.exports = function(app, passport) {
 
@@ -56,6 +57,69 @@ module.exports = function(app, passport) {
 		failureRedirect : '/signup', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
+
+	var mongoose = require('mongoose');
+	var Schema = mongoose.Schema;
+	
+
+
+
+//read a list of ordered products
+app.get('/api/orders', function(req, res) {
+  res.send('orders');
+});
+
+app.get('/api/kittens', function(req, res) {
+  res.send('kittens');
+});
+
+app.post('/api/orders', isLoggedIn, function (req, res){
+	console.log(req.user.orders);
+	console.log(req.body.title);
+	console.log(req.user);
+
+	User.findOne({'email' :  req.user.local.email }, function(err, user) {
+		if (err)
+			return done(err);
+
+		if (user) {
+			console.log('located a user');
+		}		
+	});
+
+});
+	
+
+	//update the user with the kitten Type
+app.post('/api/kittens', isLoggedIn, function (req, res, done) {
+  
+  User : req.user // get the user out of session and pass to template
+  console.log(req.user.kittenType);
+	console.log(req.body.kittenType); 	
+
+ 	User.kittenType = req.body.kittenType;
+ 	console.log(User.kittenType);
+    
+    User.findOne({ 'kittenType': req.user.kittenType}, function(err, user) {
+    	if(err) 
+    		return done(err);
+
+    	if(user) {
+    		user.kittenType = req.body.kittenType;
+    		user.save(function(err){
+    			if(!err){
+    				console.log('yay');
+    			}
+    			else {
+    				console.log(err);
+    			}
+    		});
+    		console.log(User.kittenType);
+    	}
+    });
+	
+});
+
 
 	
 
@@ -116,6 +180,11 @@ function isLoggedIn(req, res, next) {
 	//if user is authenticated, keep going
 	if (req.isAuthenticated())
 		return next();
+
+	else {
+		console.log('you must be logged in for this');
+		res.redirect('/in'); 
+	}
 
 	//if they aren't redirect them to the home page
 	res.redirect('/');

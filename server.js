@@ -76,12 +76,12 @@ app.configure(function() {
 
 var Schema = mongoose.Schema;
 
-var Kittens = new Schema({
+/*var Kittens = new Schema({
   kittenType: {type: String},
   modified: { type: Date, default: Date.now }
 });
 
-var KittensModel = mongoose.model('Kittens', Kittens);
+var KittensModel = mongoose.model('Kittens', Kittens);*/
 
 var Courses = new Schema({
    name: { type: String }, 
@@ -92,7 +92,8 @@ var Courses = new Schema({
    signup: { type: String }, 
    rsvp: { type: Boolean }, 
    courseDay: { type: String }, 
-   id: { type: String }, 
+   id: { type: String },
+
 });
 
 var CoursesModel = mongoose.model('Courses', Courses);
@@ -106,7 +107,8 @@ var Signup = new Schema({
    signup: { type: String }, 
    rsvp: { type: Boolean }, 
    courseDay: { type: String }, 
-   id: { type: String }, 
+   id: { type: String },
+   user: [User]
 });
 
 var SignupModel = mongoose.model('Signup', Signup);
@@ -127,12 +129,12 @@ var Product = new Schema({
 
 var ProductModel = mongoose.model('Product', Product);
 
-var Ordered = new Schema({
+/*var Ordered = new Schema({
     /*user : {
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     },*/
-    id: { type: String }, 
+    /*id: { type: String }, 
     category: { type: String },  
     title: { type: String }, 
     url: {type: String}, 
@@ -141,10 +143,13 @@ var Ordered = new Schema({
     price: {type: Number},
     quantity: {type: Number},
     imagepathsm: {type: String},  
-    modified: { type: Date, default: Date.now }
-})
+    modified: { type: Date, default: Date.now },
+    user: [User]
+})*/
 
-var OrderedModel = mongoose.model('Ordered', Ordered);
+//var OrderedModel = mongoose.model('Ordered', Ordered);
+// create the model for users and expose it to our app
+//module.exports = mongoose.model('Ordered', OrderedModel);
 
 
 
@@ -154,7 +159,7 @@ app.get('/api', function(req, res) {
   res.send('configDB is running');
 });
 
-app.get('/api/kittens', function(req, res) {
+/*app.get('/api/kittens', function(req, res) {
   return KittensModel.find(function(err, kittens) {
     if (!err) {
       return res.send(kittens);
@@ -162,7 +167,7 @@ app.get('/api/kittens', function(req, res) {
       return console.log(err);
     }
   });
-});
+});*/
 
 app.get('/api/courses', function(req, res) {
   return CoursesModel.find(function(err, courses) {
@@ -187,7 +192,7 @@ app.get('/api/signup', function(req, res) {
 });
 
 //read a list of ordered products
-app.get('/api/orders', function(req, res) {
+/*app.get('/api/orders', function(req, res) {
   return OrderedModel.find(function(err, orders) {
     if (!err) {
       return res.send(orders);
@@ -195,7 +200,7 @@ app.get('/api/orders', function(req, res) {
       return console.log(err);
     }
   });
-});
+});*/
 
 
 app.get('/supplies', function  (req, res) {
@@ -217,7 +222,7 @@ app.get('/api/products', function(req, res) {
 });
 
 //post a kitten type
-app.post('/api/kittens', function (req, res) {
+/*app.post('/api/kittens', function (req, res) {
   var kitten;
   console.log("POST: ");
   console.log(req.body);
@@ -234,7 +239,7 @@ app.post('/api/kittens', function (req, res) {
     }
   });
   return res.send(kitten);
-});
+});*/
 
 //create a single course
 app.post('/api/courses', function (req, res) {
@@ -265,7 +270,7 @@ app.post('/api/courses', function (req, res) {
 });
 
 //create a single product
-app.post('/api/orders', function (req, res) {
+/*app.post('/api/orders', function (req, res) {
   var order;
   console.log("POST: ");
   console.log(req.body);
@@ -281,6 +286,7 @@ app.post('/api/orders', function (req, res) {
     quantity: req.body.quantity,
     imagepathsm: req.body.imagepathsm,
     modified: req.body.modified,
+    user: req.body.user
     
   });
   order.save(function(err) {
@@ -291,7 +297,7 @@ app.post('/api/orders', function (req, res) {
     }
   });
   return res.send(order);
-});
+});*/
 
 
 //create a single product
@@ -404,7 +410,7 @@ app.put('/api/products/:id', function (req, res){
     product.modified = req.body.modified;
     return product.save(function (err) {
       if (!err) {
-        console.log("updated");
+        console.log("updated the quantity");
       } else {
         console.log(err);
       }
@@ -497,10 +503,35 @@ app.post('/update', function(req, res) {
   });
 
 
+/*res.locals = _.extend(res.locals, {
+
+});*/
+
 //YEA --- TEST WORKS!!!!!!!-->
 app.get('/test', function(req,res) {
     res.send(res.locals.user);
 });
+
+//update an individual user by ID
+app.put('/test', function (req, res){
+  res.send(res.locals.local);
+  /*return User.findById(req.params.user_id, function (err, user) {
+   
+    res.locals.user.kittenType = req.body.kittenType,
+    res.locals.user.modified = req.body.modified;
+    return res.locals.user.save(function (err) {
+      if (!err) {
+        console.log("updated");
+      } else {
+        console.log(err);
+      }
+      return res.send(user);
+    });
+  });*/
+});
+
+
+
 
 app.get('/users', function(req, res) {
     //res.send(res.locals.user);

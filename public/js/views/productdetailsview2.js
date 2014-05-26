@@ -38,20 +38,19 @@ var ProductDetailsView2 = Backbone.View.extend({
 		this.setModelData();
 
 			this.model.save(this.model.attributes,
-			{
-				
+			{	
 
 				success: function (model) {
 					
 					app.productsOrderedCollection.add(model);
-					
-					
+							
 					//Post to the ordered Supplies Collection
 					jQuery.post("/api/orders", {
 						"title": title,  
   						"description": description, 
   						"quantity" : quantity,
-  						"price" : price 
+  						"price" : price
+  						
   						
 					}, function (data, textStatus, jqXHR) { 
     					console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
@@ -65,6 +64,8 @@ var ProductDetailsView2 = Backbone.View.extend({
 			var title = this.model.get('title');
 			var quantity = this.model.get('quantity');
 			var price = this.model.get('price');
+			var user = this.model.get('user');
+			
 	},
 
 	setModelData: function() {

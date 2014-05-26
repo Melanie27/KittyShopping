@@ -12,6 +12,13 @@ var userSchema = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
+    orders: [{
+        title: String,  
+        description: String, 
+        quantity : String,
+        price : Number
+    }],
+    signup: [],
 
     kittenType   : String,
     profilePhoto : String,
