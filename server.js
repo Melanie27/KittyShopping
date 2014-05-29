@@ -76,12 +76,6 @@ app.configure(function() {
 
 var Schema = mongoose.Schema;
 
-/*var Kittens = new Schema({
-  kittenType: {type: String},
-  modified: { type: Date, default: Date.now }
-});
-
-var KittensModel = mongoose.model('Kittens', Kittens);*/
 
 var Courses = new Schema({
    name: { type: String }, 
@@ -98,20 +92,6 @@ var Courses = new Schema({
 
 var CoursesModel = mongoose.model('Courses', Courses);
 
-var Signup = new Schema({
-   name: { type: String }, 
-   description: { type: String }, 
-   recommeded: { type: String }, 
-   time: { type: String }, 
-   location: { type: String }, 
-   signup: { type: String }, 
-   rsvp: { type: Boolean }, 
-   courseDay: { type: String }, 
-   id: { type: String },
-   user: [User]
-});
-
-var SignupModel = mongoose.model('Signup', Signup);
 
 var Product = new Schema({
     id: { type: String }, 
@@ -129,28 +109,6 @@ var Product = new Schema({
 
 var ProductModel = mongoose.model('Product', Product);
 
-/*var Ordered = new Schema({
-    /*user : {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User'
-    },*/
-    /*id: { type: String }, 
-    category: { type: String },  
-    title: { type: String }, 
-    url: {type: String}, 
-    keyword: { type: String },  
-    description: { type: String }, 
-    price: {type: Number},
-    quantity: {type: Number},
-    imagepathsm: {type: String},  
-    modified: { type: Date, default: Date.now },
-    user: [User]
-})*/
-
-//var OrderedModel = mongoose.model('Ordered', Ordered);
-// create the model for users and expose it to our app
-//module.exports = mongoose.model('Ordered', OrderedModel);
-
 
 
 
@@ -159,15 +117,7 @@ app.get('/api', function(req, res) {
   res.send('configDB is running');
 });
 
-/*app.get('/api/kittens', function(req, res) {
-  return KittensModel.find(function(err, kittens) {
-    if (!err) {
-      return res.send(kittens);
-    } else {
-      return console.log(err);
-    }
-  });
-});*/
+
 
 app.get('/api/courses', function(req, res) {
   return CoursesModel.find(function(err, courses) {
@@ -191,16 +141,6 @@ app.get('/api/signup', function(req, res) {
   });
 });
 
-//read a list of ordered products
-/*app.get('/api/orders', function(req, res) {
-  return OrderedModel.find(function(err, orders) {
-    if (!err) {
-      return res.send(orders);
-    } else {
-      return console.log(err);
-    }
-  });
-});*/
 
 
 app.get('/supplies', function  (req, res) {
@@ -221,25 +161,7 @@ app.get('/api/products', function(req, res) {
   });
 });
 
-//post a kitten type
-/*app.post('/api/kittens', function (req, res) {
-  var kitten;
-  console.log("POST: ");
-  console.log(req.body);
-  kitten = new KittensModel ({
-    kittenType: req.body.kittenType,
-    modified: req.body.modified,
-    
-  });
-  kitten.save(function(err) {
-    if (!err) {
-      return console.log('added course');
-    } else {
-      return console.log(err);
-    }
-  });
-  return res.send(kitten);
-});*/
+
 
 //create a single course
 app.post('/api/courses', function (req, res) {
@@ -268,36 +190,6 @@ app.post('/api/courses', function (req, res) {
   });
   return res.send(course);
 });
-
-//create a single product
-/*app.post('/api/orders', function (req, res) {
-  var order;
-  console.log("POST: ");
-  console.log(req.body);
-  order = new OrderedModel ({
-    user: req.body.user,
-    id: req.body.id,
-    category: req.body.category,
-    title: req.body.title,
-    url: req.body.url,
-    keyword: req.body.keyword,
-    description: req.body.description,
-    price: req.body.price,
-    quantity: req.body.quantity,
-    imagepathsm: req.body.imagepathsm,
-    modified: req.body.modified,
-    user: req.body.user
-    
-  });
-  order.save(function(err) {
-    if (!err) {
-      return console.log('added');
-    } else {
-      return console.log(err);
-    }
-  });
-  return res.send(order);
-});*/
 
 
 //create a single product
@@ -328,35 +220,10 @@ app.post('/api/products', function (req, res) {
   return res.send(product);
 });
 
-//create a single course reservation
-/*app.post('/api/signup', function (req, res) {
-  var signup;
-  console.log("POST: ");
-  console.log(req.body);
-  signup = new SignupModel ({
-    id: req.body.id,
-    name: req.body.name,
-    courseDay: req.body.courseDay,
-    time: req.body.time,
-    location: req.body.location,
-    rsvp: req.body.rsvp,
-    modified: req.body.modified,
-    
-  });
-  signup.save(function(err) {
-    if (!err) {
-      return console.log('added');
-    } else {
-      return console.log(err);
-    }
-  });
-  return res.send(signup);
-});*/
 
 //read a single product by ID
 
 app.get('/api/products/:id', function (req, res){
-  
   
   return ProductModel.findById(req.params.id, function (err, product) {
   

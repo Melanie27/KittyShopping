@@ -15,6 +15,7 @@
 		
 		"store-locator" : "storeLocator",
 		"class-schedule" : "classSchedule",
+		"view-courses" : "viewCourses",
 		
 	
 		"shop-form" : "shopForm",
@@ -211,6 +212,12 @@
 		//new instance of schedules collection for the classes rsvp'd for
 		this.coursesReservedCollection = new SchedulesCollection();
 
+		this.yourCoursesView = new YourCoursesView();
+
+	},
+
+	viewCourses: function() {
+		$('#app2').html(this.yourCoursesView.render().el);
 	},
 
 	orderItem: function(product) {

@@ -74,6 +74,102 @@ app.get('/api/kittens', function(req, res) {
 });
 
 
+app.get('/api/unsign', function(req, res) {
+	res.send('unsign');
+});
+
+
+
+app.get('/test/orders', function(req, res) {
+	User.findOne({'_id': req.user.id }, function(err, user) {
+		if (err) 
+			return done(err);
+		
+		if (user) {
+			res.send(user.orders);
+			
+		}
+
+	});
+});
+
+app.get('/test/signups', function(req, res) {
+	User.findOne({'_id': req.user.id }, function(err, user) {
+		if (err) 
+			return done(err);
+			//res.send('no user logged in');
+		
+		if (user) {
+			res.send(user.signup);
+			//console.log(user.signup);
+
+		}
+
+	});
+});
+
+app.get('/test/signups/:id', function(req, res) {
+	//res.send('user.signup');
+	
+	User.findOne({'_id': req.user.id }, function(err, user) {
+		if (err) 
+			return done(err);
+			//res.send('no user logged in');
+		
+		if (user) {
+			
+			User.find(req.user.signup)
+
+
+
+			//res.send(user.signup);
+			//console.log(user.signup);
+
+		}
+
+	});
+});
+
+app.delete('/api/unsign', isLoggedIn, function(req, res) {
+	User.findOne({'_id': req.user.id }, function(err, user) {
+		if (err)
+			return done(err);
+
+		if (user) {
+			/*user.signup.name = req.body.name;
+			user.signup.courseDay = req.body.courseDay;
+			user.signup.time = req.body.time;
+			user.signup.location = req.body.location;
+			user.signup.modified = req.body.modified;*/
+			console.log(req.body.data);
+
+			
+			user.update(
+				  {'_id': "53866080f9c05d0e227bced8"}, 
+    				{ $pull: { "signup" : { name: user.signup.name } } },
+    				console.log('pulled ok-api')
+			);
+
+			/*user.update({$pull: { "signup" : 
+				{   name: user.signup.name,
+					courseDay: user.signup.courseDay,
+					time: user.signup.time,
+					location: user.signup.location,
+					modified: user.signup.modified
+				}
+				}},{safe:true, upsert:true},function(err){
+        			if(err){
+                		console.log(err);
+        			} else {
+                		console.log("Successfully removed" + user.signup);
+        			}
+			});*/
+
+			console.log('located a user');
+		}		
+	});
+});
+
 app.post('/api/signup', isLoggedIn, function (req, res){
 
 	User.findOne({'_id': req.user.id }, function(err, user) {
@@ -85,13 +181,16 @@ app.post('/api/signup', isLoggedIn, function (req, res){
 			user.signup.courseDay = req.body.courseDay;
 			user.signup.time = req.body.time;
 			user.signup.location = req.body.location;
-			
+			user.signup.modified = req.body.modified;
+			console.log(req.body.name);
 
 			user.update({$push: { "signup" : 
 				{   name: user.signup.name,
 					courseDay: user.signup.courseDay,
 					time: user.signup.time,
-					location: user.signup.location }
+					location: user.signup.location,
+					modified: user.signup.modified
+				}
 				}},{safe:true, upsert:true},function(err){
         			if(err){
                 		console.log(err);
@@ -117,13 +216,16 @@ app.post('/api/orders', isLoggedIn, function (req, res){
 			user.orders.description = req.body.description;
 			user.orders.title = req.body.title;
 			user.orders.price = req.body.price;
+			user.orders.modified = req.body.modified;
 			
 
 			user.update({$push: { "orders" : 
-				{ title: user.orders.title,
+				{   title: user.orders.title,
 					description: user.orders.description,
 					quantity: user.orders.quantity,
-					price: user.orders.price }
+					price: user.orders.price,
+					modified: user.orders.modified
+				}
 				}},{safe:true, upsert:true},function(err){
         			if(err){
                 		console.log(err);

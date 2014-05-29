@@ -17,6 +17,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 			'<span class="label">' + 'Quantity: ' + '</span>' + 
 			'<input class="quantity" name="quantity" value="' + this.model.get('quantity') + '">' +
 			'<button type="button" class="btn btn-primary">Save Quantity</button><br/>' +
+			'<button type="button" class="btn btn-secondary">Remove from Cart</button><br/>' +
 			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
 			'</form>' +
 			'<span class="description">' + this.model.get('description') + '</span><br/>' +
@@ -28,10 +29,19 @@ var ProductDetailsView2 = Backbone.View.extend({
 		}));
 
 		this.delegateEvents({
-			'click .btn-primary' : 'save'
+			'click .btn-primary' : 'save',
+			'click .btn-secondary' : 'remove'
 		})
 
 		return this;
+	},
+
+	remove: function() {
+		//this.resetModelData();
+		this.model.destroy({
+
+		})
+		console.log('remove');
 	},
 
 	save: function() {
@@ -66,6 +76,15 @@ var ProductDetailsView2 = Backbone.View.extend({
 			var price = this.model.get('price');
 			var user = this.model.get('user');
 			
+	},
+
+	resetModelData: function() {
+		this.model.set({
+			
+			quantity: '0',
+
+
+		})
 	},
 
 	setModelData: function() {

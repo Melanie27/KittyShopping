@@ -16,13 +16,15 @@ var userSchema = mongoose.Schema({
         title: String,  
         description: String, 
         quantity : String,
-        price : Number
+        price : Number,
+        modified: { type: Date, default: Date.now }
     }],
     signup: [{
         name: String,
         courseDay: String,
         time: String,
-        location: String
+        location: String,
+        modified: { type: Date, default: Date.now }
     }],
 
     kittenType   : String,
@@ -34,7 +36,6 @@ var userSchema = mongoose.Schema({
         petname      : String,
         path         : String,
        
-
     },
     facebook         : {
         id           : String,

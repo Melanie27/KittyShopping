@@ -4,12 +4,6 @@ var ShoppingCartRenderView = Backbone.View.extend({
 
 	className: 'ui-widget-content draggable',
 
-	bindings: {
-		'#quantity' : {observe: 'quantity'},
-		'#price' : {observe: 'price'},
-		'#total' : {observe: 'total'},
-
-	},
 
 	events: {
 
@@ -18,23 +12,13 @@ var ShoppingCartRenderView = Backbone.View.extend({
 
 
 	initialize: function() {
-		//fetch is pulling in the entire collection??
+		
 		this.model.fetch();
 		//this.listenTo(this.model, "change", this.render);
 
-		$(this.el).draggable({
-			helper:'clone',
-			opacity: 0.65
-		});
-
-		$(this.el).data("item-view", this);
-
-		//this.listenTo(this.model, 'destroy', this.destroy, this);
 	},
 
-	/*destroy: function() {
-		this.remove();
-	},*/
+	
 
 	save: function() {
 		this.setModelData();
@@ -42,7 +26,7 @@ var ShoppingCartRenderView = Backbone.View.extend({
 			this.model.save(this.model.attributes, {
 				success: function (model) {
 					app.orderedSuppliesCollection.add(model);
-					console.log('success');
+					console.log('success yes');
 				}
 			}
 
@@ -66,6 +50,8 @@ var ShoppingCartRenderView = Backbone.View.extend({
 			'<span class="label">' + 'Quantity: ' + '</span>' + 
 			'<input class="quantity" value="' + this.model.get('quantity') + '">' +
 			'<button class="save">Save Quantity to Cart</button><br/>' +
+			
+
 			
 			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
 			'</form>' +
