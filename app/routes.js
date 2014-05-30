@@ -74,13 +74,24 @@ app.get('/api/kittens', function(req, res) {
 });
 
 
-app.get('/api/unsign', function(req, res) {
-	res.send('unsign');
+app.get('/test/signups', function(req, res) {
+	console.log(req.signup);
+	User.findOne({'_id': req.user.id }, function(err, user) {
+		if (err) 
+			return done(err);
+		
+		if (user) {
+			res.send(user.signup);
+			
+		}
+
+	});
 });
 
 
 
 app.get('/test/orders', function(req, res) {
+	console.log(req.orders);
 	User.findOne({'_id': req.user.id }, function(err, user) {
 		if (err) 
 			return done(err);
@@ -93,82 +104,61 @@ app.get('/test/orders', function(req, res) {
 	});
 });
 
-app.get('/test/signups', function(req, res) {
-	User.findOne({'_id': req.user.id }, function(err, user) {
-		if (err) 
-			return done(err);
-			//res.send('no user logged in');
-		
-		if (user) {
-			res.send(user.signup);
-			//console.log(user.signup);
-
-		}
-
-	});
+app.get('/test/orders/:id', function(req, res) {
+  User.findOne({'_id': req.user.id }, function(err, user) {
+    if (err)
+      return done(err);
+    if (user) {
+      console.log(user.orders);
+      var order = user.orders.filter(function(e){ return e._id == req.params.id })[0]
+      console.log(order);
+      res.send(order);
+    }
+  });
 });
 
 app.get('/test/signups/:id', function(req, res) {
-	//res.send('user.signup');
-	
-	User.findOne({'_id': req.user.id }, function(err, user) {
-		if (err) 
-			return done(err);
-			//res.send('no user logged in');
-		
-		if (user) {
-			
-			User.find(req.user.signup)
-
-
-
-			//res.send(user.signup);
-			//console.log(user.signup);
-
-		}
-
-	});
+  User.findOne({'_id': req.user.id }, function(err, user) {
+    if (err)
+      return done(err);
+    if (user) {
+      //console.log(user.signup);
+      var singlesignup = user.signup.filter(function(e){ return e._id == req.params.id })[0]
+      //console.log(singlesignup);
+      res.send(singlesignup);
+    }
+  });
 });
 
-app.delete('/api/unsign', isLoggedIn, function(req, res) {
+
+app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 	User.findOne({'_id': req.user.id }, function(err, user) {
 		if (err)
 			return done(err);
 
 		if (user) {
-			/*user.signup.name = req.body.name;
-			user.signup.courseDay = req.body.courseDay;
-			user.signup.time = req.body.time;
-			user.signup.location = req.body.location;
-			user.signup.modified = req.body.modified;*/
-			console.log(req.body.data);
-
+			var found = false;
+			console.log(req.params.id);
+			//console.log(user.signup);
+			var singlesignup = user.signup.filter(function(e){ return e._id == req.params.id })[0]
+			console.log(singlesignup._id);
 			
-			user.update(
-				  {'_id': "53866080f9c05d0e227bced8"}, 
-    				{ $pull: { "signup" : { name: user.signup.name } } },
-    				console.log('pulled ok-api')
-			);
-
-			/*user.update({$pull: { "signup" : 
-				{   name: user.signup.name,
-					courseDay: user.signup.courseDay,
-					time: user.signup.time,
-					location: user.signup.location,
-					modified: user.signup.modified
+			user.signup.forEach(function (singlesignup, index) {
+				if (singlesignup._id === req.params.id) {
+					found = index;
 				}
-				}},{safe:true, upsert:true},function(err){
-        			if(err){
-                		console.log(err);
-        			} else {
-                		console.log("Successfully removed" + user.signup);
-        			}
-			});*/
-
-			console.log('located a user');
+			});
+			if(found) {
+				user.signup.splice(found, 1);
+				res.json(200, {status: 'deleted'});
+  			} else {
+    			res.json(404, {status: 'invalid survey question deletion'});
+  			}
 		}		
 	});
 });
+
+
 
 app.post('/api/signup', isLoggedIn, function (req, res){
 

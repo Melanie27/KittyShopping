@@ -1,16 +1,11 @@
 var express = require('express'),
   http = require('http'),
-  //path = require("path"),
-  //items = require('./data/menu-items');
+ 
   questions = require('./data/kitty-questions');
   profiles = require('./data/kitty-profiles');
-  //supplies = require('./data/kitty-supplies-test');
-  //courses = require('./data/kitty-courses');
-  //days = require('./data/kitty-days');
   home = require('./data/kitty-home');
   // load up the user model
 users = require('./app/models/user');
-
 
 
 var app = express()
@@ -164,7 +159,7 @@ app.get('/api/products', function(req, res) {
 
 
 //create a single course
-app.post('/api/courses', function (req, res) {
+/*app.post('/api/courses', function (req, res) {
   var course;
   console.log("POST: ");
   console.log(req.body);
@@ -189,7 +184,7 @@ app.post('/api/courses', function (req, res) {
     }
   });
   return res.send(course);
-});
+});*/
 
 
 //create a single product
@@ -668,6 +663,8 @@ app.delete('/questions/:question_name', function  (req, res) {
   });
 
   if (found) {
+    //splice (found = index - the position to remove the item)
+    //1 = howmany - number of items to be removed
     items.splice(found, 1);
     res.json(200, {status: 'deleted'});
   } else {
@@ -676,24 +673,7 @@ app.delete('/questions/:question_name', function  (req, res) {
 
 });
 
-/*app.delete('/supplies/:supply_name', function  (req, res) {
 
-  var found = false;
-
-  items.forEach(function (supply, index) {
-    if (supply.url === req.params.supply_name) {
-      found = index;
-    }
-  });
-
-  if (found) {
-    items.splice(found, 1);
-    res.json(200, {status: 'deleted'});
-  } else {
-    res.json(404, {status: 'invalid survey question deletion'});
-  }
-
-});*/
 
 app.get('/*', function  (req, res) {
   res.json(404, {status: 'not found'});

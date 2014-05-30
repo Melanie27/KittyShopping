@@ -30,88 +30,48 @@ var ScheduleRowView = Backbone.View.extend({
 
    cancel: function(event) {
       event.preventDefault();
-      alert('cancel class ' + this.model.get('name'));
+      console.log('cancel class ' + this.model.get('name'));
       var modelID = this.model.get('_id');
-      console.log(modelID);
+    
       
-      this.model.destroy(
-        {
-          success: function(model, response) {
-            
-            jQuery.ajax({
-              url: "/api/unsign", 
-              type: "DELETE",
-              data: {"name" : name},
-              
-              success: function (data, textStatus, jqXHR) { 
-                console.log("Post resposne:"); 
-                console.dir(data); 
-                console.log(textStatus); 
-                console.dir(jqXHR); 
-            }
-          });
-
-            alert('destroyed');
-            console.log(data);
-          } 
-        })
-
-      var data = {  "name" : name,
-              "courseDay" : courseDay,
-              "time" : time,
-              "location" : location,
-              "rsvp" : rsvp }
-      var name = this.model.get('name');
-      var courseDay = this.model.get('courseDay');
-      var time = this.model.get('time');
-      var location = this.model.get('location');
-       var rsvp = this.model.get('rsvp');
-       console.log(name)
+      jQuery.ajax({
+        url: "/test/signups/5387c1a0fb06e48f4658170c", 
+        type: "DELETE",
+        
+        success: function (data, textStatus, jqXHR) { 
+          console.log("Post resposne:"); 
+          console.dir(data); 
+          console.log(textStatus); 
+          console.dir(jqXHR); 
+        }
+      });
    },
 
 
    save: function(event) {
       event.preventDefault();
-      this.setModelData();
+    
       //Change the appearance of the link after it has been clicked
       //if link has been clicked then change colorclicked change color
-      var blackOut = this.model.get('signup');
-      //console.log(blackOut);
-      /*$(this.link).hide();
-      /*$(blackOut).({color: 'black'});*/
-
-      
 
       alert( 'You signed up for ' + this.model.get('name'));
-      this.model.save(this.model.attributes, 
-      {
-        success: function (model) {
-            //app.coursesReservedCollection.add(model);
-            
-
-            jQuery.post("/api/signup", {
-              "name" : name,
-              "courseDay" : courseDay,
-              "time" : time,
-              "location" : location,
-              "rsvp" : rsvp
-            });
-            
-        }  
-      })
-      
       var name = this.model.get('name');
       var courseDay = this.model.get('courseDay');
       var time = this.model.get('time');
       var location = this.model.get('location');
-       var rsvp = this.model.get('rsvp');
       
-   },
-
-   setModelData: function() {
-      this.model.set({
-        rsvp: true
-      })
+      
+      //saves the attributes but does not trigger http request
+     
+            jQuery.post("/api/signup", {
+              "name" : name,
+              "courseDay" : courseDay,
+              "time" : time,
+              "location" : location
+              
+            });
+             
    }
 
+  
 });

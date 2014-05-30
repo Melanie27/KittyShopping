@@ -24,6 +24,7 @@ var userSchema = mongoose.Schema({
         courseDay: String,
         time: String,
         location: String,
+        url: String,
         modified: { type: Date, default: Date.now }
     }],
 

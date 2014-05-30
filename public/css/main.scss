@@ -1,7 +1,59 @@
+/*Main*/
+
+body {
+	background-color: #bababa;
+}
+
+.login-bar {
+	background-color: #61448d;
+	border-radius:5px;
+	color:#BABABA;
+	padding:5px;
+
+
+}
+
+.navbar-default {
+	background-color: #61448d;
+}
+
+
+.navbar {
+
+	a {
+		color: #bababa;
+	}
+
+	li {
+		font-size:18px;
+	}
+}
+
+#app2 {
+	background-color: #e2e4e5;
+	border-radius:10px;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+.profile-photos {
+	display:inline-block;
+	margin-right:0px;
+
+	li {
+		display:block;
+		float:left;
+		list-style-type:none;
+		border:solid 2px black;
+		border-radius: 6px;
+		margin-right:3px;
+	}
+}
+
 /*Welcome View*/
 .welcome-view {
 	border-bottom: solid 1px #999;
-	margin-bottom: 25px;
+	margin-bottom: 10px;
 
 	h4 {
 		font-size: 14px;
