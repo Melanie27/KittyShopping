@@ -6,7 +6,8 @@ var YourCoursesView = Backbone.View.extend({
 		'<ul>'+
 			'{{#each signup}}' +
 				'<li><h3>{{name}}</h3>{{coursDay}}{{time}}{{location}}</li>' +
-				'<a href="/api/unsign" class="btn btn-danger confirm-delete">Remove Course</a><br/><br/>' +
+				'<a href="/test/signups/{{_id}}" data-id="{{_id}}"  class="btn btn-danger confirm-delete">Remove Course</a><br/><br/>' +
+				'<li>{{_id}}</li>'+
 			'{{/each}}'+
 		'</ul>'
 		
@@ -16,37 +17,51 @@ var YourCoursesView = Backbone.View.extend({
 		this.model = new UserMongooseModel();
 		this.model.fetch({reset: true});
 		this.listenTo(this.model, "change", this.render );
+		
+		Handlebars.registerHelper("caps", function(text){
+			return text.toUpperCase();
+		});
+
+		//listen to change events and reset the view when items are deleted
+		
 	},
+
+	//add a handlebars helper function where each link pulls the attrID and passes it to AJAX
+
+	
 
 	deleteItem: function(event) {
 		event.preventDefault();
-		console.log(this.model.get('signup'));
-		this.model.destroy(
-			{
-				success: function (model) {
+		var attrID = "";
+		$('.btn-danger').on('click', function(event) {
+  			event.preventDefault();
+  			var attrID = $(this).data('id');
+  			console.log(attrID);
 
-					console.log( this.model + 'destroyed!!');
-					/*jQuery.ajax({
-    					url: "/api/unsign", 
-    					type: "DELETE",
-				    success: function (data, textStatus, jqXHR) { 
-				        console.log("Delete response:"); 
-				        console.dir(data); 
-				        console.log(textStatus); 
-				        console.dir(jqXHR); 
-				    }
-					});*/
-				}
-			});
+  			 jQuery.ajax({
+        		url: "/test/signups/" + attrID, 
+        		type: "DELETE",
+        
+        		success: function (data, textStatus, jqXHR) { 
+          			console.log("Post response:"); 
+          			console.dir(data); 
+          			console.log(textStatus); 
+          			console.dir(jqXHR); 
+        		}
+      		});
 
-		var name = this.model.get('name');
-      	var courseDay = this.model.get('courseDay');
-      	var time = this.model.get('time');
-      	var location = this.model.get('location');
-        var rsvp = this.model.get('rsvp');
+		});
+
+
+     
 	},
 
 	render: function() {
+
+		/*$(this.el).html(_.map([
+
+		
+		]));*/
 
 		this.delegateEvents({
 			'click .btn-danger' : 'deleteItem'

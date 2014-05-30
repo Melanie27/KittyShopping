@@ -6,6 +6,7 @@
 		"": "homePage",
 		"survey": "questionCollection",
 		"take-quiz" : "takeQuiz",
+		"login": "loginUser",
 		"results/:kitty" : "surveyResults",
 		"cart-list"		: "cartList",
 		"list" : "List",
@@ -16,9 +17,7 @@
 		"store-locator" : "storeLocator",
 		"class-schedule" : "classSchedule",
 		"view-courses" : "viewCourses",
-		
-	
-		"shop-form" : "shopForm",
+			
 
 		"auth-index" : "authIndex",
 		"welcome-view" : "welcomeView",
@@ -34,15 +33,7 @@
 
 	initialize: function() {
 
-		
-		//shopping cart form:
-		this.userModel = new UserModel();
-		this.userFormView = new UserFormView ({model: this.userModel});
-
-
-		//what is Kitty schedules that is being passed??
 		//Class Schedule benknowscode - need to get this view working with handlebars
-		//this.scheduleCollection = new SchedulesCollection(kittySchedules);
 
 		this.scheduleCollection = new SchedulesCollection();
 		this.scheduleCollection.fetch();
@@ -179,6 +170,7 @@
 		this.authIndexView = new AuthIndexView();
 
 		this.takeQuizView = new TakeQuizView();
+		this.loginView = new LoginView();
 
 		this.homePageModel = new HomePageModel()
 		this.homePageView = new HomePageView({
@@ -253,6 +245,10 @@
 		$('#app2').html(this.takeQuizView.render().el);
 	},
 
+	loginUser: function() {
+		$('#app2').html(this.loginView.render().el);
+	},
+
 	notFound: function() {
 		$('#app2').html('404, bitch');
 	},
@@ -267,11 +263,7 @@
 	},
 
 
-	shopForm: function() {
-		$('#app2').html(this.userFormView.render().el);
-		//$('#app2').html('the form shall be here');
 
-	},
 
 	classSchedule: function() {
 		$('#app2').html( this.scheduleTableView.render().$el.attr('id', 'schedules') );

@@ -14,15 +14,13 @@ var ShoppingCartRenderView = Backbone.View.extend({
 	initialize: function() {
 		
 		this.model.fetch();
-		//this.listenTo(this.model, "change", this.render);
-
+	
 	},
 
 	
 
 	save: function() {
 		this.setModelData();
-
 			this.model.save(this.model.attributes, {
 				success: function (model) {
 					app.orderedSuppliesCollection.add(model);
@@ -34,12 +32,9 @@ var ShoppingCartRenderView = Backbone.View.extend({
 	},
 
 	setModelData: function() {
-		
 		this.model.set({
 			quantity: $(this.el).find('input.quantity').val()
 		});
-
-		
 	},
 
 	render: function() {		
@@ -50,9 +45,6 @@ var ShoppingCartRenderView = Backbone.View.extend({
 			'<span class="label">' + 'Quantity: ' + '</span>' + 
 			'<input class="quantity" value="' + this.model.get('quantity') + '">' +
 			'<button class="save">Save Quantity to Cart</button><br/>' +
-			
-
-			
 			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
 			'</form>' +
 			'<span class="description">' + this.model.get('description') + '</span>', this.model.calculateAmount(),

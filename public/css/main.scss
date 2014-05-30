@@ -1,16 +1,44 @@
 /*Main*/
 
+/*colors*/
+$purple: #61448d;
+$green:  #c4dfda;
+
 body {
 	background-color: #bababa;
+	font-family:arial;
+}
+
+h2 {
+	color: $purple;
+}
+
+#app2 {
+	min-height:500px;
+	
 }
 
 .login-bar {
-	background-color: #61448d;
+	background-color: $purple;
 	border-radius:5px;
 	color:#BABABA;
 	padding:5px;
 
 
+}
+
+.yoga-auth {
+	display:block;
+}
+
+.btn-warning {
+	background-color: $green;
+	border-color: $purple;
+}
+
+.btn-warning:hover {
+	background-color: black;
+	border-color: $green;
 }
 
 .navbar-default {
@@ -81,12 +109,9 @@ body {
 
 /*Home Page*/
 
-h2 {
-	color: green;
-}
 
 .landing {
-	height: 400px;
+	
 	border: solid 1px blue;
 
 	p {
@@ -252,4 +277,11 @@ table.single-supply-view {
 		margin-top:20px;
 
 	}
+}
+
+/*Signup*/
+
+.yoga-auth .form-control {
+
+	width:50%;
 }

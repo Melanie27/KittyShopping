@@ -15,20 +15,10 @@ defaults: {
 		        "imagepathsm" : "big-max-fountain.jpg" 
 		            
         		
-			},
+			}
 
-		validate: function (attrs) {
-			if (attrs.quantity < 0 ) {
-
-				return "Quantity cannot be negative"
-
-				}
-			},
-
-		calculateAmount: function () {
-			
-			//return '$' + this.get('price') * this.get('quantity') + '.00';
-		}
+		
+		
 
 		
 
