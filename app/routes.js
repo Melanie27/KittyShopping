@@ -150,6 +150,15 @@ app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 			});
 			if(found) {
 				user.signup.splice(found, 1);
+				console.log(user.signup);
+				user.save(function(err){
+    			if(!err){
+    				console.log('yay');
+    			}
+    			else {
+    				console.log(err);
+    			}
+    		});
 				res.json(200, {status: 'deleted'});
   			} else {
     			res.json(404, {status: 'invalid survey question deletion'});

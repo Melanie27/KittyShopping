@@ -35,7 +35,7 @@ var ScheduleRowView = Backbone.View.extend({
     
       
       jQuery.ajax({
-        url: "/test/signups/5387c1a0fb06e48f4658170c", 
+        url: "/test/signups/5388a4c88754b8af4da5e430", 
         type: "DELETE",
         
         success: function (data, textStatus, jqXHR) { 
