@@ -144,7 +144,7 @@ app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 			console.log(singlesignup._id);
 			
 			user.signup.forEach(function (singlesignup, index) {
-				if (singlesignup._id === req.params.id) {
+				if (singlesignup._id.toString() === req.params.id) {
 					found = index;
 				}
 			});
