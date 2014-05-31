@@ -1,16 +1,24 @@
 var ProductsOrderedView = Backbone.View.extend({
 	template: Handlebars.compile(
 		'<h1>Ordered Items</h1>' +
-		'{{#each models}}' +
+		'<h4>{{local.petname}} is a lucky beast!</h4>'+
+		/*'{{#each models}}' +
 		'{{attributes.title}}<br/>' +
 		'<label>Quantity :  </label><span class="quantity" style="font-size:16px;">{{attributes.quantity}}</span><br/>' +
 		'<img src="photos/kitty-store/{{attributes.imagepathsm}}" class="img-polaroid" style="width:150px;"/>' +
-		'<button type="button" class="btn btn-secondary">Remove from Cart</button><br/>' +
-		'{{/each}}' 
+		'<button type="button" data-id="{{id}}" class="btn btn-secondary">Remove from Cart</button><br/>' +
+		'{{/each}}'+*/
+		'{{#each orders}}' +
+		'{{title}}<br/>' +
+		'<label>Quantity :  </label><span class="quantity" style="font-size:16px;">{{quantity}}</span><br/>' +
+		'<img src="photos/kitty-store/{{imagepathsm}}" class="img-polaroid" style="width:150px;"/>' +
+		'<button type="button" data-id="{{_id}}" class="btn btn-secondary">Remove from Cart</button><br/>' +
+		'{{/each}}'  
 	),
 
 	initialize: function() {
-
+		this.model = new UserMongooseModel();
+		this.model.fetch({reset: true});
 	},
 
 	render: function() {
@@ -18,24 +26,31 @@ var ProductsOrderedView = Backbone.View.extend({
 			'click .btn-secondary' : 'remove'
 		});
 
-		this.$el.html(this.template(this.collection));
+		this.$el.html(this.template(this.model.attributes));
 		return this;
 	},
 
 	remove: function(event) {
 		event.preventDefault();
-		//console.log(this.model.get('_id'));
-		jQuery.ajax({
-        url: "/test/orders/" + '5388cd807738d6e3564f6b36', 
-        type: "DELETE",
+		var attrID = "";
+		$('.btn-secondary').on('click', function(event) {
+  			event.preventDefault();
+  			var attrID = $(this).data('id');
+  			console.log(attrID);
+
+  			 jQuery.ajax({
+        		url: "/test/orders/" + attrID, 
+        		type: "DELETE",
         
-        success: function (data, textStatus, jqXHR) { 
-          console.log("Post response:"); 
-          console.dir(data); 
-          console.log(textStatus); 
-          console.dir(jqXHR); 
-        }
-      });
+        		success: function (data, textStatus, jqXHR) { 
+          			console.log("Post response:"); 
+          			console.dir(data); 
+          			console.log(textStatus); 
+          			console.dir(jqXHR); 
+        		}
+      		});
+
+		});
 	},
 
 });

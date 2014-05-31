@@ -198,8 +198,8 @@
 
 		//orders view
 		this.productsOrderedView = new ProductsOrderedView({
-			collection: this.productsOrderedCollection
-		}); 
+			//collection: this.productsOrderedCollection
+		});
 
 		//new instance of schedules collection for the classes rsvp'd for
 		this.coursesReservedCollection = new SchedulesCollection();

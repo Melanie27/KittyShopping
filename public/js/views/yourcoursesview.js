@@ -18,17 +18,9 @@ var YourCoursesView = Backbone.View.extend({
 		this.model.fetch({reset: true});
 		this.listenTo(this.model, "change", this.render );
 		
-		Handlebars.registerHelper("caps", function(text){
-			return text.toUpperCase();
-		});
-
-		//listen to change events and reset the view when items are deleted
-		
 	},
 
 	//add a handlebars helper function where each link pulls the attrID and passes it to AJAX
-
-	
 
 	deleteItem: function(event) {
 		event.preventDefault();

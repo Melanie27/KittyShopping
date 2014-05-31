@@ -6,7 +6,7 @@ var WelcomeUserView = Backbone.View.extend ({
 		'<a href="/logout" class="btn btn-default btn-sm logout">Logout</a>' +
 		'<h4><span class="welcome">Welcome:</span> {{local.email}}</h4>'+
 		'<h4><span class="welcome">Your pet:</span> {{local.petname}} is a '+
-		'<a href="#results/Grumpy">{{kittenType}}</a> kitten</h4><br/>'+
+		'<a href="#results/{{kittenType}}">{{kittenType}}</a> kitten</h4><br/>'+
 		'<div class="clearfix"></div>' +
 		'</div>'
 	),
