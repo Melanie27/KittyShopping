@@ -1,7 +1,7 @@
 var ProductDetailsView2 = Backbone.View.extend({
 	initialize: function() {
-		
-		this.listenTo(this.model, "change", this.render);
+		//	this.listenTo(this.collection, "reset", this.render);
+		//this.listenTo(this.model, "change", this.render);
 	
 	},
 
@@ -38,12 +38,15 @@ var ProductDetailsView2 = Backbone.View.extend({
 			var title = this.model.get('title');
 			var quantity = this.model.get('quantity');
 			var price = this.model.get('price');
+			var imagepathsm = this.model.get('imagepathsm');
+			console.log(imagepathsm);
 		//Post to a specific users orders array
 			jQuery.post("/api/orders", {
 				"title": title,  
   				"description": description, 
   				"quantity" : quantity,
-  				"price" : price	
+  				"price" : price,
+  				"imagepathsm" : imagepathsm,	
   						
 				}, function (data, textStatus, jqXHR) { 
     				console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 

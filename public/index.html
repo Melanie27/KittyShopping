@@ -87,6 +87,7 @@
 	<script type="text/javascript" src="js/views/checkoutlistview.js"></script>
 
 	<script type="text/javascript" src="js/views/authindexview.js"></script>
+	<script type="text/javascript" src="js/views/authsignupview.js"></script>
 	<script type="text/javascript" src="js/views/authprofileview.js"></script>
 
 	<script type="text/javascript" src="js/views/takequizview.js"></script>
@@ -146,20 +147,11 @@
 		</script>
 
 		<script type="text/template" id="signup">
-
-		
 		</script>
 </head>
 <body>
 
-	
-	<div class="container" id="app"></div>
-
-		<div class="welcome-view container">
-			<section class="row">
-			</section>
-		</div>
-
+	<div class="welcome-view container"></div>
 	<div class="container">
 		<section class="row">
 			<div class="col-lg-3">
@@ -179,51 +171,27 @@
 			<div class="clearfix"></div>
 		</section>
 	</div>
-
-
 	<div class="container">	
-		
-		<!-- Serviing a static image ... this is the path<img src="photos/chili-con-carne.jpg"/>-->
-
 		<ul class="nav navbar navbar-default nav-pills">
-			
 			<li><a href="#/take-quiz">Take the quiz</a></li>
 			<li><a href="#/survey">Survey List Collection</a></li>
-			<!--<li><a href="#/cart-list">Shopping Cart List</a></li>
-			<li><a href="#/list">List Only</a></li>-->
-			<!--<li><a href="#/shop-form">Shopping Cart Form</a></li>-->
 			<li><a href="#/store-locator">Store Locator 2</a></li>
 			<li><a href="#/class-schedule">Class Schedule</a></li>
 			<li><a href="#/view-courses">Your Courses</a></li>
 			<li><a href="#/auth-index">Auth Index</a></li>
 			<li><a href="#/signup">Signup</a></li>
-
-
-			<!--<li><a href="#/welcome-view">Welcome</a></li>-->
-			
-			<!--<li><a href="#/prod2/53764063a512a41affbb8994">Cat Shelf2</a></li>-->
 			<li><a href="#/shopping-cart">List Only</a></li>
+			<li><a href="#/view-cart">View Only</a></li>
 		</ul>
 	</div>	
-
-
-	
-	
-
-
 <!--need some logic that says - if logged in then show this view-->
 	<script>
-		this.welcomeUserView = new WelcomeUserView({
-
-		});
+		this.welcomeUserView = new WelcomeUserView({});
 		$('.welcome-view').html(this.welcomeUserView.render().el);
 	</script>
 
-	<div class="container" id="app2">
-		
-	</div>
+	<div class="container" id="app2">	</div>
 	<div class="clearfix"></div>
-	
 	<div class="container footer">
 		<address><p>Copyright 2014. YogaKitten<sup>TM</sup> Santa Monica, CA</p></address>
 	</div>

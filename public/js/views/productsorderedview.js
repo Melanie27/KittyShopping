@@ -2,12 +2,6 @@ var ProductsOrderedView = Backbone.View.extend({
 	template: Handlebars.compile(
 		'<h1>Ordered Items</h1>' +
 		'<h4>{{local.petname}} is a lucky beast!</h4>'+
-		/*'{{#each models}}' +
-		'{{attributes.title}}<br/>' +
-		'<label>Quantity :  </label><span class="quantity" style="font-size:16px;">{{attributes.quantity}}</span><br/>' +
-		'<img src="photos/kitty-store/{{attributes.imagepathsm}}" class="img-polaroid" style="width:150px;"/>' +
-		'<button type="button" data-id="{{id}}" class="btn btn-secondary">Remove from Cart</button><br/>' +
-		'{{/each}}'+*/
 		'{{#each orders}}' +
 		'{{title}}<br/>' +
 		'<label>Quantity :  </label><span class="quantity" style="font-size:16px;">{{quantity}}</span><br/>' +
@@ -19,18 +13,19 @@ var ProductsOrderedView = Backbone.View.extend({
 	initialize: function() {
 		this.model = new UserMongooseModel();
 		this.model.fetch({reset: true});
+		this.listenTo(this.model, "add", this.render);
 	},
 
 	render: function() {
 		this.delegateEvents({
-			'click .btn-secondary' : 'remove'
+			'click .btn-secondary' : 'deleteItem'
 		});
 
 		this.$el.html(this.template(this.model.attributes));
 		return this;
 	},
 
-	remove: function(event) {
+	deleteItem: function(event) {
 		event.preventDefault();
 		var attrID = "";
 		$('.btn-secondary').on('click', function(event) {

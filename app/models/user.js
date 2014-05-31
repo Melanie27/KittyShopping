@@ -17,6 +17,7 @@ var userSchema = mongoose.Schema({
         description: String, 
         quantity : String,
         price : Number,
+        imagepathsm:  String,
         modified: { type: Date, default: Date.now }
     }],
     signup: [{

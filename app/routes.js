@@ -66,7 +66,7 @@ module.exports = function(app, passport) {
 
 //read a list of ordered products
 app.get('/api/orders', function(req, res) {
-  res.send('orders');
+  res.send(req.orders);
 });
 
 app.get('/api/kittens', function(req, res) {
@@ -207,7 +207,7 @@ app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 });
 
 
-
+//can we just post this to test/orders  instead??
 app.post('/api/signup', isLoggedIn, function (req, res){
 
 	User.findOne({'_id': req.user.id }, function(err, user) {
@@ -243,6 +243,7 @@ app.post('/api/signup', isLoggedIn, function (req, res){
 
 });
 
+//can we just post this to test/orders  instead??
 app.post('/api/orders', isLoggedIn, function (req, res){
 
 	User.findOne({'_id': req.user.id }, function(err, user) {
@@ -254,6 +255,7 @@ app.post('/api/orders', isLoggedIn, function (req, res){
 			user.orders.description = req.body.description;
 			user.orders.title = req.body.title;
 			user.orders.price = req.body.price;
+			user.orders.imagepathsm = req.body.imagepathsm;
 			user.orders.modified = req.body.modified;
 			
 
@@ -262,6 +264,7 @@ app.post('/api/orders', isLoggedIn, function (req, res){
 					description: user.orders.description,
 					quantity: user.orders.quantity,
 					price: user.orders.price,
+					imagepathsm: user.orders.imagepathsm,
 					modified: user.orders.modified
 				}
 				}},{safe:true, upsert:true},function(err){

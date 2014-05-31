@@ -4,7 +4,12 @@ var SubmitQuizView = Backbone.View.extend({
 render: function() {
 	 var html = 
 		'<br>'+
+		//'<form action="/quiz" method="post">' +
 		'<button id="tally" class="btn btn-primary submit" value="submit">Submit Quiz</button>'
+		//'</form>'
+		/*'<form action="/login" method="post">' +
+		'<button type="submit" class="btn btn-warning btn-lg">Login</button>'+
+		'</form>'*/
 		$(this.el).html(html);
 		return this;
 },
@@ -17,6 +22,10 @@ events: {
 },
 
 
+initialize: function() {
+	
+},
+
 display: function() {
 	app.navigate('survey/:kitty', true);
 },
@@ -24,9 +33,14 @@ display: function() {
 
 submitQuiz: function(data) {
 
-	//trigger modal with login info - then move the rest to "see results button"
-	//$(this.el).append(new AuthSignupView().render().el);
+	//modal window to enter username and pass first
+	
 	$('.questions, #tally').hide();
+	//alert('please register an account to see quiz results');
+	//$(this.el).append(new AuthSignupView().render().el);
+	//$(this.el).append(new AuthProfileView().render().el);		
+
+	
 
 	var GrumpyCount = 0
 	var HipsterCount = 0
@@ -43,23 +57,27 @@ submitQuiz: function(data) {
 		if (values == "Grumpy") {
 			var GrumpyCount = GrumpyCount + 1
 		} 
+		//console.log('Total Grumpies:' + GrumpyCount);
 
 		if (values == "Hipster") {
 			var HipsterCount = HipsterCount + 1
 		} 
+		//console.log('Total Hipsters:' + HipsterCount);
 
 		if (values == "Pudge") {
 			var PudgeCount = PudgeCount + 1
 		} 
-		
+		//console.log('Total Pudgies:' + PudgeCount);
+
 		if (values == "Bub") {
 			var BubCount = BubCount + 1
 		} 
+		//console.log('Total Bubs:' + BubCount);
 
 		if (values == "Meow") {
 			var MeowCount = MeowCount + 1
 		} 
-		
+		//console.log('Total Meow:' + MeowCount);
 	}
 
 	var winner = "";
@@ -98,8 +116,14 @@ submitQuiz: function(data) {
 	}
 
 	console.log(winner);
+	 
+
+	//prompt('Enter the name of your furry Beast');
+	//app.navigate("survey/results", {trigger: true});*/
 
 }
+
+
 
 
 });

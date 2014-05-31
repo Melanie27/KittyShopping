@@ -6,7 +6,6 @@ var SurveyQuestionListView = Backbone.View.extend ({
 
 	initialize: function() {
 		this.listenTo(this.collection, "reset", this.render);
-
 	},
 
 	render: function() {
@@ -23,7 +22,7 @@ var SurveyQuestionListView = Backbone.View.extend ({
 		);
 
 		$(this.el).append(new SubmitQuizView ({
-			collection: this.surveyQuestionListView
+				collection: this.surveyQuestionListView
 		}).render().el);
 
 

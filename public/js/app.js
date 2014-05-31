@@ -24,11 +24,10 @@
 		
 		"prod2/:product" : "productDetails2",
 		"shopping-cart" : "shoppingCart",
+		"view-cart" : "viewCart",
 		"orders/:products": "orderItem",
 		":whatever": "notFound",
 		
-	
-
 	},
 
 	initialize: function() {
@@ -41,7 +40,6 @@
    			collection: this.scheduleCollection 
    		});
    	
-
 
 	//Shopping Cart declarations
 		 //collection of ordered items 
@@ -62,7 +60,6 @@
 			orderedSuppliesCollection: this.orderedSuppliesCollection
 	
 		}
-
 		
 		 //initialize ordered items model
 		this.supplyCategoryModel = new SupplyCategory();
@@ -243,6 +240,7 @@
 
 	takeQuiz: function() {
 		$('#app2').html(this.takeQuizView.render().el);
+		//$('#app2').html(this.authsignupView.render().el);
 	},
 
 	loginUser: function() {
@@ -255,13 +253,9 @@
 
 	authIndex: function() {
 		
-		//this.userMongooseModel.set('_id', user)
-		//this.userMongooseModel.set('_id', user);
-		//this.userMongooseModel.fetch();
 		console.log(this.userMongooseModel);
 		$('#app2').html(this.authProfileView.render().el);
 	},
-
 
 
 
@@ -294,9 +288,12 @@
 	},
 
 	cartList: function() {
-		//this.supplyCategoryModel.fetch();
-		//this.supplyCategoriesCollection.fetch();
+		
 		$('#app2').html(this.shoppingCartFullPageView.render().el);
+	},
+
+	viewCart: function() {
+		$('#app2').html(this.productsOrderedView.render().el);
 	},
 
 	surveyResults: function(kitty) {

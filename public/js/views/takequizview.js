@@ -1,5 +1,10 @@
 var TakeQuizView = Backbone.View.extend({
 
+	events: {
+		'click .take-quiz': 'triggerLogin'
+
+	},
+
 	template: Handlebars.compile(
 		'<div class="container yoga-auth">' +
 			'<div class="col-sm-6 col-sm-offset-3">' +
