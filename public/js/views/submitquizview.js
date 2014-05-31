@@ -1,15 +1,10 @@
 var SubmitQuizView = Backbone.View.extend({
-	tagName: 'button',
+	
 
 render: function() {
 	 var html = 
 		'<br>'+
-		//'<form action="/quiz" method="post">' +
-		'<button id="tally" class="btn btn-primary submit" value="submit">Submit Quiz</button>'
-		//'</form>'
-		/*'<form action="/login" method="post">' +
-		'<button type="submit" class="btn btn-warning btn-lg">Login</button>'+
-		'</form>'*/
+		'<button id="tally1" class="btn btn-primary submit" value="submit">Submit Quiz</button><br/>'
 		$(this.el).html(html);
 		return this;
 },
@@ -17,14 +12,10 @@ render: function() {
 
 events: {
 
-	'click #tally' : 'submitQuiz'
-
-},
-
-
-initialize: function() {
+	'click #tally1' : 'submitQuiz'
 	
 },
+
 
 display: function() {
 	app.navigate('survey/:kitty', true);
@@ -32,16 +23,8 @@ display: function() {
 
 
 submitQuiz: function(data) {
-
-	//modal window to enter username and pass first
 	
 	$('.questions, #tally').hide();
-	//alert('please register an account to see quiz results');
-	//$(this.el).append(new AuthSignupView().render().el);
-	//$(this.el).append(new AuthProfileView().render().el);		
-
-	
-
 	var GrumpyCount = 0
 	var HipsterCount = 0
 	var PudgeCount = 0
@@ -51,33 +34,25 @@ submitQuiz: function(data) {
 	for(var i=0;i<formsCollection.length;i++) {
    		var collect = formsCollection[i];
    		var values = $(collect).find('input.quiz').filter(':checked').val();
-		//console.log(values);
-
-		
 		if (values == "Grumpy") {
 			var GrumpyCount = GrumpyCount + 1
 		} 
-		//console.log('Total Grumpies:' + GrumpyCount);
 
 		if (values == "Hipster") {
 			var HipsterCount = HipsterCount + 1
 		} 
-		//console.log('Total Hipsters:' + HipsterCount);
 
 		if (values == "Pudge") {
 			var PudgeCount = PudgeCount + 1
 		} 
-		//console.log('Total Pudgies:' + PudgeCount);
 
 		if (values == "Bub") {
 			var BubCount = BubCount + 1
 		} 
-		//console.log('Total Bubs:' + BubCount);
 
 		if (values == "Meow") {
 			var MeowCount = MeowCount + 1
 		} 
-		//console.log('Total Meow:' + MeowCount);
 	}
 
 	var winner = "";
@@ -116,10 +91,6 @@ submitQuiz: function(data) {
 	}
 
 	console.log(winner);
-	 
-
-	//prompt('Enter the name of your furry Beast');
-	//app.navigate("survey/results", {trigger: true});*/
 
 }
 

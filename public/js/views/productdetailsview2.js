@@ -14,7 +14,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 			'<img src="photos/kitty-store/' + this.model.attributes.imagepathsm + '" class="img-polaroid" style="width:150px; max-height:100px; overflow:hidden;"/>' +
 			'<span class="label">' + 'Quantity: ' + '</span>' + 
 			'<input class="quantity" name="quantity" value="' + this.model.get('quantity') + '">' +
-			'<button type="button" class="btn btn-primary">Save Quantity</button><br/>' +
+			'<button type="button" class="btn btn-save">Save Quantity</button><br/>' +
 			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
 			'</form>' +
 			'<span class="description">' + this.model.get('description') + '</span><br/>' +
@@ -26,7 +26,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 		}));
 
 		this.delegateEvents({
-			'click .btn-primary' : 'save'
+			'click .btn-save' : 'save'
 		})
 
 		return this;

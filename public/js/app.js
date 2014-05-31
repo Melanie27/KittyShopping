@@ -34,6 +34,8 @@
 
 		//Class Schedule benknowscode - need to get this view working with handlebars
 
+		
+
 		this.scheduleCollection = new SchedulesCollection();
 		this.scheduleCollection.fetch();
    		this.scheduleTableView = new ScheduleTableView({ 
@@ -204,6 +206,7 @@
 		this.yourCoursesView = new YourCoursesView();
 
 	},
+
 
 	viewCourses: function() {
 		$('#app2').html(this.yourCoursesView.render().el);
