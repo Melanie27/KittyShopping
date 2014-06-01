@@ -18,7 +18,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
 			'</form>' +
 			'<span class="description">' + this.model.get('description') + '</span><br/>' +
-			'<a href="#/orders/' + this.model.attributes._id + '">View shopping-cart</a>', this.model.calculateAmount(),
+			'<a href="#/view-cart">View shopping-cart</a>', this.model.calculateAmount(),
 
 		], function(val, key) {
 			return '<li class="shopping-item">' + val + '</li>';	
@@ -39,7 +39,6 @@ var ProductDetailsView2 = Backbone.View.extend({
 			var quantity = this.model.get('quantity');
 			var price = this.model.get('price');
 			var imagepathsm = this.model.get('imagepathsm');
-			console.log(imagepathsm);
 		//Post to a specific users orders array
 			jQuery.post("/api/orders", {
 				"title": title,  

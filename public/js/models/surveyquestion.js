@@ -1,4 +1,4 @@
-var SurveyQuestion = Backbone.NestedModel.extend({
+var SurveyQuestion = Backbone.Model.extend({
 	comparator: 'id',
 	urlRoot: '/questions',
 	defaults: 
@@ -16,10 +16,4 @@ var SurveyQuestion = Backbone.NestedModel.extend({
 					}
 			},
 
-	getChecked: function () {
-		
-		var values = $('input.quiz').filter(':checked').val();
-		console.log(values);
-	}
-	
 });

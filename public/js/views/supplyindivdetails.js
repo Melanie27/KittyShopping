@@ -12,14 +12,14 @@ render: function() {
 		var supplyName = supply.name;
 		var supplyImage = supply.imagepathsm;
 		var supplyDesc = supply.description;
-		//console.log(supplyName);
+		console.log(supplyName);
 
 		//outputTitle +=
 	}
 
 	var markup = '<div>' +
-	'<h1>' + supplyName + '</h1>' +
-	'<div style="width:200px;">' +
+	
+	/*'<div style="width:200px;">' +
 	'<input type="button" value="back to category"/>' +
 	'</div>' +
 	'<div style="width:200px;">' +
@@ -28,7 +28,7 @@ render: function() {
 	'</div>' +
 	'<br/><br/>' +
 	'<img src="photos/kitty-store/' + supplyImage + '" class="img-polaroid" />' +
-	'<h1>' + supplyDesc + '</h1>' +
+	'<h1>' + supplyDesc + '</h1>' +*/
 	'</div>';
 
 	this.$el.html(markup);

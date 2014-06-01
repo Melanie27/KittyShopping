@@ -5,7 +5,7 @@ var ProductMenuView = Backbone.View.extend({
 		'{{#each models}}<li><h2>{{attributes.title}}</h2>' +
 		'<a href="#/prod2/{{attributes._id}}">View Details --> </a><br/>' +
 		'<span class="price">' + '$' + '{{attributes.price}}' + '.00' + '</span><br/>' +
-		'<a href="#/orders/{{attributes._id}}">Add to shopping-cart</a>' +
+		/*'<a href="#/orders/{{attributes._id}}">Add to shopping-cart</a>' +*/
 		'<img src="photos/kitty-store/{{attributes.imagepathsm}}" class="img-polaroid" style="width:150px; max-height:100px; overflow:hidden;"/></li><br/>{{/each}}' +
 		'<br/>' +
 		'</ul>'
@@ -14,10 +14,6 @@ var ProductMenuView = Backbone.View.extend({
 
 	initialize: function() {
 		this.listenTo(this.collection, "reset", this.render);
-		//this.listenTo(this.collection, "add", this.render);
-		//this.listenTo(this.collection, "remove", this.render);
-
-
 	},
 
 
