@@ -8,8 +8,8 @@ var ResultsModel = Backbone.AssociatedModel.extend ({
 	}],
 
 	defaults: {
-		id : "grumpy",
-		url : "grumpy",
+		id : "Grumpy",
+		url : "Grumpy",
 		name : "Default",
 		kittenType   : "Grumpy",
 		photo : "grumpy.jpg",

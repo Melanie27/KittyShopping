@@ -286,13 +286,9 @@ app.post('/api/orders', isLoggedIn, function (req, res){
 app.post('/api/kittens', isLoggedIn, function (req, res, done) {
   
   User : req.user // get the user out of session and pass to template
-  console.log(req.user.kittenType);
-	console.log(req.body.kittenType); 	
-
+  
  	User.kittenType = req.body.kittenType;
- 	console.log(User.kittenType);
-    
-    User.findOne({ 'kittenType': req.user.kittenType}, function(err, user) {
+    User.findOne({ '_id': req.user.id}, function(err, user) {
     	if(err) 
     		return done(err);
 
@@ -300,7 +296,7 @@ app.post('/api/kittens', isLoggedIn, function (req, res, done) {
     		user.kittenType = req.body.kittenType;
     		user.save(function(err){
     			if(!err){
-    				console.log('yay');
+    				console.log('kitty saved');
     			}
     			else {
     				console.log(err);

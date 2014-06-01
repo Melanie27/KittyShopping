@@ -12,6 +12,7 @@ var userSchema = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
+    kittenType   : String,
     orders: [{
         title: String,  
         description: String, 
@@ -28,8 +29,6 @@ var userSchema = mongoose.Schema({
         url: String,
         modified: { type: Date, default: Date.now }
     }],
-
-    kittenType   : String,
     profilePhoto : String,
     profilePage :  String,
     local            : {
