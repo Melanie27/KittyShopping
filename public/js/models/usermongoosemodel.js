@@ -3,6 +3,7 @@ var UserMongooseModel = Backbone.Model.extend({
 	idAttribute: "_id",
 	defaults: {
 		kittenType: 'Grumpy',
+		
 		_id : '',
 		__v: 0,
     	local: {

@@ -8,25 +8,16 @@
 		"take-quiz" : "takeQuiz",
 		"login": "loginUser",
 		"results/:kitty" : "surveyResults",
-		//"cart-list"		: "cartList",
-		"list" : "List",
 		"updated-cart" : "updatedCart",
-		
-		
 		"store-locator" : "storeLocator",
 		"class-schedule" : "classSchedule",
 		"view-courses" : "viewCourses",
-			
-
 		"auth-index" : "authIndex",
 		"welcome-view" : "welcomeView",
-		
 		"prod2/:product" : "productDetails2",
 		"shopping-cart" : "shoppingCart",
 		"view-cart" : "viewCart",
-		//"orders/:products": "orderItem" - in productmenuview,
-		":whatever": "notFound",
-		
+		":whatever": "notFound",	
 	},
 
 	initialize: function() {
@@ -74,19 +65,22 @@
    			collection: this.scheduleCollection 
    		});
 		this.coursesReservedCollection = new SchedulesCollection();
-		this.yourCoursesView = new YourCoursesView();
+		//this.signupsMongooseModel = new SignupsMongooseModel();
+		this.yourCoursesView = new YourCoursesView({
+			model: this.userMongooseModel
+		});
 
 		//MISC
 		//Definitely using this - will put the photo here
 		this.authProfileView = new AuthProfileView();
 		//are we using this??
 		this.authIndexView = new AuthIndexView();
-		this.takeQuizView = new TakeQuizView();
-		this.loginView = new LoginView();
-		this.homePageModel = new HomePageModel()
-		this.homePageView = new HomePageView({
-			model: this.homePageModel
+		this.takeQuizView = new TakeQuizView({
+			model: this.userMongooseModel
 		});
+		this.loginView = new LoginView();
+		
+		this.homePageView = new HomePageView();
 
 	},
 
@@ -95,17 +89,6 @@
 		$('#app2').html(this.yourCoursesView.render().el);
 	},
 
-	/*orderItem: function(product) {
-			this.supplyCategoriesCollection.fetch();
-			var orderedItem = this.supplyCategoriesCollection.get(product);
-			this.productsOrderedCollection.add(orderedItem);
-			$('#app2').html(this.productsOrderedView.render().el);
-
-	},*/
-
-	shoppingCart: function() {
-		$('#app2').html(this.productMenuView.render().el);	
-	},
 
 	productDetails2: function(product) {
 		this.supplyCategoryModel.set('_id', product);
@@ -113,7 +96,6 @@
 		$('#app2').html(this.productDetailsView2.render().el);
 	},
 	
-
 	homePage: function() {
 		$('#app2').html(this.homePageView.render().el);
 	},
@@ -124,24 +106,15 @@
 
 	takeQuiz: function() {
 		$('#app2').html(this.takeQuizView.render().el);
-		//$('#app2').html(this.authsignupView.render().el);
 	},
 
 	loginUser: function() {
 		$('#app2').html(this.loginView.render().el);
 	},
 
-	notFound: function() {
-		$('#app2').html('404, bitch');
-	},
-
 	authIndex: function() {
-		
-		console.log(this.userMongooseModel);
 		$('#app2').html(this.authProfileView.render().el);
 	},
-
-
 
 	classSchedule: function() {
 		$('#app2').html( this.scheduleTableView.render().$el.attr('id', 'schedules') );
@@ -151,14 +124,16 @@
 		$('#app2').html( this.scheduleRowView.render().el);
 	},
 
-
 	storeLocator: function() {
 		$('#app2').html(this.storeLocateView.render().el);
 		$('#map-container').storeLocator({'slideMap' : false, 'defaultLoc': true, 'defaultLat': '34.01945', 'defaultLng' : '-118.49119', 'dataType': 'json', 'dataLocation': 'locations.json' });
-       
+  
 	},
 
-	
+	shoppingCart: function() {
+		$('#app2').html(this.productMenuView.render().el);	
+	},
+
 	viewCart: function() {
 		$('#app2').html(this.productsOrderedView.render().el);
 	},
@@ -173,10 +148,11 @@
 		$('#app2').html(this.surveyQuestionListView.render().el);
 	},
 
-	
-	
-});
+	notFound: function() {
+		$('#app2').html('404, bitch');
+	},
 
+});
 
 
 var app = new AppRouter();

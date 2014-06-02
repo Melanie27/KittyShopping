@@ -194,6 +194,12 @@ table {
 
 #schedules {
 
+	width:85%;
+
+	table{
+		float:left;
+	}
+
 	th {
 
 	 white-space: nowrap; cursor: pointer; 
@@ -202,13 +208,13 @@ table {
 
 	th span { display: inline-block; margin-left: 5px; }
 
-	[column="name"] { width: 150px; }
-	[column="description"] { width: 28%; }
-	[column="recommeded"] { width: 250px; }
-	[column="time"] { width: 90px; }
-	[column="studio"] { width: 120px; }
-	[column="day"] { width: 90px; }
-	[column="signup"] { width: 60px; }
+	[column="name"] { width: 14%; }
+	[column="description"] { width: 24%; }
+	[column="recommeded"] { width: 17%; }
+	[column="time"] { width: 11%; }
+	[column="studio"] { width: 14%; }
+	[column="courseDay"] { width: 12%; }
+	[column="signup"] { width: 7%; }
 
 }
 

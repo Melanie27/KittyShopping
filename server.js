@@ -3,7 +3,7 @@ var express = require('express'),
  
   questions = require('./data/kitty-questions');
   profiles = require('./data/kitty-profiles');
-  home = require('./data/kitty-home');
+ 
   // load up the user model
 users = require('./app/models/user');
 

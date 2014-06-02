@@ -1,9 +1,8 @@
 // app/routs.js
 // load up the user model
-//var User = require('../app/models/user');
 
 
-var User       		= require('../app/models/user');
+var User = require('../app/models/user');
 
 module.exports = function(app, passport) {
 
@@ -39,8 +38,6 @@ module.exports = function(app, passport) {
 
 	app.get('/signup', function(req, res) {
 
-		//send res.locals instead????? 4/29
-
 		//render the page and pass flash data if it exists
 		res.render('_signup.ejs', {message: req.flash('signupMessage')});
 		//res.render('authsignupview.js', {message: req.flash('signupMessage')});
@@ -61,8 +58,6 @@ module.exports = function(app, passport) {
 	var mongoose = require('mongoose');
 	var Schema = mongoose.Schema;
 	
-
-
 
 //read a list of ordered products
 app.get('/api/orders', function(req, res) {
@@ -87,7 +82,6 @@ app.get('/test/signups', function(req, res) {
 
 	});
 });
-
 
 
 app.get('/test/orders', function(req, res) {
@@ -160,9 +154,7 @@ app.get('/test/signups/:id', function(req, res) {
     if (err)
       return done(err);
     if (user) {
-      //console.log(user.signup);
       var singlesignup = user.signup.filter(function(e){ return e._id == req.params.id })[0]
-      //console.log(singlesignup);
       res.send(singlesignup);
     }
   });
@@ -192,7 +184,7 @@ app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 				console.log(user.signup);
 				user.save(function(err){
     			if(!err){
-    				console.log('yay');
+    				res.send(user);
     			}
     			else {
     				console.log(err);
@@ -208,7 +200,8 @@ app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 
 
 //can we just post this to test/orders  instead??
-app.post('/api/signup', isLoggedIn, function (req, res){
+//Post courses to user
+app.post('/test/signups', isLoggedIn, function (req, res){
 
 	User.findOne({'_id': req.user.id }, function(err, user) {
 		if (err)
@@ -220,7 +213,7 @@ app.post('/api/signup', isLoggedIn, function (req, res){
 			user.signup.time = req.body.time;
 			user.signup.location = req.body.location;
 			user.signup.modified = req.body.modified;
-			console.log(req.body.name);
+			
 
 			user.update({$push: { "signup" : 
 				{   name: user.signup.name,
@@ -231,17 +224,19 @@ app.post('/api/signup', isLoggedIn, function (req, res){
 				}
 				}},{safe:true, upsert:true},function(err){
         			if(err){
-                		console.log(err);
-        			} else {
+                		return res.status(500).send(err);
+        			} 
                 		console.log("Successfully added" + user.signup);
-        			}
-			});
+                		res.send(user);
+        			
+				});
 
-			console.log('located a user');
-		}		
+			} else {
+				res.status(404).send();
+			}		
+		});
+
 	});
-
-});
 
 //can we just post this to test/orders  instead??
 app.post('/api/orders', isLoggedIn, function (req, res){
@@ -358,7 +353,7 @@ app.post('/api/kittens', isLoggedIn, function (req, res, done) {
 	// =====================================
 	app.get('/logout', function(req, res) {
 		req.logout();
-		res.redirect('#/login');
+		res.redirect('#/');
 	});
 };
 
@@ -370,10 +365,10 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	else {
-		console.log('you must be logged in for this');
-		res.redirect('/in'); 
+		
+		console.log('you must be logged in');
 	}
 
 	//if they aren't redirect them to the home page
-	res.redirect('/');
+	res.redirect('#/login');
 }

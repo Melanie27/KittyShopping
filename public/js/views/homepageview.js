@@ -10,7 +10,7 @@ var HomePageView = Backbone.View.extend({
 				'<div class="col-lg-6">' +
 					'<a href="#">'+
 					'<h3>What Kind of Kitten do you have??</h3>' +
-					'<img src="/photos/' + '{{landing}}' + '" class="img-polaroid" />'  +
+					'<img src="/photos/landing.jpg' + '" class="img-polaroid" />'  +
 					'<h1>Take the Quiz!!</h1>' +
 					'</a>' +
 				'</div>'+
@@ -21,19 +21,19 @@ var HomePageView = Backbone.View.extend({
 			'<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 options class">' +
 			'<a href="#/class-schedule">'+
 				'<h4>Class Sign Up</h4>' +
-				'<img src="/photos/' + '{{shop}}' + '" class="img-polaroid" />'  +
+				'<img src="/photos/shopthestore.jpg' + '" class="img-polaroid" />'  +
 				'</div>' +
 			'</a>' +
 			'<a href="#/cart-list">'+
 				'<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 options shop">' +
 				'<h4>Shop the Store</h4>' +
-				'<img src="/photos/' + '{{signup}}' + '" class="img-polaroid" />'  +
+				'<img src="/photos/classsignup.jpg' + '" class="img-polaroid" />'  +
 				'</div>' +
 			'</a>' +
 			'<a href="#/store-locator">'+
 				'<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 options locate">' +
 				'<h4>Studio Locations</h4>' +
-				'<img src="/photos/' + '{{locate}}' + '" class="img-polaroid" />'  +
+				'<img src="/photos/findlocations.jpg' + '" class="img-polaroid" />'  +
 				'</div>' +
 			'</a>' +
 		'</section>' +
@@ -41,13 +41,9 @@ var HomePageView = Backbone.View.extend({
 
 	),
 
-	initialize: function() {
-
-	},
-
 	render: function() {
 
-		this.$el.html(this.template(this.model.attributes));
+		this.$el.html(this.template());
 		return this;
 
 	}

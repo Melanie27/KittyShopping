@@ -10,7 +10,8 @@ var TakeQuizView = Backbone.View.extend({
 			'<div class="col-sm-6 col-sm-offset-3">' +
 				'<h1><span class="fa fa-sign-in"></span>Yoga Kitten Signup</h1>' +
 				'<h2>Enter your email, a password and kitten name.</h2>' +
-				//'<h3>Upload kitty photo for optimal experience</h3>' +
+				'<h3 style="display:none;">Upload kitty photo for optimal experience</h3>' +   			
+  				
 				'<form action="/signup" method="post">' +
 					'<div class="form-group">' +
 						'<label>Email</label></br>' +
@@ -52,6 +53,7 @@ var TakeQuizView = Backbone.View.extend({
 	},
 
 	render: function() {
+		
 		this.$el.html(this.template());
 		return this;
 	}

@@ -14,10 +14,8 @@ var SurveyQuestionListView = Backbone.View.extend ({
 		//append table with a row
 		$(this.el).append(
 			_.map(this.collection.models, function(model, key) {
-
 				return new SurveyQuestionDetails({ model: model }).render().el
 				var values = $('input.quiz').filter(':checked').val();
-				//console.log(values);
 			})
 		);
 

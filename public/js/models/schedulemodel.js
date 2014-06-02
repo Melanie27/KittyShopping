@@ -5,7 +5,7 @@ var ScheduleModel = Backbone.Model.extend({
 			description: "time to rest",
 			recommeded: "Recommended for all kittens",
 			time: "8am-close",
-			studio: "Santa Monica",
+			location: "Santa Monica",
 			signup: "Sign up",
 			rsvp: "true",
 			courseDay: "Monday"
