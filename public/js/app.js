@@ -12,6 +12,8 @@
 		"store-locator" : "storeLocator",
 		"class-schedule" : "classSchedule",
 		"view-courses" : "viewCourses",
+		"single-course" : "singleCourse",
+		"list-course" : "listCourse",
 		"auth-index" : "authIndex",
 		"welcome-view" : "welcomeView",
 		"prod2/:product" : "productDetails2",
@@ -65,9 +67,17 @@
    			collection: this.scheduleCollection 
    		});
 		this.coursesReservedCollection = new SchedulesCollection();
-		//this.signupsMongooseModel = new SignupsMongooseModel();
+		this.signupsMongooseModel = new SignupsMongooseModel();
+		this.signupsMongooseCollection = new SignupsMongooseCollection();
+		this.supplyCategoriesCollection.fetch();
 		this.yourCoursesView = new YourCoursesView({
 			model: this.userMongooseModel
+		});
+		this.yourCourseSingleView = new YourCourseSingleView({
+			model: this.signupsMongooseModel
+		});
+		this.yourCourseListView = new YourCourseListView({
+			collection: this.signupsMongooseCollection
 		});
 
 		//MISC
@@ -84,6 +94,14 @@
 
 	},
 
+
+	listCourse: function() {
+		$('#app2').html(this.yourCourseListView.render().el);
+	},
+
+	singleCourse: function() {
+		$('#app2').html(this.yourCourseSingleView.render().el);
+	},
 
 	viewCourses: function() {
 		$('#app2').html(this.yourCoursesView.render().el);

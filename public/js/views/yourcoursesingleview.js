@@ -6,6 +6,7 @@ var YourCourseSingleView = Backbone.View.extend({
 			'<li>{{_id}}</li>'
 	),
 	initialize: function() {
+		
 		this.listenTo(this.model, "change", this.render);	
 	},
 
@@ -13,6 +14,9 @@ var YourCourseSingleView = Backbone.View.extend({
 		'click .btn-danger' : 'deleteItem'
 	},
 
+	
+	//can actually delete a model from here?? I think so.and then the automatic sync should work
+	//look to Linda
 	deleteItem: function(event) {
 		
 		alert('deleting');
