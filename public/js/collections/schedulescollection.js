@@ -2,7 +2,6 @@ var SchedulesCollection = Backbone.Collection.extend({
 
    model: ScheduleModel,
    url: '/api/courses/',
-
    sortAttribute: "name",
    
    sortMovies: function (attr) {

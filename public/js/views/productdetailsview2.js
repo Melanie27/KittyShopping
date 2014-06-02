@@ -1,8 +1,6 @@
 var ProductDetailsView2 = Backbone.View.extend({
-	initialize: function() {
-		//	this.listenTo(this.collection, "reset", this.render);
-		//this.listenTo(this.model, "change", this.render);
-	
+	initialize: function() {	
+		this.listenTo(this.model, "change", this.render);
 	},
 
 	render: function() {		
