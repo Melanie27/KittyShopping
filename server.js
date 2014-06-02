@@ -6,8 +6,6 @@ var express = require('express'),
  
   // load up the user model
 users = require('./app/models/user');
-
-
 var app = express()
   .use(express.bodyParser())
   .use(express.static('public'));
@@ -29,10 +27,6 @@ app.configure(function() {
   app.use(express.logger('dev')); // log every request to the console
   app.use(express.cookieParser()); // read cookies (needed for auth)
   app.use(express.bodyParser()); // get information from html forms
-
-  //got the following from pixel handler
-  //sets up public directory to use static files
-  //app.use(express.static(path.join(application_root, "public")));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   
 
@@ -63,11 +57,6 @@ app.configure(function() {
   app.use(app.router);
 
 });
-
-
-//Pixelhandler Schema
-
-
 
 var Schema = mongoose.Schema;
 
@@ -104,9 +93,6 @@ var Product = new Schema({
 
 var ProductModel = mongoose.model('Product', Product);
 
-
-
-
 //PixelHandler
 app.get('/api', function(req, res) {
   res.send('configDB is running');
@@ -137,12 +123,6 @@ app.get('/api/signup', function(req, res) {
 });
 
 
-
-app.get('/supplies', function  (req, res) {
-  res.json(supplies);
-});
-
-
 //read a list of products
 app.get('/api/products', function(req, res) {
   
@@ -155,7 +135,6 @@ app.get('/api/products', function(req, res) {
     }
   });
 });
-
 
 
 //create a single course
@@ -245,19 +224,6 @@ app.get('/api/courses/:id', function (req, res){
   });
 });
 
-app.get('/supplies/:category', function  (req, res) {
-  var matches = supplies.filter(function  (category) {
-    return category.url === req.params.category;
-  });
-
-  if (matches.length > 0) {
-    res.json(matches[0]);
-  } else {
-    res.json(404, {status: 'invalid category request'});
-  }
-
-});
-
 
 //update a single product by ID
 app.put('/api/products/:id', function (req, res){
@@ -329,19 +295,6 @@ app.delete('/api/courses/:id', function (req, res){
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 var User = mongoose.model('User');
-// This function is responsible for returning all entries for the Message model
-/*function getUsers(req, res, next) {
-  // Resitify currently has a bug which doesn't allow you to set default headers
-  // This headers comply with CORS and allow us to server our response to any origin
-  res.header("Access-Control-Allow-Origin", "*"); 
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  // .find() without any arguments, will return all results
-  // the `-1` in .sort() means descending order
-  User.find(function (arr,data) {
-    //console.log(data);
-    res.send(data);
-  });
-}*/
 
 app.get('/update', function(req, res) {
   User.findOne(function (err, data) {
@@ -365,11 +318,6 @@ app.post('/update', function(req, res) {
   });
 
 
-/*res.locals = _.extend(res.locals, {
-
-});*/
-
-//YEA --- TEST WORKS!!!!!!!-->
 app.get('/test', function(req,res) {
     res.send(res.locals.user);
 });
@@ -377,23 +325,7 @@ app.get('/test', function(req,res) {
 //update an individual user by ID
 app.put('/test', function (req, res){
   res.send(res.locals.local);
-  /*return User.findById(req.params.user_id, function (err, user) {
-   
-    res.locals.user.kittenType = req.body.kittenType,
-    res.locals.user.modified = req.body.modified;
-    return res.locals.user.save(function (err) {
-      if (!err) {
-        console.log("updated");
-      } else {
-        console.log(err);
-      }
-      return res.send(user);
-    });
-  });*/
 });
-
-
-
 
 app.get('/users', function(req, res) {
     //res.send(res.locals.user);
@@ -406,12 +338,10 @@ app.get('/users', function(req, res) {
 //app.get('/users', getUsers);
 
 app.get('/users/:user_id', function  (req, res) {
-  
   mongoose.model('User').find({ '_id': req.params.user_id}, function(err, User) {
     res.send(User);
   });
   
-
 });
 
 
@@ -433,52 +363,13 @@ app.put('/users/:user_id', function (req, res){
 });
 
 
-app.get('/items', function  (req, res) {
-  //res.json(items);
-  res.render('_signup.ejs', {message: req.flash('signupMessage')});
-});
-
 app.get('/questions', function  (req, res) {
   res.json(questions);
 });
 
 app.get('/profiles', function  (req, res) {
   res.json(profiles);
-  //res.send(res.locals.user);
-});
-
-
-app.get('/supplies', function  (req, res) {
-  res.json(supplies);
-});
-
-/*app.get('/courses', function  (req, res) {
-  res.json(courses);
-});*/
-
-/*app.get('/days', function  (req, res) {
-  res.json(days);
-});*/
-
-app.get('/home', function  (req, res) {
-  res.json(home);
-});
-
-
-
-app.post('/items', function  (req, res) {
-  var matches = items.filter(function  (item) {
-    return item.url === req.body.url;
-  });
-
-  if (matches.length > 0) {
-    res.json(409, {status: 'item already exists'});
-  } else {
-    req.body.id = req.body.url;
-    items.push(req.body);
-    res.json(req.body);
-  }
-
+ ;
 });
 
 app.post('/questions', function  (req, res) {
@@ -496,60 +387,6 @@ app.post('/questions', function  (req, res) {
 
 });
 
-
-/*Supplies has been moved to mongoose - delete when all is working*/
-/*app.post('/supplies', function  (req, res) {
-  var matches = supplies.filter(function  (supply) {
-    return supply.url === req.body.url;
-  });
-
-  if (matches.length > 0) {
-    res.json(409, {status: 'supply already exists'});
-    alert('another supply name added');
-  } else {
-    req.body.id = req.body.url;
-    supplies.push(req.body);
-    res.json(req.body);
-  }
-
-});*/
-
-app.put('/questions/:question_name', function (req, res) {
-    
-  var matches = questions.filter(function  (question) {
-    return question.url === req.params.question_name;
-    
-  });
-
-for (var i=0; i<6; i ++) {
-  for (key in questions) {
-      var qs = questions[key].responded;
-      var defaultResponse = questions[key].responded;
-
-    }
-  }
- 
-   if (matches.length > 0 ) {
-      defaultResponse.push(req.body.responded);
-   }
-    
-    res.json(req.body); 
-
-});
-
-app.get('/items/:item_name', function  (req, res) {
-  var matches = items.filter(function  (item) {
-    return item.url === req.params.item_name;
-  });
-
-  if (matches.length > 0) {
-    matches[0].triggerArrive();
-    //res.json(matches[0]);
-  } else {
-    res.json(404, {status: 'invalid menu item'});
-  }
-
-});
 
 app.get('/questions/:question_name', function  (req, res) {
   var matches = questions.filter(function  (question) {
@@ -586,89 +423,6 @@ app.put('/profiles/:profile_name', function  (req, res) {
     res.json(matches[0]);
   } else {
     res.json(404, {status: 'invalid profile'});
-  }
-
-});
-
-//hydration
-
-app.get('/supplies/:category', function  (req, res) {
-  var matches = supplies.filter(function  (category) {
-    return category.url === req.params.category;
-  });
-
-  if (matches.length > 0) {
-    res.json(matches[0]);
-  } else {
-    res.json(404, {status: 'invalid category request'});
-  }
-
-});
-
-/*app.get('/supplies/:category/:supply', function  (req, res) {
-   
-  //filter through the main json to get categories
-   var matches = supplies.filter(function  (category) {
-    return category.url === req.params.category;
-     
-  });
-
-   //filter through the categories to get supplies
-   var categories = matches[0].subsupply;
-   var matches2 = categories.filter(function (supply) {
-      return supply.url === req.params.supply;
-
-   })
-
-
-  if (matches.length > 0) {
-    res.json(matches2[0]);
-
-  } else {
-    res.json(404, {status: 'invalid supply request'});
-    
-  }
-
-});*/
-
-
-
-app.delete('/items/:item_name', function  (req, res) {
-
-  var found = false;
-
-  items.forEach(function (item, index) {
-    if (item.url === req.params.item_name) {
-      found = index;
-    }
-  });
-
-  if (found) {
-    items.splice(found, 1);
-    res.json(200, {status: 'deleted'});
-  } else {
-    res.json(404, {status: 'invalid menu item'});
-  }
-
-});
-
-app.delete('/questions/:question_name', function  (req, res) {
-
-  var found = false;
-
-  items.forEach(function (question, index) {
-    if (question.url === req.params.question_name) {
-      found = index;
-    }
-  });
-
-  if (found) {
-    //splice (found = index - the position to remove the item)
-    //1 = howmany - number of items to be removed
-    items.splice(found, 1);
-    res.json(200, {status: 'deleted'});
-  } else {
-    res.json(404, {status: 'invalid survey question deletion'});
   }
 
 });
