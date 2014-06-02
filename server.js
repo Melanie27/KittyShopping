@@ -60,7 +60,6 @@ app.configure(function() {
 
 var Schema = mongoose.Schema;
 
-
 var Courses = new Schema({
    name: { type: String }, 
    description: { type: String }, 
@@ -75,7 +74,6 @@ var Courses = new Schema({
 });
 
 var CoursesModel = mongoose.model('Courses', Courses);
-
 
 var Product = new Schema({
     id: { type: String }, 
@@ -93,13 +91,6 @@ var Product = new Schema({
 
 var ProductModel = mongoose.model('Product', Product);
 
-//PixelHandler
-app.get('/api', function(req, res) {
-  res.send('configDB is running');
-});
-
-
-
 app.get('/api/courses', function(req, res) {
   return CoursesModel.find(function(err, courses) {
     if (!err) {
@@ -110,14 +101,11 @@ app.get('/api/courses', function(req, res) {
   });
 });
 
-
 //read a list of products
 app.get('/api/products', function(req, res) {
-  
   return ProductModel.find(function(err, products) {
     if (!err) {
       return res.send(products);
-      //return res.json(products);
     } else {
       return console.log(err);
     }
@@ -184,14 +172,10 @@ app.post('/api/products', function (req, res) {
 
 
 //read a single product by ID
-
 app.get('/api/products/:id', function (req, res){
-  
   return ProductModel.findById(req.params.id, function (err, product) {
-  
     if (!err) {
       return res.send(product);
-      //return res.send(product.url);
     } else {
       return console.log(err);
     }
@@ -199,13 +183,10 @@ app.get('/api/products/:id', function (req, res){
 });
 
 //read a single course by ID
-
 app.get('/api/courses/:id', function (req, res){
   return CoursesModel.findById(req.params.id, function (err, course) {
-  
     if (!err) {
       return res.send(course);
-      
     } else {
       return console.log(err);
     }
@@ -277,42 +258,14 @@ app.delete('/api/courses/:id', function (req, res){
   });
 });
 
-
-
 // load routes for auth  ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 var User = mongoose.model('User');
 
-app.get('/update', function(req, res) {
-  User.findOne(function (err, data) {
-     res.send(data);
-     //console.log(local.email);
-     //console.log(req.body._id);
-  })
-});
-
-app.post('/update', function(req, res) {
-  
-  if (req.session.user) {
-    next();
-    console.log('logged in');
-  } else {
-    console.log('you are not logged in');
-  }
-
-    console.log(req.body.petname);
-    //res.render('_index.ejs'); //load index file
-  });
-
 
 app.get('/test', function(req,res) {
     res.send(res.locals.user);
-});
-
-//update an individual user by ID
-app.put('/test', function (req, res){
-  res.send(res.locals.local);
 });
 
 app.get('/users', function(req, res) {
@@ -323,8 +276,6 @@ app.get('/users', function(req, res) {
     });
 });
 
-//app.get('/users', getUsers);
-
 app.get('/users/:user_id', function  (req, res) {
   mongoose.model('User').find({ '_id': req.params.user_id}, function(err, User) {
     res.send(User);
@@ -333,31 +284,8 @@ app.get('/users/:user_id', function  (req, res) {
 });
 
 
-//update an individual user by ID
-app.put('/users/:user_id', function (req, res){
-  return User.findById(req.params.user_id, function (err, user) {
-   
-    user.kittenType = req.body.kittenType,
-    user.modified = req.body.modified;
-    return user.save(function (err) {
-      if (!err) {
-        console.log("updated");
-      } else {
-        console.log(err);
-      }
-      return res.send(user);
-    });
-  });
-});
-
-
 app.get('/questions', function  (req, res) {
   res.json(questions);
-});
-
-app.get('/profiles', function  (req, res) {
-  res.json(profiles);
- ;
 });
 
 app.post('/questions', function  (req, res) {
@@ -375,7 +303,6 @@ app.post('/questions', function  (req, res) {
 
 });
 
-
 app.get('/questions/:question_name', function  (req, res) {
   var matches = questions.filter(function  (question) {
     return question.url === req.params.question_name;
@@ -387,6 +314,11 @@ app.get('/questions/:question_name', function  (req, res) {
     res.json(404, {status: 'invalid survey question'});
   }
 
+});
+
+app.get('/profiles', function  (req, res) {
+  res.json(profiles);
+ ;
 });
 
 app.get('/profiles/:profile_name', function  (req, res) {
@@ -401,20 +333,6 @@ app.get('/profiles/:profile_name', function  (req, res) {
   }
 
 });
-
-app.put('/profiles/:profile_name', function  (req, res) {
-  var matches = profiles.filter(function  (profile) {
-    return profile.url === req.params.profile_name;
-  });
-
-  if (matches.length > 0) {
-    res.json(matches[0]);
-  } else {
-    res.json(404, {status: 'invalid profile'});
-  }
-
-});
-
 
 
 app.get('/*', function  (req, res) {
