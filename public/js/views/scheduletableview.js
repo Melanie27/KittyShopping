@@ -14,16 +14,16 @@ var ScheduleTableView = Backbone.View.extend({
      
     var html = 
     '<br>'+
-    '<table>'+
-    '<thead><tr>' +
-    '<th column="name"><div>Course</div></th>'+
-    '<th column="description"><div>Description</div></th>' +
-    '<th column="recommeded"><div>Recommended for:</div></th>' +
-    '<th column="time"><div>Time</div></th>' +
-    '<th column="studio"><div>Studio</div></th>' +
-    '<th column="courseDay"><div>Day</div></th>' +
-    '<th column="signup"><div>Sign Up</div></th>' +
-    '</tr></thead>'+
+      '<table>'+
+        '<thead><tr>' +
+          '<th column="name"><div>Course</div></th>'+
+          '<th column="description"><div>Description</div></th>' +
+          '<th column="recommeded"><div>Recommended for:</div></th>' +
+          '<th column="time"><div>Time</div></th>' +
+          '<th column="studio"><div>Studio</div></th>' +
+          '<th column="courseDay"><div>Day</div></th>' +
+          '<th column="signup"><div>Sign Up</div></th>' +
+        '</tr></thead>'+
     '<tbody></tbody>'+
     '</table>'
 
@@ -31,8 +31,7 @@ var ScheduleTableView = Backbone.View.extend({
     $(this.el).html(html);
      this.updateTable();
 
-     
-
+    
     return this;
      
    },
@@ -52,9 +51,7 @@ var ScheduleTableView = Backbone.View.extend({
 
       // remove the old sort from the table so we only see the most recent sort
       _.invoke(this.scheduleRowViews, 'remove');
-
       $table = this.$('tbody');
-
       this.scheduleRowViews = that.map(
             function ( obj ) {
                   var v = new ScheduleRowView({  model: that.get(obj) });

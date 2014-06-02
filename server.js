@@ -28,14 +28,10 @@ app.configure(function() {
   app.use(express.cookieParser()); // read cookies (needed for auth)
   app.use(express.bodyParser()); // get information from html forms
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  
-
   app.set('view engine', 'ejs'); // set up ejs for templating
   app.engine('.js', require('ejs').renderFile); //allows js files to be rendered via ejs
- 
   app.set('views', __dirname + '/public/js/views'); //override default directory for the views
   app.set('photos', __dirname + '/public/photos'); //override default directory for the photos
-
   // required for passport
   app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
   app.use(passport.initialize());
@@ -250,26 +246,24 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 
 var User = mongoose.model('User');
 
-
 app.get('/test', function(req,res) {
     res.send(res.locals.user);
 });
 
 app.get('/users', function(req, res) {
-    //res.send(res.locals.user);
     User.find(function(err, data) {
       res.send(data);
 
     });
 });
 
+//Keep this - may want to enable deleting profile at a later date
 app.get('/users/:user_id', function  (req, res) {
   mongoose.model('User').find({ '_id': req.params.user_id}, function(err, User) {
     res.send(User);
   });
   
 });
-
 
 app.get('/questions', function  (req, res) {
   res.json(questions);
@@ -320,7 +314,6 @@ app.get('/profiles/:profile_name', function  (req, res) {
   }
 
 });
-
 
 app.get('/*', function  (req, res) {
   res.json(404, {status: 'not found'});
