@@ -29,11 +29,6 @@ var YourCoursesView = Backbone.View.extend({
 		'click .btn-danger' : 'deleteItem'
 	},
 
-	checkModel: function () {
-		 console.log(this.model.get('signup'));
-	},
-
-
 	deleteItem: function(event) {
 		
 		alert('deleting');
@@ -55,7 +50,6 @@ var YourCoursesView = Backbone.View.extend({
   			 
   			 console.log(this.model.get('signup'));
 		event.preventDefault();
-		checkModel();
 
 	},
 

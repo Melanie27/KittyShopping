@@ -13,7 +13,7 @@ var ProductsOrderedView = Backbone.View.extend({
 	initialize: function() {
 		this.model = new UserMongooseModel();
 		this.model.fetch({reset: true});
-		this.listenTo(this.model, "add", this.render);
+		this.listenTo(this.model, "change", this.render);
 	},
 
 	render: function() {
@@ -27,11 +27,9 @@ var ProductsOrderedView = Backbone.View.extend({
 
 	deleteItem: function(event) {
 		event.preventDefault();
-		var attrID = "";
-		$('.btn-secondary').on('click', function(event) {
-  			event.preventDefault();
-  			var attrID = $(this).data('id');
-  			console.log(attrID);
+		alert('deleting')
+		var attrID = $(event.currentTarget).data('id');
+		console.log(attrID);
 
   			 jQuery.ajax({
         		url: "/test/orders/" + attrID, 
@@ -45,7 +43,7 @@ var ProductsOrderedView = Backbone.View.extend({
         		}
       		});
 
-		});
+		
 	},
 
 });
