@@ -230,19 +230,6 @@ app.delete('/api/products/:id', function (req, res){
   });
 });
 
-//delete a single order by ID
-app.delete('/api/orders/:id', function (req, res){
-  return OrderedModel.findById(req.params.id, function (err, order) {
-    return order.remove(function (err) {
-      if (!err) {
-        console.log("removed");
-        return res.send('');
-      } else {
-        console.log(err);
-      }
-    });
-  });
-});
 
 //delete a single course by ID
 app.delete('/api/courses/:id', function (req, res){
