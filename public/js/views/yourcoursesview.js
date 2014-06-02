@@ -16,10 +16,8 @@ var YourCoursesView = Backbone.View.extend({
 	initialize: function() {
 		//this.model = new UserMongooseModel();
 		//this.model.fetch({reset: true});
-		
 		//this.model.on('change', this.render, this);
 		this.listenTo(this.model, "change", this.render );
-		 console.log(this.model.get('signup'));
 		//this.listenTo(this.model, "add", this.render );
 
 		

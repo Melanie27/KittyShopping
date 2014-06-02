@@ -31,7 +31,8 @@ var ScheduleTableView = Backbone.View.extend({
     $(this.el).html(html);
      this.updateTable();
 
-    
+     
+
     return this;
      
    },
@@ -57,9 +58,7 @@ var ScheduleTableView = Backbone.View.extend({
       this.scheduleRowViews = that.map(
             function ( obj ) {
                   var v = new ScheduleRowView({  model: that.get(obj) });
-
                   $table.append(v.render().$el);
-
                   return v;
               });
    }

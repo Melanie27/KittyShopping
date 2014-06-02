@@ -111,18 +111,6 @@ app.get('/api/courses', function(req, res) {
 });
 
 
-//read the list of courses you've signed up for
-app.get('/api/signup', function(req, res) {
-  return SignupModel.find(function(err, signup) {
-    if (!err) {
-      return res.send(signup);
-    } else {
-      return console.log(err);
-    }
-  });
-});
-
-
 //read a list of products
 app.get('/api/products', function(req, res) {
   

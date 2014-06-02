@@ -38,7 +38,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 			var price = this.model.get('price');
 			var imagepathsm = this.model.get('imagepathsm');
 		//Post to a specific users orders array
-			jQuery.post("/api/orders", {
+			jQuery.post("/test/orders", {
 				"title": title,  
   				"description": description, 
   				"quantity" : quantity,

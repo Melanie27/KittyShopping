@@ -33,7 +33,7 @@ var ResultsView = Backbone.View.extend({
 		var kittenType = this.model.get('kittenType');
 
  		jQuery.ajax({
-     		url: "/api/kittens",
+     		url: "/test/kittenType",
      		type: "POST",
      		data: {
        			"kittenType": kittenType
