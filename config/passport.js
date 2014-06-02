@@ -28,19 +28,11 @@ module.exports = function(passport) {
     });
 
 
-
  	// =========================================================================
     // LOCAL SIGNUP ============================================================
     // =========================================================================
     // we are using named strategies since we have one for login and one for signup
 	// by default, if there was no name, it would just be called 'local'
-
-//adding Melanie's strategy here
-
-/*passport.use('local-update', new LocalStrategy ({
-
-}));*/
-
 
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
@@ -76,15 +68,10 @@ module.exports = function(passport) {
                 var newUser            = new User();
 
                 // set the user's local credentials
-
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
                 newUser.local.petname = req.body.petname;
                 newUser.kittenType = req.body.kittenType;
-                //console.log(req.body.winner);
-                //req.body.petname = petname;
-                
-
 				// save the user
                 newUser.save(function(err) {
                     if (err)
