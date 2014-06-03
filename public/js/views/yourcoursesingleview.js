@@ -6,7 +6,7 @@ var YourCourseSingleView = Backbone.View.extend({
 			'<li>{{_id}}</li>'
 	),
 	initialize: function() {
-		
+		this.listenTo(this.model, "reset", this.render);	
 		this.listenTo(this.model, "change", this.render);	
 	},
 
@@ -30,6 +30,7 @@ var YourCourseSingleView = Backbone.View.extend({
 	},
 
 	render: function () {
+		
 		this.$el.html(this.template(this.model.attributes));
 		return this;
 	}
