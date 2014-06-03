@@ -31,7 +31,7 @@
 			model: this.surveyQuestionModel 
 		});
 		this.surveyQuestionListView = new SurveyQuestionListView({
-				collection: this.surveyQuestions
+			collection: this.surveyQuestions
 		});
 		this.resultsModel = new ResultsModel();
 		this.resultsView = new ResultsView({model: this.resultsModel});
@@ -54,10 +54,8 @@
 		 });
 		this.productMenuModel = new ProductMenuModel();
 		this.productMenuView = new ProductMenuView({
-				collection: this.supplyCategoriesCollection
+			collection: this.supplyCategoriesCollection
 		});
-		this.productsOrderedCollection = new SupplyCategoriesCollection();
-		this.productsOrderedView = new ProductsOrderedView();
 
 		this.productsOrderedModel = new ProductsOrderedModel();
 		this.productsOrderedModel.fetch();
@@ -156,7 +154,6 @@
 	},
 
 	viewCart: function() {
-		//$('#app2').html(this.productsOrderedView.render().el);
 		$('#app2').html(this.productsOrderedListView.render().el);
 	},
 
