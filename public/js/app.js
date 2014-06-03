@@ -92,6 +92,7 @@
 
 
 	listCourse: function() {
+		this.signupsMongooseCollection.fetch();
 		$('#app2').html(this.yourCourseListView.render().el);
 	},
 

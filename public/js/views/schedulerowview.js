@@ -34,8 +34,6 @@ var ScheduleRowView = Backbone.View.extend({
       var time = this.model.get('time');
       var location = this.model.get('location');
       
-      //saves the attributes but does not trigger http request
-     
             jQuery.post("/test/signups", {
               "name" : name,
               "courseDay" : courseDay,
@@ -47,7 +45,11 @@ var ScheduleRowView = Backbone.View.extend({
             });
       
              
-   }
+   },
+
+   saveClasses: function(model) {
+        app.signupsMongooseCollection.add(model);
+    }
 
   
 });
