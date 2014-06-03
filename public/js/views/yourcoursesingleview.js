@@ -15,30 +15,18 @@ var YourCourseSingleView = Backbone.View.extend({
 	},
 
 	
-	//can actually delete a model from here?? I think so.and then the automatic sync should work
-	//look to Linda
 	deleteItem: function(event) {
 		
-		alert('deleting');
-  			var attrID = $(event.currentTarget).data('id');
-  			console.log(attrID);
+		this.model.destroy( 
+			{
+				succcess:function(model) {
+					app.signupsMongooseCollection.remove(model.get('_id'));
+					console.log('destroyed');
+				}
+			}
 
-  			 jQuery.ajax({
-        		url: "/test/signups/" + attrID, 
-        		type: "DELETE",
-        
-        		success: function (data, textStatus, jqXHR) { 
-          			console.log("Post response:"); 
-          			console.dir(data); 
-          			console.log(textStatus); 
-          			console.dir(jqXHR); 
-          			
-        		}
-      		});
-  			
-  			 console.log(this.model.get('signup'));
+		);
 		event.preventDefault();
-
 	},
 
 	render: function () {
