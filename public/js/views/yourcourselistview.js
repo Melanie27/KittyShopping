@@ -6,13 +6,12 @@ var YourCourseListView = Backbone.View.extend({
 		
 		//this.collection = new SignupsMongooseCollection();
 		//this.collection.fetch();
-		console.log(this.collection);
+		//console.log(this.collection);
 		this.listenTo(this.collection, "reset", this.render);
 		this.listenTo(this.collection, "remove", this.render);
 		this.listenTo(this.collection, "change", this.render);
 
-		//update this view when the usersmongoosecollection
-		//this.listenTo(UsersMongooseCollection, "change", this.render);
+		
 	},
 
 	render: function() {

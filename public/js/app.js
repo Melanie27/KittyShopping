@@ -12,6 +12,7 @@
 		"store-locator" : "storeLocator",
 		"class-schedule" : "classSchedule",
 		"list-course" : "listCourse",
+		"full-course" : "fullCourse",
 		"auth-index" : "authIndex",
 		"welcome-view" : "welcomeView",
 		"prod2/:product" : "productDetails2",
@@ -58,6 +59,17 @@
 		this.productsOrderedCollection = new SupplyCategoriesCollection();
 		this.productsOrderedView = new ProductsOrderedView();
 
+		this.productsOrderedModel = new ProductsOrderedModel();
+		this.productsOrderedModel.fetch();
+		this.productsOrderedCollection = new ProductsOrderedCollection();
+		this.productsOrderedCollection.fetch();
+		this.productsOrderedSingleView = new ProductsOrderedSingleView({
+			model: this.productsOrderedModel
+		});
+		this.productsOrderedListView = new ProductsOrderedListView({
+			collection: this.productsOrderedCollection
+		});
+
 		//COURSE SIGNUP
 		this.scheduleCollection = new SchedulesCollection();
 		this.scheduleCollection.fetch();
@@ -87,6 +99,8 @@
 		this.loginView = new LoginView();
 		
 		this.homePageView = new HomePageView();
+
+	
 
 	},
 
@@ -142,7 +156,8 @@
 	},
 
 	viewCart: function() {
-		$('#app2').html(this.productsOrderedView.render().el);
+		//$('#app2').html(this.productsOrderedView.render().el);
+		$('#app2').html(this.productsOrderedListView.render().el);
 	},
 
 	surveyResults: function(kitty) {

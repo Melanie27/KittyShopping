@@ -14,6 +14,7 @@ var ScheduleTableView = Backbone.View.extend({
      
     var html = 
     '<br>'+
+    '<h1><a href="#">View Your Courses</a></h1>'+
       '<table>'+
         '<thead><tr>' +
           '<th column="name"><div>Course</div></th>'+
@@ -31,6 +32,7 @@ var ScheduleTableView = Backbone.View.extend({
     $(this.el).html(html);
      this.updateTable();
 
+     //separate pages for now
      /*$('#schedules').after(new YourCourseListView({
         collection: this.signupsMongooseCollection
      }).render().el);*/

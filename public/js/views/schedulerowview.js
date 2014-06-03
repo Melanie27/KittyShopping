@@ -23,17 +23,13 @@ var ScheduleRowView = Backbone.View.extend({
       return this;
    },
 
- 
-
    save: function(event) {
       event.preventDefault();
-
       console.log( 'You signed up for ' + this.model.get('name'));
       var name = this.model.get('name');
       var courseDay = this.model.get('courseDay');
       var time = this.model.get('time');
       var location = this.model.get('location');
-      
             jQuery.post("/test/signups", {
               "name" : name,
               "courseDay" : courseDay,
@@ -42,9 +38,7 @@ var ScheduleRowView = Backbone.View.extend({
 
             }, function (data, textStatus, jqXHR) { 
     console.log("Post resposne:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
-            });
-      
-             
+            });       
    },
 
    saveClasses: function(model) {

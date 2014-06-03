@@ -1,6 +1,7 @@
 var ProductDetailsView2 = Backbone.View.extend({
 	initialize: function() {	
 		this.listenTo(this.model, "change", this.render);
+		this.listenTo(this.model, "set", this.saveOrder);
 	},
 
 	render: function() {		
@@ -25,10 +26,15 @@ var ProductDetailsView2 = Backbone.View.extend({
 
 		this.delegateEvents({
 			'click .btn-save' : 'save'
-		})
+		});
 
 		return this;
 	},
+
+	saveOrder: function(model) {
+        alert('order');
+        app.productsOrderedCollection.add(model);
+    },
 
 	save: function() {
 		this.setModelData();
@@ -37,7 +43,6 @@ var ProductDetailsView2 = Backbone.View.extend({
 			var quantity = this.model.get('quantity');
 			var price = this.model.get('price');
 			var imagepathsm = this.model.get('imagepathsm');
-		//Post to a specific users orders array
 			jQuery.post("/test/orders", {
 				"title": title,  
   				"description": description, 
@@ -48,7 +53,13 @@ var ProductDetailsView2 = Backbone.View.extend({
 				}, function (data, textStatus, jqXHR) { 
     				console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
 			});	
+
+			this.saveOrder();
+
+		
 	},
+
+	
 
 	resetModelData: function() {
 		//this would be a put request when I have the time
@@ -63,4 +74,6 @@ var ProductDetailsView2 = Backbone.View.extend({
 		})
 		
 	}
+
+	
 });

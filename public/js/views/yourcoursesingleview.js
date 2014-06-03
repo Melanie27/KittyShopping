@@ -1,6 +1,6 @@
 var YourCourseSingleView = Backbone.View.extend({
 	template: Handlebars.compile(
-		'<h2>Upcoming Courses: </h2>' +
+		
 			'<li><h3>{{name}}</h3>{{coursDay}}{{time}}{{location}}</li>' +
 			'<a href="/test/signups/{{_id}}" data-id="{{_id}}"  class="btn btn-danger confirm-delete">Remove Course</a><br/><br/>' +
 			'<li>{{_id}}</li>'
@@ -14,9 +14,7 @@ var YourCourseSingleView = Backbone.View.extend({
 		'click .btn-danger' : 'deleteItem'
 	},
 
-	
 	deleteItem: function(event) {
-		
 		this.model.destroy( 
 			{
 				succcess:function(model) {
@@ -30,7 +28,6 @@ var YourCourseSingleView = Backbone.View.extend({
 	},
 
 	render: function () {
-		
 		this.$el.html(this.template(this.model.attributes));
 		return this;
 	}
