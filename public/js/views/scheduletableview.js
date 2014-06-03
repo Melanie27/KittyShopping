@@ -31,6 +31,10 @@ var ScheduleTableView = Backbone.View.extend({
     $(this.el).html(html);
      this.updateTable();
 
+     $('#schedules').after(new YourCourseListView({
+
+     }).render().el);
+    
     
     return this;
      

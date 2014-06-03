@@ -106,9 +106,14 @@ app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 		if (user) {
 			var found = false;
 			var singlesignup = user.signup.filter(function(e){ return e._id == req.params.id })[0]
+			console.log(singlesignup);
 			user.signup.forEach(function (singlesignup, index) {
 				if (singlesignup._id.toString() === req.params.id) {
 					found = index;
+					console.log(index);
+				}
+				else {
+					console.log('prob');
 				}
 			});
 			if(found) {
@@ -116,9 +121,12 @@ app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 				user.save(function(err){
     			if(!err){
     				res.send(user);
+    				console.log('save working');
     			}
     			else {
     				console.log(err);
+    				console.log('save busted');
+
     			}
     		});
 				res.json(200, {status: 'deleted'});
