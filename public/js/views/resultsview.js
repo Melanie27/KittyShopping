@@ -43,6 +43,10 @@ var ResultsView = Backbone.View.extend({
 
 	},
 
+	/*saveKitten: function(model) {
+        app.userMongooseModel.add(model);
+    },*/
+
 	setModelData: function() {
 		this.model.set({
 			kittenType: this.$el.find('input[name="kittenType"]').val(),

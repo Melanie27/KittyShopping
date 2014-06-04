@@ -1,7 +1,7 @@
 var ProductDetailsView2 = Backbone.View.extend({
 	initialize: function() {	
 		this.listenTo(this.model, "change", this.render);
-		this.listenTo(this.model, "set", this.saveOrder);
+		//this.listenTo(this.model, "set", this.saveOrder);
 	},
 
 	render: function() {		
@@ -31,10 +31,10 @@ var ProductDetailsView2 = Backbone.View.extend({
 		return this;
 	},
 
-	saveOrder: function(model) {
+	/*saveOrder: function(model) {
         alert('order');
         app.productsOrderedCollection.add(model);
-    },
+    },*/
 
 	save: function() {
 		this.setModelData();
@@ -52,9 +52,19 @@ var ProductDetailsView2 = Backbone.View.extend({
   						
 				}, function (data, textStatus, jqXHR) { 
     				console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
+					 var notLogged = data;
+            
+            if (notLogged == 'You must be logged in for this') {
+              	alert(notLogged);
+              	//redirect the user here??
+             	app.navigate("#/login", {trigger: true});
+            } else {
+
+            }
+
 			});	
 
-			this.saveOrder();
+			//this.saveOrder();
 
 		
 	},

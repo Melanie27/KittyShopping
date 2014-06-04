@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
 	<script type="text/javascript" src="js/lib/backbone-min.js"></script>
 	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/lib/backbone-relational.js"></script>
 	<script type="text/javascript" src="js/lib/handlebars.js"></script>
 	<script type="text/javascript" src="js/lib/laconic.js"></script>
 	<script type="text/javascript" src="js/lib/moment.min.js"></script>
@@ -25,18 +26,17 @@
 	<script type="text/javascript" src="js/models/surveyquestion.js"></script>
 	<script type="text/javascript" src="js/models/resultsmodel.js"></script>
 	<script type="text/javascript" src="js/models/supplycategory.js"></script>
-	<script type="text/javascript" src="js/models/ordersupplymodel.js"></script>
 	<script type="text/javascript" src="js/models/locationmodel.js"></script>
 	<script type="text/javascript" src="js/models/schedulemodel.js"></script>
 	<script type="text/javascript" src="js/models/usermongoosemodel.js"></script>
 	<script type="text/javascript" src="js/models/productmenumodel.js"></script>
 	<script type="text/javascript" src="js/models/signupsmongoosemodel.js"></script>
 	<script type="text/javascript" src="js/models/productsorderedmodel.js"></script>
+	<script type="text/javascript" src="js/models/loginmodel.js"></script>
 
 	<!--Collections-->
 	<script type="text/javascript" src="js/collections/surveyquestions.js"></script>
 	<script type="text/javascript" src="js/collections/supplycategoriescollection.js"></script>
-	<script type="text/javascript" src="js/collections/orderedsuppliescollection.js"></script>
 	<script type="text/javascript" src="js/collections/locationcollection.js"></script>
 	<script type="text/javascript" src="js/collections/schedulescollection.js"></script>
 	<script type="text/javascript" src="js/collections/usersmongoosecollection.js"></script>
@@ -142,7 +142,11 @@
 		this.welcomeUserView = new WelcomeUserView({});
 		$('.welcome-view').html(this.welcomeUserView.render().el);
 	</script>
-
+	<script id="flash-messages" type="text/x-handlebars-template"> 
+    	'{{#if message}}'+
+     	'<p> {{ message }} </p>' +
+    	'{{/if}}'
+  	</script>
 	<div class="container" id="app2">	</div>
 	<div class="clearfix"></div>
 	<div class="container footer">

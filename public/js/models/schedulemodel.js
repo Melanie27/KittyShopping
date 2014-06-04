@@ -1,5 +1,5 @@
 var ScheduleModel = Backbone.Model.extend({
-	//urlRoot: '/courses',
+	idAttribute: "_id",
    defaults: {
       		name: "Nap Time",
 			description: "time to rest",
@@ -7,8 +7,11 @@ var ScheduleModel = Backbone.Model.extend({
 			time: "8am-close",
 			location: "Santa Monica",
 			signup: "Sign up",
-			rsvp: "true",
+			rsvp: "false",
 			courseDay: "Monday"
-   }
+   	}
+
+   
+
 
 });

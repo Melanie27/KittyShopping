@@ -250,6 +250,10 @@ app.get('/test', function(req,res) {
     res.send(res.locals.user);
 });
 
+app.get('/flash', function(req,res) {
+    res.send(res.locals.flash);
+});
+
 app.get('/users', function(req, res) {
     User.find(function(err, data) {
       res.send(data);

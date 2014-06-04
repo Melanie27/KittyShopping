@@ -12,21 +12,26 @@ module.exports = function(app, passport) {
 
 	//Login Form
 	app.get('/login', function (req, res) {
-		//render the page and pass flash data if it exists
-		res.render('_login.ejs', {message: req.flash('loginMessage')});
+		
+		//res.send({message: req.flash('loginMessage')});
+		res.send('You must be logged in for this');
 	});
 
 	//process the login form
-	app.post('/login', passport.authenticate('local-login', {
+	app.post('/login', passport.authenticate('local-login', 
+
+		{
+		
 		//successRedirect : '/profile', // redirect to the secure profile section
 		successRedirect: '/',
-		failureRedirect : '/login', // redirect back to the signup page if there is an error
+		failureRedirect : '#/login', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
 
 	app.get('/signup', function(req, res) {
 		//render the page and pass flash data if it exists
-		res.render('_signup.ejs', {message: req.flash('signupMessage')});
+		//res.render('_signup.ejs', {message: req.flash('signupMessage')});
+		res.send(req.flash('signupMessage'));
 		//res.sendfile('authsignupview.js', {message: req.flash('signupMessage')})
 	});
 
@@ -41,7 +46,7 @@ module.exports = function(app, passport) {
 	var mongoose = require('mongoose');
 	var Schema = mongoose.Schema;
 	
-app.get('/test/signups', function(req, res) {
+app.get('/test/signups', isLoggedIn, function(req, res) {
 	User.findOne({'_id': req.user.id }, function(err, user) {
 		if (err) 
 			return done(err);
@@ -138,7 +143,7 @@ app.delete('/test/signups/:id', isLoggedIn, function(req, res) {
 });
 
 
-app.get('/test/orders', function(req, res) {
+app.get('/test/orders', isLoggedIn, function(req, res) {
 	console.log(req.orders);
 	User.findOne({'_id': req.user.id }, function(err, user) {
 		if (err) 
@@ -150,7 +155,7 @@ app.get('/test/orders', function(req, res) {
 	});
 });
 
-app.get('/test/orders/:id', function(req, res) {
+app.get('/test/orders/:id', isLoggedIn, function(req, res) {
   User.findOne({'_id': req.user.id }, function(err, user) {
     if (err)
       return done(err);
@@ -276,8 +281,9 @@ function isLoggedIn(req, res, next) {
 	else {
 		//how can I pass something to the template from here
 		console.log('you must be logged in');
+		res.redirect('/login');
 	}
 
 	//if they aren't redirect them to the home page
-	res.redirect('#/login');
+	
 }

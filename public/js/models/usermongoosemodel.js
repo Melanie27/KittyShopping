@@ -14,6 +14,8 @@ var UserMongooseModel = Backbone.Model.extend({
       		winner: "Grumpy"
       	}
 
-	}
+	} 
+
+
 
 });

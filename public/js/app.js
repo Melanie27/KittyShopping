@@ -46,7 +46,6 @@
 
 		//SHOPPING CART
 		this.supplyCategoryModel = new SupplyCategory();
-		this.orderedSuppliesCollection = new OrderedSuppliesCollection({});
 		this.supplyCategoriesCollection = new SupplyCategoriesCollection({});
 		this.supplyCategoriesCollection.fetch();
 		this.productDetailsView2 = new ProductDetailsView2 ({
@@ -94,7 +93,12 @@
 		this.takeQuizView = new TakeQuizView({
 			model: this.userMongooseModel
 		});
-		this.loginView = new LoginView();
+
+		this.loginModel = new LoginModel();
+		this.loginModel.fetch();
+		this.loginView = new LoginView({
+			model: this.userMongooseModel
+		});
 		
 		this.homePageView = new HomePageView();
 
@@ -128,6 +132,7 @@
 	},
 
 	loginUser: function() {
+		this.userMongooseModel.fetch();
 		$('#app2').html(this.loginView.render().el);
 	},
 

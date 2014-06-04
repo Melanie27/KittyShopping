@@ -17,11 +17,7 @@ var SupplyCategoriesCollection = Backbone.Collection.extend({
 		        "price" : "400",
 		        "quantity" : "2",
 		        "imagepathsm" : "big-max-fountain.jpg" 
-			},
+			}
 
-	initialize: function() {
-		this.listenTo(this, "add", this.addOne);
-		this.listenTo(this, "remove", this.addOne);
-	},
 
 }); 

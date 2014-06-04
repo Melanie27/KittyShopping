@@ -72,6 +72,7 @@ module.exports = function(passport) {
                 newUser.local.password = newUser.generateHash(password);
                 newUser.local.petname = req.body.petname;
                 newUser.kittenType = req.body.kittenType;
+                
 				// save the user
                 newUser.save(function(err) {
                     if (err)
