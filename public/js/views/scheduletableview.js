@@ -6,6 +6,9 @@ var ScheduleTableView = Backbone.View.extend({
    },
 
    initialize: function() {
+      //SignupsMongooseCollection.fetch();
+      
+      //this.listenTo(this.signupsMongooseCollection, "change", this.render);
       this.listenTo(this.collection, "reset", this.render);
       this.listenTo(this.collection, "sort", this.updateTable);
    },
@@ -14,15 +17,15 @@ var ScheduleTableView = Backbone.View.extend({
      
     var html = 
     '<br>'+
-    '<h1><a href="#">View Your Courses</a></h1>'+
+    //'<h1><a href="#/list-course">View Your Courses</a></h1>'+
       '<table>'+
         '<thead><tr>' +
-          '<th column="name"><div>Course</div></th>'+
-          '<th column="description"><div>Description</div></th>' +
-          '<th column="recommeded"><div>Recommended for:</div></th>' +
-          '<th column="time"><div>Time</div></th>' +
-          '<th column="studio"><div>Studio</div></th>' +
-          '<th column="courseDay"><div>Day</div></th>' +
+          '<th column="name"><div>Course &#9660;</div></th>'+
+          '<th column="description"><div>Description &#9660;</div></th>' +
+          '<th column="recommeded"><div>Recommended for: &#9660;</div></th>' +
+          '<th column="time"><div>Time &#9660;</div></th>' +
+          '<th column="studio"><div>Studio &#9660;</div></th>' +
+          '<th column="courseDay"><div>Day &#9660;</div></th>' +
           '<th column="signup"><div>Sign Up</div></th>' +
         '</tr></thead>'+
     '<tbody></tbody>'+
@@ -31,7 +34,7 @@ var ScheduleTableView = Backbone.View.extend({
 
     $(this.el).html(html);
      this.updateTable();
-
+     $(this.el).append(app.yourCourseListView.el);
      //separate pages for now
      /*$('#schedules').after(new YourCourseListView({
         collection: this.signupsMongooseCollection

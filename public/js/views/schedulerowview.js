@@ -10,6 +10,10 @@ var ScheduleRowView = Backbone.View.extend({
     '<td style="padding:8px;">{{location}}</td>' +
     '<td style="padding:8px;">{{courseDay}}</td>'+
     '<td style="padding:8px;"><a href="#" class="link">{{signup}}</a></td>'
+    /*'{{#if message}}'+
+    '{{message}}'+
+    '{{/if}}'*/
+
 
     ),
 
@@ -51,7 +55,7 @@ var ScheduleRowView = Backbone.View.extend({
               //redirect the user here??
              app.navigate("#/login", {trigger: true});
             } else {
-
+                alert('You signed up for ' + name);
             }
             });     
               

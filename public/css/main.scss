@@ -83,6 +83,7 @@ h2 {
 	border-bottom: solid 1px #999;
 	margin-bottom: 10px;
 
+
 	h4 {
 		font-size: 14px;
 		float:right;
@@ -98,19 +99,49 @@ h2 {
 	 	color: black;
 
 	 }
+
+	 a.signup:link, a.signup:visited  {
+	 	font-size:16px;
+	 	color:white;
+	 	margin-right:35px;
+
+	 }
+
+	 a.signup:hover, a.signup:active  {
+	 	text-decoration: underline;
+	 	color:white;
+
+	 }
+
+	 #courseLink {
+
+	 }
+
+	 #cartLink {
+
+	 }
 }
 
 
 /*Nav*/
 .nav>li>a {
 
-	font-size:12px;
+	font-size:20px;
+}
+
+.nav-pills {
+	padding-left:140px;
 }
 
 /*Home Page*/
 
 
 .landing {
+
+	h3.home-intro {
+		text-align:left;
+		color: $purple;
+	}
 	
 	border: solid 1px blue;
 
@@ -151,8 +182,10 @@ h2 {
 }
 
 
+
+
 table {
-   border: 1px solid green;
+   border: 1px solid #999;
    background-color: #f9f9f9;
    width: 100%;
    table-layout: fixed;
@@ -189,16 +222,17 @@ table {
 
 	   }
 
+	   tr:nth-of-type(even) {
+  			background-color:$green;
+		}
+
 }
 
 #schedules {
+	width:100%;
+	/*width:85%;*/
 
-	width:85%;
-
-	table{
-		float:left;
-	}
-
+	
 	th {
 
 	 white-space: nowrap; cursor: pointer; 
@@ -207,15 +241,19 @@ table {
 
 	th span { display: inline-block; margin-left: 5px; }
 
-	[column="name"] { width: 14%; }
-	[column="description"] { width: 24%; }
-	[column="recommeded"] { width: 17%; }
-	[column="time"] { width: 11%; }
-	[column="studio"] { width: 14%; }
-	[column="courseDay"] { width: 12%; }
-	[column="signup"] { width: 7%; }
+	[column] { background-color: #ebebeb;}
+
+	[column="name"] { width: 14%; color: $purple; }
+	[column="description"] { width: 24%; color: $purple;}
+	[column="recommeded"] { width: 17%; color: $purple;}
+	[column="time"] { width: 11%; color: $purple; }
+	[column="studio"] { width: 14%; color: $purple;}
+	[column="courseDay"] { width: 12%; color: $purple; }
+	[column="signup"] { width: 7%; color: $purple;}
 
 }
+
+
 
 .your-classes {
 	width:15%;

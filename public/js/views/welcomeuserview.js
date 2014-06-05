@@ -10,6 +10,8 @@ var WelcomeUserView = Backbone.View.extend ({
 		'<h4><span class="welcome">Welcome:</span> {{local.email}}</h4>'+
 		'<h4><span class="welcome">Your pet:</span> {{local.petname}} is a '+
 		'<a href="#results/{{kittenType}}">{{kittenType}}</a> kitten</h4><br/>'+
+		'<a id="courseLink" class="signup" href="#/list-course">{{local.petname}}' + "'s" + ' Courses </a>'+
+		'<a id="cartLink" class="signup"href="#/view-cart">{{local.petname}}' + "'s" + ' Shopping Cart</a>'+
 		'{{/if}}'+
 		'<div class="clearfix"></div>' +
 		'</div>'

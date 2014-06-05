@@ -4,8 +4,8 @@ var HomePageView = Backbone.View.extend({
 		'<div class="container landing">' +
 			'<section class="row">' +
 				'<div class="col-lg-6">' + 
-				'<p>Here at YogaKitten<sup>TM</sup> we provide a nuturing yet rigorous day program for your kitty.' + 
-				'Your feline will never lack for exercise or companionship again. YogaKitten<sup>TM</sup> understands that every kitten is an individual with varying levels of ability and willingness to participate. We have tailored our classes to meet the needs of a variety of kitten types. Please take the <a href="#">kitten personality quiz</a> and then proceed to course recommendations. --></p>'+
+				'<h3 class="home-intro">Here at YogaKitten<sup>TM</sup> we provide a nuturing yet rigorous day program for your kitty.</h3>' + 
+				'<p>Your feline will never lack for exercise or companionship again. YogaKitten<sup>TM</sup> understands that every kitten is an individual with varying levels of ability and willingness to participate. We have tailored our classes to meet the needs of a variety of kitten types. Please take the <a href="#">kitten personality quiz</a> and then proceed to course recommendations. --></p>'+
 				'</div>' +
 				'<div class="col-lg-6">' +
 					'<a href="#">'+

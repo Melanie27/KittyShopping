@@ -73,6 +73,8 @@
    		this.scheduleTableView = new ScheduleTableView({ 
    			collection: this.scheduleCollection 
    		});
+
+
 		this.coursesReservedCollection = new SchedulesCollection();
 		this.signupsMongooseModel = new SignupsMongooseModel();
 		this.signupsMongooseCollection = new SignupsMongooseCollection();

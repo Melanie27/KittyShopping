@@ -5,7 +5,7 @@ var ResultsView = Backbone.View.extend({
 		'<h2 class="name">You have a {{name}} cat </h2>' +
 		'<img src="photos/kittys/' + '{{photo}}' + '" class="img-polaroid" />' +
 		'<h4 class="profile">{{profile}}</h4>' +
-		'<h5><a href="#">Please proceed to scheduling --></a></h5>' +
+		'<h5><a href="#/class-schedule">Please proceed to scheduling --></a></h5>' +
 		'<div class="form-group">' +
 			'<input type="text" style="display:none;" class="form-control" name="kittenType" value="{{kittenType}}">' +
 		'</div>' +
