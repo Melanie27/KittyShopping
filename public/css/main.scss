@@ -183,7 +183,6 @@ h2 {
 
 
 
-
 table {
    border: 1px solid #999;
    background-color: #f9f9f9;
@@ -333,3 +332,64 @@ table.single-supply-view {
 
 	width:50%;
 }
+
+
+/*Shopping Cart */
+
+.container-cart {
+	background-color:white;
+	max-width:1120px;
+	border-radius:15px;
+
+	.menu-list {
+		display:inline;
+		
+		li {
+		display:block;
+		height:450px;
+		text-align:center;
+		margin-bottom:100px;
+		list-style-type:none;
+	}
+
+	}
+
+	
+
+	.img-store {
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	.arrow-up {
+		font-size:18px;
+		color:#666;
+		font-weight:bold;
+	}
+
+	.menu-details {
+		color:#666;
+		font-size:16px;
+	}
+
+	li.shopping-item {
+		padding-top:25px;
+		padding-right:15px;
+		text-align:left;
+
+		
+
+		.description {
+			font-size:16px;
+			text-align:left;
+			margin-bottom:20px;
+			
+
+		}
+	}
+
+}
+
+
+
+

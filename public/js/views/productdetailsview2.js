@@ -1,26 +1,31 @@
 var ProductDetailsView2 = Backbone.View.extend({
 	initialize: function() {	
-		this.listenTo(this.model, "change", this.render);
+		this.listenTo(this.model, "change", this.render, this.moveTotal);
 		//this.listenTo(this.model, "set", this.saveOrder);
 	},
 
 	render: function() {		
 		
 		$(this.el).html(_.map([
-			'<a href="#/shopping-cart">Back to Store</a>' +
+			
 			'<form>' +
-			'<h3>' + this.model.get('title') + '</h3>'+
-			'<img src="photos/kitty-store/' + this.model.attributes.imagepathsm + '" class="img-polaroid" style="width:150px; max-height:100px; overflow:hidden;"/>' +
-			'<span class="label">' + 'Quantity: ' + '</span>' + 
-			'<input class="quantity" name="quantity" value="' + this.model.get('quantity') + '">' +
-			'<button type="button" class="btn btn-save">Save Quantity</button><br/>' +
-			'<span class="price">' + '$' + this.model.get('price') + '.00' + '</span><br/>' +
-			'</form>' +
-			'<span class="description">' + this.model.get('description') + '</span><br/>' +
-			'<a href="#/view-cart">View shopping-cart</a>', this.model.calculateAmount(),
+			'<div class="row">' +
+				'<section class="col-lg-8">'+
+				'<img src="photos/kitty-store/' + this.model.attributes.imagepathsm + '" class="img-responsive"/>' +
+				'</section>'+
+				'<h3 style="text-align:left;">' + this.model.get('title') + '</h3>'+
+				'<div class="price" style="font-size:18px; color:purple;">' + '$' + this.model.get('price') + '.00' + '</div><br/>' +
+				'<div class="description">' + this.model.get('description') + '</div><br/>' +
+				'<span class="label">' + 'Quantity: ' + '</span>' + 
+				'<input class="quantity" name="quantity" value="' + this.model.get('quantity') + '"><br/>' +
+				'<button type="button" style="background-color:purple; color:white; width:30%; margin-top:30px; margin-bottom:30px;" class="btn btn-save">Save Quantity to Cart</button><br/>' +
+				'<button style="color:#666; background-color:green; font-size:14px;"><a class="details-link" href="#/view-cart">View shopping-cart</a></button>'+
+				'<button id="back-cart"><a href="#/shopping-cart">Back to Store</button></a>'+
+			'</div>'+
+			'</form>' + this.model.calculateAmount(),
 
 		], function(val, key) {
-			return '<li class="shopping-item">' + val + '</li>';	
+			return '<div class="container container-cart">'+ '<li class="shopping-item">' + val + '</li></div>';	
 
 		}));
 
@@ -35,6 +40,12 @@ var ProductDetailsView2 = Backbone.View.extend({
         alert('order');
         app.productsOrderedCollection.add(model);
     },*/
+
+    moveTotal: function() {
+		console.log('move');
+		$('.total').append('#back-cart');
+	},
+
 
 	save: function() {
 		this.setModelData();

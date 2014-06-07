@@ -18,8 +18,10 @@ var SupplyCategory = Backbone.Model.extend({
 	},
 
 	calculateAmount: function () {
-		return '<p class="total">' + 'Total: $' + this.get('price') * this.get('quantity') + '.00';
-	},
+		return '<p class="total col-lg-6 pull-right" style="font-size:18px;">' + 'Total: $' + this.get('price') * this.get('quantity') + '.00';
+		
+	}
+
 
 });
 

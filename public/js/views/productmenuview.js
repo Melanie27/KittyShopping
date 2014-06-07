@@ -1,14 +1,21 @@
 var ProductMenuView = Backbone.View.extend({
 	template: Handlebars.compile( 
-		'<h1>The Store</h1>' +
-		'<ul style="width:200px;">' +
-		'{{#each models}}<li><h2>{{attributes.title}}</h2>' +
-		'<a href="#/prod2/{{attributes._id}}">View Details --> </a><br/>' +
-		'<span class="price">' + '$' + '{{attributes.price}}' + '.00' + '</span><br/>' +
-		/*'<a href="#/orders/{{attributes._id}}">Add to shopping-cart</a>' +*/
-		'<img src="photos/kitty-store/{{attributes.imagepathsm}}" class="img-polaroid" style="width:150px; max-height:100px; overflow:hidden;"/></li><br/>{{/each}}' +
-		'<br/>' +
-		'</ul>'
+		
+		'<div class="container container-cart">'+
+			'<h1>The Store</h1>' +
+			'<hr>'+
+			'<ul class="menu-list row">'+
+				'{{#each models}}'+	
+					'<li class="col-lg-4 pull-left">'+				
+						'<img src="photos/kitty-store/{{attributes.imagepathmenu}}" class="img-store img-responsive"/>'+
+						'<div class ="arrow-up">&uarr;</div>'+
+						'<h2>{{attributes.title}}</h2>' +
+						'<div class="menu-price">' + '$' + '{{attributes.price}}' + '.00' + '</div>' +
+						'<a href="#/prod2/{{attributes._id}}" class="menu-details">View Details &rarr; </a><br/>' +
+					'</li>'+
+				'{{/each}}' +
+			'</ul>'+
+		'</div>'
 
 	),
 
@@ -18,7 +25,6 @@ var ProductMenuView = Backbone.View.extend({
 
 
 	render: function() {
-		
 		$(this.el).empty();
 		this.$el.html(this.template(this.collection));
 		return this;
