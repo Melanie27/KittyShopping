@@ -13,7 +13,9 @@ var SupplyCategory = Backbone.Model.extend({
 		"description" : "Large capacity drinking fountain",
 		"price" : "500",
 		"quantity" : "0",
-		"imagepathsm" : "big-max-fountain.jpg"
+		"total" : "",
+		"imagepathsm" : "big-max-fountain.jpg",
+		"imagepathmenu" : "menu-big-max-fountain.jpg"
 
 	},
 

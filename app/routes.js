@@ -208,6 +208,7 @@ app.post('/test/orders', isLoggedIn, function (req, res){
 			user.orders.title = req.body.title;
 			user.orders.price = req.body.price;
 			user.orders.imagepathsm = req.body.imagepathsm;
+			user.orders.imagepathmenu = req.body.imagepathmenu;
 			user.orders.modified = req.body.modified;
 			
 			user.update({$push: { "orders" : 
@@ -216,6 +217,7 @@ app.post('/test/orders', isLoggedIn, function (req, res){
 					quantity: user.orders.quantity,
 					price: user.orders.price,
 					imagepathsm: user.orders.imagepathsm,
+					imagepathmenu: user.orders.imagepathmenu,
 					modified: user.orders.modified
 				}
 				}},{safe:true, upsert:true},function(err){
@@ -238,6 +240,7 @@ app.post('/test/kittenType', isLoggedIn, function (req, res, done) {
     		return done(err);
     	if(user) {
     		user.kittenType = req.body.kittenType;
+    		user.url = req.body.url;
     		user.save(function(err){
     			if(err){
               		return res.status(500).send(err);

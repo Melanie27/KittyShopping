@@ -7,7 +7,7 @@ var ProductsOrderedListView = Backbone.View.extend({
 
 	render: function() {
 		$(this.el).empty();
-
+		$(this.el).append('<h1 class="keep-shopping"><a href="#/shopping-cart" class="keep-shopping">Continue Shopping</a></h1>')
 		$(this.el).append(
 			_.map(this.collection.models, function(model, key) {
 				return new ProductsOrderedSingleView({ model: model }).render().el

@@ -1,7 +1,7 @@
 [
 	{
 		"id" : "Pudge",
-		"url" : "Pudge",
+		"url" : "pudge",
 		"name" : "Pudge",
 		"kittenType"   : "Pudge",
 		"photo" : "pudge.jpg",
@@ -9,7 +9,7 @@
 	},
 	{
 		"id" : "Grumpy",
-		"url" : "Grumpy",
+		"url" : "grumpy",
 		"name" : "Grumpy",
 		"kittenType"   : "Grumpy",
 		"photo" : "grumpy.jpg",
@@ -17,7 +17,7 @@
 	},
 	{
 		"id" : "Hipster",
-		"url" : "Hipster",
+		"url" : "hipster",
 		"name" : "Hipster",
 		"kittenType"   : "Hipster",
 		"photo" : "hipster.jpg",
@@ -25,15 +25,15 @@
 	},
 	{
 		"id" : "Bub",
-		"url" : "Bub",
+		"url" : "bub",
 		"name" : "Bub",
 		"kittenType"   : "Bub",
 		"photo" : "bub.jpg",
 		"profile" : "Bub cats are all around odd-balls."
 	},
 	{
-		"id" : "Meow",
-		"url" : "Meow",
+		"id" : "Colonel Meow",
+		"url" : "colonel-meow",
 		"name" : "Colonel Meow",
 		"kittenType"   : "Colonel Meow",
 		"photo" : "meow.jpg",

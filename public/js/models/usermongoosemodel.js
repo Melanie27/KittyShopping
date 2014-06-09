@@ -2,8 +2,8 @@ var UserMongooseModel = Backbone.Model.extend({
 	urlRoot: '/test',
 	idAttribute: "_id",
 	defaults: {
-		kittenType: 'Grumpy',
-		
+		kittenType: '',
+		url: 'colonel-meow',
 		_id : '',
 		__v: 0,
     	local: {

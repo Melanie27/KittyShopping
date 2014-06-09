@@ -1,8 +1,25 @@
 /*Main*/
 
+body {
+	font-family: 'Muli', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p, a, li, input, button {
+   font-family: 'Muli', sans-serif;
+}
+
 /*colors*/
 $purple: #61448d;
 $green:  #c4dfda;
+
+button, .btn-primary {
+	background-color:$purple;
+}
+
+.btn-primary:hover {
+	background-color: #666;
+}
+
 
 body {
 	background-color: #bababa;
@@ -21,8 +38,12 @@ h2 {
 .login-bar {
 	background-color: $purple;
 	border-radius:5px;
-	color:#BABABA;
-	padding:5px;
+	color:white;
+	padding-left:15px;
+	padding-top:10px;
+	height: 45px;
+	box-shadow: 3px 3px 5px 0 rgba(50, 50, 50, 0.55);
+
 
 
 }
@@ -43,6 +64,8 @@ h2 {
 
 .navbar-default {
 	background-color: #61448d;
+	border:none;
+
 }
 
 
@@ -54,6 +77,7 @@ h2 {
 
 	li {
 		font-size:18px;
+		margin-top:5px;
 	}
 }
 
@@ -68,6 +92,12 @@ h2 {
 	display:inline-block;
 	margin-right:0px;
 
+	p {
+		font-size:16px;
+		color:$green;
+		text-shadow: 1px 1px 1px #333;
+	}
+
 	li {
 		display:block;
 		float:left;
@@ -80,13 +110,12 @@ h2 {
 
 /*Welcome View*/
 .welcome-view {
-	border-bottom: solid 1px #999;
 	margin-bottom: 10px;
 
 
 	h4 {
 		font-size: 14px;
-		float:right;
+		float:left;
 		margin-right: 25px;
 	}
 
@@ -95,15 +124,18 @@ h2 {
 		font-size:12px;
 	}
 
-	.welcome{
-	 	color: black;
+	
+	 	.kitten-type:link, .kitten-type:visited {
+	 		color: white;
+	 		text-decoration:underline;
+	 	}
 
-	 }
+	
 
 	 a.signup:link, a.signup:visited  {
-	 	font-size:16px;
+	 	font-size:12px;
 	 	color:white;
-	 	margin-right:35px;
+	 	
 
 	 }
 
@@ -114,18 +146,22 @@ h2 {
 	 }
 
 	 #courseLink {
-
+	 	padding-left:25px;
+	 	padding-right: 15px;
+	 	margin-right:0px;
+	 	float:right;
 	 }
 
 	 #cartLink {
-
+	 	margin-right:0px;
+	 	float:right;
 	 }
 }
 
 
 /*Nav*/
 .nav>li>a {
-
+	color:white;
 	font-size:20px;
 }
 
@@ -138,12 +174,25 @@ h2 {
 
 .landing {
 
+	h1, h3 {
+		color: $purple;
+		
+	}
+
 	h3.home-intro {
 		text-align:left;
 		color: $purple;
 	}
 	
-	border: solid 1px blue;
+	button {
+		border: solid 1px white;
+		margin-top:15px;
+		border-radius:15px;
+		a {
+			color:white;
+			
+		}
+	}
 
 	p {
 		font-size: 18px;
@@ -159,8 +208,16 @@ h2 {
 	}
 }
 
-.options {
-	
+.container.options {
+	background-color:white;
+	max-width:1100px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom:15px;
+	.row {
+		margin-right:0px;
+		margin-left:0px;
+	}
 
 	img {
 		width: 100%;
@@ -268,22 +325,7 @@ table.single-supply-view {
 	float:left;
 }
 
-.draggable {
-		width: 80%;
-		height: 140px;
-		padding: 0.1em;
-		margin-bottom: 10px;
-		font-size:10px;
-		margin-right:70px;
-	}
 
-.basketPanel {
-	height:auto;
-	/*background-color: #999;*/
-	opacity: .8;
-	border:solid 1px #999;
-
-}
 
 .shopping-item {
 
@@ -350,11 +392,34 @@ table.single-supply-view {
 		text-align:center;
 		margin-bottom:100px;
 		list-style-type:none;
-	}
+		}
 
 	}
 
-	
+	.btn {
+		color:white;
+	}
+
+	.btn-secondary {
+		margin-right: 10px;
+		background-color:$green; 
+	}
+
+	.btn-save {
+		width:30%;
+		margin-top:30px;
+		margin-bottom:30px;
+	}
+
+	.btn-view {
+		color:#666;
+		font-size:14px;
+	}
+
+	.price {
+		font-size:18px; 
+		color:purple;
+	}
 
 	.img-store {
 		margin-left:auto;
@@ -383,13 +448,101 @@ table.single-supply-view {
 			font-size:16px;
 			text-align:left;
 			margin-bottom:20px;
-			
+
 
 		}
+	}
+
+
+
+}
+
+.keep-shopping {
+		text-align:left;
+		font-size:22px;
+		
+	}
+
+.keep-shopping:link, .keep-shopping:visited {
+	color:#666;
+
+}
+
+.products-ordered {
+	
+	.col-lg-2 {
+		padding-left:50px;
+	}
+
+	h1 {
+		text-align:left;
+		font-size:22px;
+		font-weight:bold;
+	}
+
+	.col-lg-3 {
+		padding-top:75px;
+		text-align:left;
+		font-size:18px;
+
+		.description {
+			font-size:14px;
+			text-align:left;
+		}
+
+	}
+
+	.total {
+		margin-bottom:15px;
+		margin-top:0px;
+		font-size:22px;
+	}
+
+	button {
+		float:right;
+		margin-right:50px;
+		margin-top:130px;
+	}
+
+	label {
+		border-bottom:solid 1px #666;
 	}
 
 }
 
 
+/*Quiz*/
+
+.question {
+	font-size:22px;
+	font-style:italic;
+
+
+}
+
+.questions {
+	text-align:left;
+
+	h2 {
+		font-size:30px;
+
+	}
+
+	li {
+		list-style-type: none;
+		font-size:16px;
+		text-align:left;
+	}
+
+	li:hover {
+		background-color: $green;
+	}
+
+	input[type="radio"], input[type="checkbox"] {
+    	line-height: normal;
+    	margin: 4px 10px 0;
+	}
+	
+}
 
 

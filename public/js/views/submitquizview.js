@@ -60,33 +60,33 @@ submitQuiz: function(data) {
 	//Navigate to the winning cat
 
 	if (GrumpyCount >= 3 || (GrumpyCount == 2 && ( HipsterCount != 2 && PudgeCount != 2 && BubCount != 2 && MeowCount != 2  )) || (GrumpyCount == 2 && HipsterCount == 2) || (GrumpyCount == 2 && BubCount == 2)) {
-		app.navigate("results/Grumpy", true);
+		app.navigate("results/grumpy", true);
 		var winner = "Grumpy";
 	}
 
 	if (HipsterCount >= 3 || (HipsterCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && BubCount != 2 && MeowCount != 2  )) || (HipsterCount == 2 && PudgeCount == 2) || (HipsterCount == 2 && MeowCount == 2)) {
-		app.navigate("results/Hipster", {trigger: true});
+		app.navigate("results/hipster", {trigger: true});
 		var winner = "Hipster";
 	}
 
 	if (PudgeCount >= 3 || (PudgeCount == 2 && ( GrumpyCount != 2 && HipsterCount != 2 && BubCount != 2 && MeowCount != 2  )) || (GrumpyCount == 2 && PudgeCount == 2) || (PudgeCount == 2 && BubCount == 2)) {
-		app.navigate("results/Pudge", {trigger: true});
+		app.navigate("results/pudge", {trigger: true});
 		var winner = "Pudge";
 	}
 
 	if (BubCount >= 3 || (BubCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && HipsterCount != 2 && MeowCount != 2  )) || (BubCount == 2 && MeowCount == 2) || (BubCount == 2 && HipsterCount == 2)){
-		app.navigate("results/Bub", {trigger: true});
+		app.navigate("results/bub", {trigger: true});
 		var winner = "Bub";
 	}
 
 	if (MeowCount >= 3 || (MeowCount == 2 && ( GrumpyCount != 2 && PudgeCount != 2 && BubCount != 2 && HipsterCount != 2  )) || (GrumpyCount == 2 && MeowCount == 2) || (PudgeCount == 2 && MeowCount == 2)) {
-		app.navigate("results/Meow", {trigger: true});
+		app.navigate("results/colonel-meow", {trigger: true});
 		var winner = "Meow";
 
 	}
 	
 	if (GrumpyCount == 1 &&  HipsterCount == 1 && PudgeCount == 1 && BubCount == 1 && MeowCount == 1) {
-		app.navigate("results/Hipster", {trigger: true});
+		app.navigate("results/hipster", {trigger: true});
 		var winner = "Hipster";
 	}
 

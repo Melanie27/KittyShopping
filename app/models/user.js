@@ -14,12 +14,14 @@ var userSchema = mongoose.Schema({
     },
     loggedIn : Boolean,
     kittenType   : String,
+    url: String,
     orders: [{
         title: String,  
         description: String, 
         quantity : String,
         price : Number,
         imagepathsm:  String,
+        imagepathmenu: String,
         modified: { type: Date, default: Date.now }
     }],
     signup: [{

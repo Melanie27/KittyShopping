@@ -7,8 +7,15 @@ var ProductsOrderedModel = Backbone.Model.extend({
     	quantity: "2",
     	price: "500",
     	imagepathsm: "zen-perch.jpg",
+        imagepathmenu : "menu-cat-shelf.jpg", 
     	_id: "538e38fb4a7a1d1c90214678",
     	modified: "2014-06-03T21:11:02.390Z"
-	}
+	},
+
+    calculateAmount: function () {
+        return  'Total: $' + this.get('price') * this.get('quantity') + '.00';
+        
+        
+    }
 
 });

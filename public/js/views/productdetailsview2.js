@@ -14,13 +14,13 @@ var ProductDetailsView2 = Backbone.View.extend({
 				'<img src="photos/kitty-store/' + this.model.attributes.imagepathsm + '" class="img-responsive"/>' +
 				'</section>'+
 				'<h3 style="text-align:left;">' + this.model.get('title') + '</h3>'+
-				'<div class="price" style="font-size:18px; color:purple;">' + '$' + this.model.get('price') + '.00' + '</div><br/>' +
+				'<div class="price">' + '$' + this.model.get('price') + '.00' + '</div><br/>' +
 				'<div class="description">' + this.model.get('description') + '</div><br/>' +
 				'<span class="label">' + 'Quantity: ' + '</span>' + 
 				'<input class="quantity" name="quantity" value="' + this.model.get('quantity') + '"><br/>' +
-				'<button type="button" style="background-color:purple; color:white; width:30%; margin-top:30px; margin-bottom:30px;" class="btn btn-save">Save Quantity to Cart</button><br/>' +
-				'<button style="color:#666; background-color:green; font-size:14px;"><a class="details-link" href="#/view-cart">View shopping-cart</a></button>'+
-				'<button id="back-cart"><a href="#/shopping-cart">Back to Store</button></a>'+
+				'<button type="button" class="btn btn-primary btn-save">Save Quantity to Cart</button><br/>' +
+				'<a class="details-link" href="#/view-cart">View shopping-cart</a>'+
+				'<button id="back-cart" class="btn-secondary btn"><a href="#/shopping-cart">Back to Store</button></a>'+
 			'</div>'+
 			'</form>' + this.model.calculateAmount(),
 
@@ -43,7 +43,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 
     moveTotal: function() {
 		console.log('move');
-		$('.total').append('#back-cart');
+		
 	},
 
 
@@ -54,12 +54,15 @@ var ProductDetailsView2 = Backbone.View.extend({
 			var quantity = this.model.get('quantity');
 			var price = this.model.get('price');
 			var imagepathsm = this.model.get('imagepathsm');
+			var imagepathmenu = this.model.get('imagepathmenu');
+			console.log(imagepathmenu);
 			jQuery.post("/test/orders", {
 				"title": title,  
   				"description": description, 
   				"quantity" : quantity,
   				"price" : price,
-  				"imagepathsm" : imagepathsm,	
+  				"imagepathsm" : imagepathsm,
+  				"imagepathmenu" : imagepathmenu	
   						
 				}, function (data, textStatus, jqXHR) { 
     				console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
@@ -92,6 +95,9 @@ var ProductDetailsView2 = Backbone.View.extend({
 	setModelData: function() {
 		this.model.set({
 			quantity: this.$el.find('input[name="quantity"]').val(),
+
+			//total: this.$el.find(total),
+
 		})
 		
 	}
