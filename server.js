@@ -248,6 +248,7 @@ var User = mongoose.model('User');
 
 app.get('/test', function(req,res) {
     res.send(res.locals.user);
+    
 });
 
 app.get('/flash', function(req,res) {

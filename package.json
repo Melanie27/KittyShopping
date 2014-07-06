@@ -1,13 +1,13 @@
 {
-  "name": "restaurant",
-  "version": "0.0.1",
+  "name": "yoga-kitten",
+  "version": "0.0.1-2",
   "private": true,
   "scripts": {
     "start": "nodemon server.js"
   },
   "dependencies": {
     "express": "~3.1.0",
-    "ejs" : "~0.8.5",  
+    "ejs": "~0.8.5",
     "hbs": "~2.0.2",
     "moment": "^2.6.0",
     "grunt": "~0.4.2",
@@ -15,19 +15,20 @@
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-sass": "^0.7.3",
-    "mongoose" : "~3.8.1",      
-    "passport" : "~0.1.17",     
-    "passport-local" : "~0.1.6",  
-    "passport-facebook" : "~1.0.2", 
-    "passport-twitter" : "~1.0.2",  
-    "passport-google-oauth" : "~0.1.5",
-    "connect-flash" : "~0.1.1",   
-    "bcrypt-nodejs" : "latest"
+    "mongoose": "~3.8.1",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "passport-facebook": "~1.0.2",
+    "passport-twitter": "~1.0.2",
+    "passport-google-oauth": "~0.1.5",
+    "connect-flash": "~0.1.1",
+    "bcrypt-nodejs": "latest"
   },
-
   "devDependencies": {
-    "nodemon" : "*"
-
+    "nodemon": "*"
+  },
+  "subdomain": "yogakitten",
+  "engines": {
+    "node": "0.10.x"
   }
-
 }

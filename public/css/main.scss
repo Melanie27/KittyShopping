@@ -312,8 +312,40 @@ table {
 
 
 .your-classes {
-	width:15%;
-	float:right;
+	width:100%;
+
+	h1 {
+		padding-top:20px;
+	}
+	
+	h3, h4 {
+		float:left;
+		margin-left:10px;
+		margin-right:10px;
+	} 
+
+	li {
+		list-style-type: none;
+		float:none;
+		text-align:left;
+	}
+
+	.btn-danger {
+		background-color: $green;
+		border:black;
+		float:right;
+		margin-right:15px;
+		margin-top:15px;
+	}
+
+	.btn-danger:hover, .btn-danger:active {
+		background-color:black;
+		border:$green;
+	}
+
+	.grad-photo {
+		width:350px;
+	}
 }
 
 

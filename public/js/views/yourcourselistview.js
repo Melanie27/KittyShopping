@@ -1,6 +1,8 @@
 var YourCourseListView = Backbone.View.extend({
 	
-	className: "your-classes",
+
+	className: "your-classes container-cart",
+	
 
 	initialize: function() {
 		
@@ -17,7 +19,16 @@ var YourCourseListView = Backbone.View.extend({
 	render: function() {
 		$(this.el).empty();
 
+		var html = 
+
+		'<h1>Course Schedule</h1>'+
+		'<img class="grad-photo" src="photos/kitty-in-cap.jpg"/>'+
+		'<br/><br/>'+
+		'<hr>'
+		$(this.el).html(html);
+		
 		$(this.el).append(
+
 			_.map(this.collection.models, function(model, key) {
 				return new YourCourseSingleView({ model: model }).render().el
 			})
