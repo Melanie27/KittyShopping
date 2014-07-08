@@ -34,7 +34,7 @@ var ScheduleTableView = Backbone.View.extend({
 
     $(this.el).html(html);
      this.updateTable();
-     $(this.el).append(app.yourCourseListView.el);
+     //$(this.el).append(app.yourCourseListView.el);
      //separate pages for now
      /*$('#schedules').after(new YourCourseListView({
         collection: this.signupsMongooseCollection

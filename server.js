@@ -152,6 +152,7 @@ app.post('/api/products', function (req, res) {
     description: req.body.description,
     price: req.body.price,
     quantity: req.body.quantity,
+    total: req.body.total,
     imagepathsm: req.body.imagepathsm,
     modified: req.body.modified,
     
@@ -199,6 +200,7 @@ app.put('/api/products/:id', function (req, res){
     product.description = req.body.description,
     product.price = req.body.price,
     product.quantity = req.body.quantity,
+    product.total = req.body.total,
     product.imagepathsm = req.body.imagepathsm,
     product.modified = req.body.modified;
     return product.save(function (err) {

@@ -20,6 +20,7 @@ var userSchema = mongoose.Schema({
         description: String, 
         quantity : String,
         price : Number,
+        total: Number,
         imagepathsm:  String,
         imagepathmenu: String,
         modified: { type: Date, default: Date.now }

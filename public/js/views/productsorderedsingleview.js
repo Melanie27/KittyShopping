@@ -1,32 +1,8 @@
 var ProductsOrderedSingleView = Backbone.View.extend({
-	template:Handlebars.compile(
-		'<div class="container-cart products-ordered">'+
-			'<hr>'+
-			'<section class="row">'+
-			
-			'<hr>'+
-			'<div class="col-lg-2">'+
-				'<h1>{{title}}</h1>' +
-				'<img src="photos/kitty-store/{{imagepathmenu}}" class="cart-list pull-left" style="width:150px;"/>' +
-			'</div>'+
-			'<div class="col-lg-3">'+
-				'<label>Quantity:</label>'+
-				'<span class="quantity">{{quantity}}</span><br/>' +
-				'<span class="description">{{description}}</span><br/>' +
-			'</div>'+
-			'<div class="col-lg-7 pull-right">'+
-			'<div class="total">Total: $</div>' +
-			'<button type="button" data-id="{{_id}}" class="btn btn-secondary">Remove from Cart</button><br/>'+
-			'</div>'+
-		'</section>'+
-		'</div>'
-	),
 
 	initialize: function() {
 		this.listenTo(this.model, "reset", this.render);	
 		this.listenTo(this.model, "change", this.render);
-		var total = this.model.calculateAmount();
-		console.log(total);	
 	},
 
 	events: {
@@ -47,7 +23,34 @@ var ProductsOrderedSingleView = Backbone.View.extend({
 	},
 
 	render: function () {
-		this.$el.html(this.template(this.model.attributes));
+		//this.$el.html(this.template(this.model.attributes));
+		$(this.el).html(_.map([
+			
+			'<form>' +
+			'<div class="container-cart products-ordered">' +
+				'<section class="row">'+
+				'<hr>'+
+					'<div class="col-lg-2">'+
+						'<h1>' + this.model.get('title')  + '</h1>' +
+						'<img src="photos/kitty-store/' + this.model.attributes.imagepathsm + '" class="cart-list pull-left" style="width:150px;"/>' +
+					'</div>' +
+					'<div class="col-lg-3">'+
+						'<label>Quantity:</label>'+
+						'<span class="quantity">' + this.model.get('quantity') + '</span><br/>' +
+						'<span class="description">' + this.model.get('description') + '</span><br/>' +
+					'</div>'+
+					'<div class="col-lg-3">'+
+						/*'<label>Total:</label>'+
+						'<span class="total pull-right">' + this.model.get('total') + '</span><br/>' +*/
+					'</div>'+
+				'<button id="back-cart" class="btn-secondary btn"><a href="#/shopping-cart">Remove From Cart</button></a>'+
+			'</div>'+
+			'</form>' + this.model.calculateAmount(),
+
+		], function(val, key) {
+			return '<div class="container container-cart">'+ '<li class="shopping-item">' + val + '</li></div>';	
+
+		}));
 		return this;
 	},
 

@@ -27,7 +27,7 @@ var HomePageView = Backbone.View.extend({
 				'<img src="/photos/shopthestore.jpg' + '" class="img-polaroid" />'  +
 				'</div>' +
 			'</a>' +
-			'<a href="#/cart-list">'+
+			'<a href="#/shopping-cart">'+
 				'<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 options shop">' +
 				'<h4>Shop the Store</h4>' +
 				'<img src="/photos/classsignup.jpg' + '" class="img-polaroid" />'  +

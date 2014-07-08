@@ -207,6 +207,7 @@ app.post('/test/orders', isLoggedIn, function (req, res){
 			user.orders.description = req.body.description;
 			user.orders.title = req.body.title;
 			user.orders.price = req.body.price;
+			user.orders.total = req.body.total;
 			user.orders.imagepathsm = req.body.imagepathsm;
 			user.orders.imagepathmenu = req.body.imagepathmenu;
 			user.orders.modified = req.body.modified;
@@ -216,6 +217,7 @@ app.post('/test/orders', isLoggedIn, function (req, res){
 					description: user.orders.description,
 					quantity: user.orders.quantity,
 					price: user.orders.price,
+					total: user.orders.total,
 					imagepathsm: user.orders.imagepathsm,
 					imagepathmenu: user.orders.imagepathmenu,
 					modified: user.orders.modified

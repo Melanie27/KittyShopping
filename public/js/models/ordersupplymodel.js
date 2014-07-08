@@ -10,6 +10,7 @@ var OrderSupplyModel = Backbone.Model.extend({
 		"description" : "Large capacity drinking fountain",
 		"price" : "200",
 		"quantity" : "12",
+		"total" : "2400",
 		"imagepathsm" : "big-max-fountain.jpg" 	
 	}
 });

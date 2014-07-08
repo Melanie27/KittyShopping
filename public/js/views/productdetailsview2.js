@@ -53,6 +53,7 @@ var ProductDetailsView2 = Backbone.View.extend({
 			var title = this.model.get('title');
 			var quantity = this.model.get('quantity');
 			var price = this.model.get('price');
+			var total = this.model.get('total');
 			var imagepathsm = this.model.get('imagepathsm');
 			var imagepathmenu = this.model.get('imagepathmenu');
 			console.log(imagepathmenu);
@@ -61,6 +62,7 @@ var ProductDetailsView2 = Backbone.View.extend({
   				"description": description, 
   				"quantity" : quantity,
   				"price" : price,
+  				"total" : total,
   				"imagepathsm" : imagepathsm,
   				"imagepathmenu" : imagepathmenu	
   						
@@ -93,8 +95,11 @@ var ProductDetailsView2 = Backbone.View.extend({
 	},
 
 	setModelData: function() {
+		var newQuant = this.$el.find('input[name="quantity"]').val();
+		var total = this.model.get('price') * newQuant;
 		this.model.set({
 			quantity: this.$el.find('input[name="quantity"]').val(),
+			total: total
 
 			//total: this.$el.find(total),
 
